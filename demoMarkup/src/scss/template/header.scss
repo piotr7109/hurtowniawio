@@ -1,3 +1,24 @@
 .header {
+	margin: auto;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 
+	.logo {
+		flex: 1 0 0;
+	}
+	.header-button-wrapper {
+		flex: 1 0 0;
+		display: flex;
+
+		.header-button {
+			margin-left: 10px;
+			background-color: #63e072;
+			border-radius: 5px;
+			padding: 5px 15px;
+			box-shadow: #0f0f0f 2px 3px 6px -1px, inset #43c052 1px -1px 13px 8px;
+			font-size: 17px;
+		}
+	}
 }
