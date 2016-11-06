@@ -1,4 +1,5 @@
 *.[oa]
 *~
-*.css
+**/assets/css/
+**/assets/js/
 node_modules/
