@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     bs = require('browser-sync');
 
 gulp.task('build-css', function () {
-    return gulp.src('src/scss/**/*.scss')
+    return gulp.src('src/scss/**/main.scss')
         .pipe(sourcemaps.init())  // Process the original sources
         .pipe(sass())
         .pipe(sourcemaps.write()) // Add the map to modified source.
