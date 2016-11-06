@@ -1,3 +1,4 @@
 *.[oa]
 *~
 *.css
+node_modules/
