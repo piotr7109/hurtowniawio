@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
-    sourcemaps = require('gulp-sourcemaps');
+    sourcemaps = require('gulp-sourcemaps'),
+    autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('build-css', function () {
     return gulp.src('src/scss/**/*.scss')
