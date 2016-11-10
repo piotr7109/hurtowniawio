@@ -5,7 +5,6 @@
   align-items: center;
   justify-content: space-between;
 
-
   .logo {
     flex: 1 0 0;
     cursor: pointer;
@@ -19,16 +18,16 @@
 
     .header-button {
       margin-right: 10px;
-      background-color: #63e072;
+      background-color: #56c47a;
       border-radius: 5px;
       padding: 5px 15px;
-      box-shadow: #0f0f0f 1px 2px 6px -1px, inset #43c052 1px -1px 13px 8px;
+      box-shadow: #0f0f0f 1px 2px 6px -1px, inset #36a45a 1px -1px 13px 8px;
       font-size: 17px;
       border: none;
 
       &:hover {
-        background-color: #43c052;
-        box-shadow: #0f0f0f 2px 3px 6px -1px, inset #23a032 1px -1px 13px 8px;
+        background-color: #36a45a;
+        box-shadow: #0f0f0f 2px 3px 6px -1px, inset #16843a 1px -1px 13px 8px;
       }
 
       &:active {
