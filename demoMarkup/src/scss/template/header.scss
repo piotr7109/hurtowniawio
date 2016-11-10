@@ -6,12 +6,18 @@
   justify-content: space-between;
 
   .logo {
-    flex: 1 0 0;
+    padding: 10px;
 
     .logo-link {
       font-weight: bold;
       color: $dark-gray;
       text-decoration: none;
+      display: inline-block;
+    }
+
+    .logo-image {
+      display: inline-block;
+      width: 70px;
     }
   }
 
