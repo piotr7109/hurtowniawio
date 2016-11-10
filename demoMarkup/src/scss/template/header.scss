@@ -19,6 +19,10 @@
     .logo-image {
       display: inline-block;
       width: 70px;
+
+      @include respond-to(small) {
+        display: none;
+      }
     }
   }
 
@@ -36,6 +40,7 @@
       box-shadow: #0f0f0f 1px 2px 6px -1px, inset $green 1px -1px 13px 8px;
       font-size: 17px;
       border: none;
+      white-space: nowrap;
 
       &:hover {
         background-color: $green;
