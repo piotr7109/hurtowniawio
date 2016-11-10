@@ -36,6 +36,7 @@
       font-size: 17px;
       border: none;
 
+
       &:hover {
         background-color: $green;
         box-shadow: #0f0f0f 2px 3px 6px -1px, inset $green-dark 1px -1px 13px 8px;
@@ -47,6 +48,11 @@
 
       &:focus {
         outline: none; //for html button css reset
+      }
+      &:hover,
+      &:focus,
+      &:active{
+        color: #ddd;
       }
     }
   }
