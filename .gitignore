@@ -3,4 +3,5 @@
 **/assets/css/
 **/assets/js/
 node_modules/
+/npm-debug.log
 .idea

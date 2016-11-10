@@ -7,8 +7,12 @@
 
   .logo {
     flex: 1 0 0;
-    cursor: pointer;
-    font-weight: bold;
+
+    .logo-link {
+      font-weight: bold;
+      color: $font-primary;
+      text-decoration: none;
+    }
   }
 
   .header-button-wrapper {
