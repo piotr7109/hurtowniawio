@@ -13,10 +13,10 @@
       justify-content: center;
       padding: 5px 10px;
       font-size: 25px;
-      color: #000;
+      color: $black;
 
       .menu-item-link {
-        color: #FFF;
+        color: $white;
         text-decoration: none;
 
         &:hover,
