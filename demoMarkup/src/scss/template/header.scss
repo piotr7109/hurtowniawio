@@ -22,16 +22,16 @@
 
     .header-button {
       margin-right: 10px;
-      background-color: #56c47a;
+      background-color: $green-light;
       border-radius: 5px;
       padding: 5px 15px;
-      box-shadow: #0f0f0f 1px 2px 6px -1px, inset #36a45a 1px -1px 13px 8px;
+      box-shadow: #0f0f0f 1px 2px 6px -1px, inset $green 1px -1px 13px 8px;
       font-size: 17px;
       border: none;
 
       &:hover {
-        background-color: #36a45a;
-        box-shadow: #0f0f0f 2px 3px 6px -1px, inset #16843a 1px -1px 13px 8px;
+        background-color: $green;
+        box-shadow: #0f0f0f 2px 3px 6px -1px, inset $green-light 1px -1px 13px 8px;
       }
 
       &:active {
