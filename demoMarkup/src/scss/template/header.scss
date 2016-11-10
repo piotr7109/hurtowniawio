@@ -11,7 +11,7 @@
 
     .logo-link {
       font-weight: bold;
-      color: $dark-gray;
+      color: $gray;
       text-decoration: none;
       display: inline-block;
     }
@@ -37,7 +37,6 @@
       font-size: 17px;
       border: none;
 
-
       &:hover {
         background-color: $green;
         box-shadow: #0f0f0f 2px 3px 6px -1px, inset $green-dark 1px -1px 13px 8px;
@@ -52,7 +51,7 @@
       }
       &:hover,
       &:focus,
-      &:active{
+      &:active {
         color: #ddd;
       }
     }
