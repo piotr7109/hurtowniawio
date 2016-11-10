@@ -5,9 +5,11 @@
   align-items: center;
   justify-content: space-between;
 
+
   .logo {
     flex: 1 0 0;
     cursor: pointer;
+    font-weight: bold;
   }
 
   .header-button-wrapper {
