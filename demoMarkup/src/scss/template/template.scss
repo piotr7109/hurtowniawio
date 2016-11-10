@@ -21,6 +21,10 @@ html {
       border-radius: 10px;
       box-shadow: 15px 15px 15px -10px rgba(0, 0, 0, 0.10);
 
+      @include respond-to(small) {
+        margin: auto;
+      }
+
       > .content {
         margin: auto;
         text-align: center;
