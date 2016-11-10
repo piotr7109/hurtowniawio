@@ -5,7 +5,7 @@
   .wrapper {
     max-width: 1280px;
     margin: auto;
-    background: #eee;
+    background: $light-lemon-chiffen;
     border-radius: 10px;
     box-shadow: 15px 15px 15px -10px rgba(0, 0, 0, 0.10);
     margin-top: 20px;
@@ -13,7 +13,6 @@
     .content {
       margin: auto;
       text-align: center;
-
     }
   }
 }
