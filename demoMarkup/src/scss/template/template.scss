@@ -7,22 +7,25 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     .page {
       flex: 1 0 0;
       width: 100%;
       font-family: $primary-font;
+    }
 
-  .wrapper {
-    max-width: 1280px;
-    margin: 20px auto auto auto;
-    background: $light-lemon-chiffen;
-    border-radius: 10px;
-    box-shadow: 15px 15px 15px -10px rgba(0, 0, 0, 0.10);
+    .wrapper {
+      max-width: 1280px;
+      margin: 20px auto auto auto;
+      background: $light-lemon-chiffen;
+      border-radius: 10px;
+      box-shadow: 15px 15px 15px -10px rgba(0, 0, 0, 0.10);
 
-    > .content {
-      margin: auto;
-      text-align: center;
-      padding: 20px;
+      > .content {
+        margin: auto;
+        text-align: center;
+        padding: 20px;
+      }
     }
   }
 }
