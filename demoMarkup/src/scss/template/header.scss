@@ -31,6 +31,15 @@
     display: flex;
     justify-content: flex-end;
 
+    @include respond-to(very-small) {
+      flex-direction: column;
+      .header-button {
+        &:first-child {
+          margin-bottom: 5px;
+        }
+      }
+    }
+
     .header-button {
       margin-right: 10px;
       background-color: $green-light;

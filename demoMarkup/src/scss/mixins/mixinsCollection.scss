@@ -1,10 +1,13 @@
 @mixin respond-to($media) {
-  @if $media == small {
+  @if $media == very-small {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $media == small {
     @media (max-width: 575px) {
       @content;
     }
-  }
-  @else if $media == medium {
+  } @else if $media == medium {
     @media (max-width: 991px) {
       @content;
     }
