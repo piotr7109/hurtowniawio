@@ -8,6 +8,7 @@ var gulp = require('gulp'),
 
 
 gulp.task('watch', ['browser-sync'], function () {
+    gulp.start('build-css');
     gulp.watch('src/scss/**/*.scss', ['build-css']);
     gulp.watch("*.html").on('change', bs.reload);
 });
