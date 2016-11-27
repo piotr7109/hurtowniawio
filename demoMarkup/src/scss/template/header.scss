@@ -1,0 +1,73 @@
+.header {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $light-lemon-chiffen;
+
+  .logo {
+    padding: 10px;
+
+    .logo-link {
+      font-weight: bold;
+      color: $gray;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .logo-image {
+      display: inline-block;
+      width: 70px;
+
+      @include respond-to(small) {
+        display: none;
+      }
+    }
+  }
+
+  .header-button-wrapper {
+    flex: 1 0 0;
+    display: flex;
+    justify-content: flex-end;
+
+    @include respond-to(very-small) {
+      flex-direction: column;
+      .header-button {
+        &:first-child {
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    .header-button {
+      margin-right: 10px;
+      background-color: $green-light;
+      border-radius: 5px;
+      padding: 5px 15px;
+      color: $light-lemon-chiffen;
+      box-shadow: #0f0f0f 1px 2px 6px -1px, inset $green 1px -1px 13px 8px;
+      font-size: 17px;
+      border: none;
+      white-space: nowrap;
+
+      &:hover {
+        background-color: $green;
+        box-shadow: #0f0f0f 2px 3px 6px -1px, inset $green-dark 1px -1px 13px 8px;
+      }
+
+      &:active {
+        border: none; //for html button css reset
+      }
+
+      &:focus {
+        outline: none; //for html button css reset
+      }
+      &:hover,
+      &:focus,
+      &:active {
+        color: #ddd;
+      }
+    }
+  }
+}
