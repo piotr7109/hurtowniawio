@@ -1,6 +1,5 @@
 package controllers;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +12,7 @@ public class MainPageController {
 
     @GetMapping
     public String getMainPage() {
-        return getHtmlFile("/webapp/WEB-INF/view/index.html");
+        return getHtmlFile("/ui.apps/index.html");
     }
 
     protected String getHtmlFile(String katalog) {
