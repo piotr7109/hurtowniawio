@@ -1,4 +1,4 @@
-package domian;
+package com.beef.domian;
 
 import javax.persistence.*;
 import java.util.Date;
