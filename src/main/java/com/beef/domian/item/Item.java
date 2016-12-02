@@ -1,4 +1,4 @@
-package com.beef.domian;
+package com.beef.domian.item;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
