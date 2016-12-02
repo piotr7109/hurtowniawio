@@ -1,10 +1,8 @@
 package com.beef.controllers.authentication;
 
-
 import com.beef.core.utils.Utils;
 import com.beef.domian.user.User;
 import com.beef.domian.user.UserHelper;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.http.HttpSession;
 
