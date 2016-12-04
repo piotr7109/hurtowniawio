@@ -16,5 +16,3 @@ export default class IndexComponent extends React.Component {
         );
     }
 }
-
-const Home = () => <h1></h1>;
