@@ -19,7 +19,7 @@ export default class BaseComponent extends React.Component {
         return axios({
             method: 'post',
             url: '/getLoggedUser'
-        }).then(() => this.setState({loggedUser: 'rolnik'}));
+        }).then((user) => this.setState({loggedUser: 'rolnik'}));
     }
 
     renderHTML() {
