@@ -1,4 +1,4 @@
-package com.beef.domian;
+package com.beef.domian.user;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,6 +6,13 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
+
+    public User() {}
+
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
 
     @Id
     @GeneratedValue

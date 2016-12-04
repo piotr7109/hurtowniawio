@@ -1,4 +1,6 @@
-package com.beef.domian;
+package com.beef.domian.application;
+
+import com.beef.domian.user.User;
 
 import javax.persistence.*;
 import java.util.Date;

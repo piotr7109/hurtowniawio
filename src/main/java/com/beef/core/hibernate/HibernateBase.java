@@ -6,20 +6,16 @@ import javax.persistence.Persistence;
 
 public class HibernateBase {
 
-    private EntityManagerFactory entityManagerFactory;
+    private static EntityManagerFactory entityManagerFactory;
 
-    private EntityManager entityManager;
+    public static EntityManager entityManager;
 
-    public HibernateBase() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("myDatabase");
+    public static void createEntityManagers() {
+        entityManagerFactory = Persistence.createEntityManagerFactory("hurtowniawioDatabase");
         entityManager = entityManagerFactory.createEntityManager();
     }
 
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
-
-    public void closeEntityManagers() {
+    public static void closeEntityManagers() {
         entityManager.close();
         entityManagerFactory.close();
     }
