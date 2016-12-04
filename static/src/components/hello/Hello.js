@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router';
+
 import BaseComponent from './../BaseComponent';
 
 export default class Hello extends BaseComponent {
@@ -13,6 +15,7 @@ export default class Hello extends BaseComponent {
                 <h1>HELLO</h1>
                 <h2>BEEF INDUSTRY</h2>
                 <div>FUCK ME IF IT'S WORKING</div>
+                <Link to="/someLink">Link to some link</Link>
             </div>
         );
     }
