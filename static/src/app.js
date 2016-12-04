@@ -1,4 +1,4 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from './components/router/Router';
-ReactDOM.render( <Router />, document.querySelector('.app-wrapper') );
+import IndexComponent from './components/router/IndexComponent';
+ReactDOM.render( <IndexComponent />, document.querySelector('.app-wrapper') );

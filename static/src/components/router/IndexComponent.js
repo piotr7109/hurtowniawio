@@ -1,7 +1,8 @@
 import React from 'react';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
+import Error404 from './../error/Errors';
 
-export default class Router extends React.Component {
+export default class IndexComponent extends React.Component {
 
 
     render() {
@@ -9,13 +10,10 @@ export default class Router extends React.Component {
             <Router history={hashHistory}>
                 <Route path='/' component={Home} />
 
-                <Route path='*' component={NotFound} />
+                <Route path='/*' component={Error404} />
             </Router>
         );
     }
 }
 
-const Home = () => <h1></h1>
-
-const NotFound = () => (
-    <h1>404.. This page is not found!</h1>)
+const Home = () => <h1></h1>;
