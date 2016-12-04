@@ -1,8 +1,13 @@
 import React from 'react';
+import BaseComponent from './../BaseComponent';
 
-export default class Hello extends React.Component {
+export default class Hello extends BaseComponent {
+    constructor() {
+        super();
+        this.allowedUsers = ['rolnik'];
+    }
 
-    render() {
+    renderHTML() {
         return (
             <div className="hello">
                 <h1>HELLO</h1>
