@@ -7,7 +7,7 @@ export default class BaseComponent extends React.Component {
     constructor() {
         super();
         this.setLoggedUser();
-        this.state = {loggedUser: 'undefined'};
+        this.state = {loggedUser: null};
         this.allowedUsers = [];
     }
 
@@ -29,7 +29,7 @@ export default class BaseComponent extends React.Component {
     }
 
     isComponentReady() {
-        return this.state.loggedUser != 'undefined';
+        return this.state.loggedUser != null;
     }
 
     render() {
