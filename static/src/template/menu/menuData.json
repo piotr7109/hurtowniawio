@@ -1,0 +1,30 @@
+{
+  "rolnik": [
+    {
+      "title": "Moje Sellegro",
+      "path": "/moje_sellegro"
+    },
+    {
+      "title": "Przetargi",
+      "path": "/lista_przetargow"
+    },
+    {
+      "title": "Kontakt",
+      "path": "/kontakt"
+    }
+  ],
+  "admin": [
+    {
+      "title": "Moje Sellegro admin",
+      "path": "/moje_sellegro2"
+    },
+    {
+      "title": "Przetargi admin",
+      "path": "/lista_przetargow2"
+    },
+    {
+      "title": "Kontakt admin",
+      "path": "/kontakt2"
+    }
+  ]
+}
