@@ -8,7 +8,7 @@ export default class Error404 extends React.Component {
     }
 }
 
-export default class ErrorNonAuthenticatedUser extends React.Component {
+export class ErrorNonAuthenticatedUser extends React.Component {
     render() {
         return (
             <div>You shall not pass!!</div>
