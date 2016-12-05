@@ -46,7 +46,7 @@ function bundleApp(isProduction) {
     }
 
     appBundler
-        .transform("babelify", {presets: ["es2015", "react"]})
+        .transform('babelify', {presets: ['es2015', 'react', 'stage-2'], sourceMapsAbsolute: true})
         .bundle()
         .on('error', gutil.log)
         .pipe(source('bundle.js'))
