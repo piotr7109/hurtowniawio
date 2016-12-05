@@ -1,9 +1,8 @@
-import BaseComponent from "../../components/BaseComponent";
 import axios from 'axios';
 import React from 'react';
 import {Link} from 'react-router';
 
-export default class Menu extends BaseComponent {
+export default class Menu extends React.Component {
 
     constructor() {
         super();

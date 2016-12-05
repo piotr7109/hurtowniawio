@@ -3,9 +3,7 @@ import {Link} from 'react-router';
 import Menu from '../../template/menu/Menu'
 import CustomHeader from '../../template/header/Header';
 
-import BaseComponent from './../BaseComponent';
-
-export default class Hello extends BaseComponent {
+export default class Hello extends React.Component {
     constructor() {
         super();
         this.allowedUsers = ['rolnik'];
