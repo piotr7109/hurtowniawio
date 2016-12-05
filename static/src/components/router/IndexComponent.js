@@ -7,23 +7,9 @@ import Hello from './../hello/Hello';
 import UserUtils from './../../utils/UserUtils';
 
 export default class IndexComponent extends React.Component {
-    constructor() {
-        super();
-        this.setLoggedUser();
-        this.state = {loggedUser: null};
-    }
-
-    setLoggedUser() {
-        UserUtils
-            .getLoggedUser()
-            .then((user) => {
-                UserUtils.loggedUser = {type: 'rolnik'};
-                this.setState({loggedUser: UserUtils.loggedUser})
-            });
-    }
 
     render() {
-        console.log(this.state.loggedUser);
+        console.log(UserUtils.loggedUser);
         return null;
         /*if (this.isComponentReady()) {
          if (this.isUserAuthenticated()) {

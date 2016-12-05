@@ -1,4 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import IndexComponent from './components/router/IndexComponent';
-ReactDOM.render( <IndexComponent />, document.querySelector('.app-wrapper') );
+import UserUtils from './utils/UserUtils';
+
+let appWrapper = '.app-wrapper';
+
+UserUtils.setLoggedUser()
+    .then(() => {
+        ReactDOM.render( <IndexComponent />, document.querySelector(appWrapper));
+    });

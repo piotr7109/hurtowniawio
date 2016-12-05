@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export default class UserUtils {
-    static getLoggedUser() {
+    static setLoggedUser() {
         return axios({
             method: 'post',
             url: '/getLoggedUser'
-        });
+        }).then((user) => UserUtils.loggedUser = {type: 'rolnik'});
     }
 
     static loggedUser = null;
