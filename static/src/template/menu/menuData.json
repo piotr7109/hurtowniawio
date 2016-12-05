@@ -16,15 +16,15 @@
   "admin": [
     {
       "title": "Moje Sellegro admin",
-      "path": "/moje_sellegro2"
+      "path": "/moje_sellegro"
     },
     {
       "title": "Przetargi admin",
-      "path": "/lista_przetargow2"
+      "path": "/lista_przetargow"
     },
     {
       "title": "Kontakt admin",
-      "path": "/kontakt2"
+      "path": "/kontakt"
     }
   ]
 }

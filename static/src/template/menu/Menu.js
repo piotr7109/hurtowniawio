@@ -1,30 +1,18 @@
 import axios from 'axios';
 import React from 'react';
 import {Link} from 'react-router';
+import MenuUtils from './../../utils/MenuUtils';
+import UserUtils from './../../utils/UserUtils';
 
 export default class Menu extends React.Component {
 
     constructor() {
         super();
-        this.state = {menuData: null};
-        this.allowedUsers = ['rolnik'];
-        this.getMenuData();
-    }
-
-
-    getMenuData() {
-        let JSONPath = '/src/template/menu/menuData.json';
-
-        return axios({
-            method: 'get',
-            url: JSONPath
-        }).then((menuData) => {
-            this.setState({menuData: menuData.data});
-        });
     }
 
     getMenuItem(item) {
         if (item.hasOwnProperty('path') && item.hasOwnProperty('title')) {
+            console.log(item.path)
             return (
                 <Link to={item.path}>
                     <div className="menu-item">
@@ -36,32 +24,20 @@ export default class Menu extends React.Component {
         else return null;
     }
 
-    getMenu() {
-        if (this.state.menuData.hasOwnProperty(this.state.loggedUser)) {
-            let userProperties = this.state.menuData[this.state.loggedUser];
-            if (userProperties) {
-                let menuItems = [];
-                for (let i = 0; i < userProperties.length; i++) {
-                    menuItems.push(this.getMenuItem(userProperties[i]));
-                }
-                return (menuItems);
-            }
-            else return null;
+    getMenuItems() {
+        let items = [];
+        for (let item of MenuUtils.menuData[UserUtils.loggedUser.type]) {
+            items.push(this.getMenuItem(item));
         }
-        else return null;
+        return items;
     }
 
-    renderHTML() {
+    render() {
+        return (
+            <div className="menu">
+                {this.getMenuItems()}
+            </div>
 
-        if (this.state.menuData) {
-            return (
-                <div className="menu-wrapper">
-                    <div className="menu">
-                        {this.getMenu()}
-                    </div>
-                </div>
-            );
-        }
-        else return null;
+        );
     }
 }

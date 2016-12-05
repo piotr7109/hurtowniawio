@@ -58,6 +58,7 @@
 
       &:active {
         border: none; //for html button css reset
+        transform: scale(.95);
       }
 
       &:focus {
