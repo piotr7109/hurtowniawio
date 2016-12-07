@@ -13,6 +13,12 @@
       "path": "/kontakt"
     }
   ],
+  "unlogged": [
+    {
+      "title": "Moje Sellegro",
+      "path": "/moje_sellegro"
+    }
+  ],
   "admin": [
     {
       "title": "Moje Sellegro admin",

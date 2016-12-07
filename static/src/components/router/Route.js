@@ -18,7 +18,7 @@ export default class IndexComponent extends React.Component {
         }
 
         return (
-            <Router  history={hashHistory}>
+            <Router history={hashHistory}>
                 <Route component={MainLayout}>
                     <Route path='/' component={Hello}/>
                     <Route path='/moje_sellegro' component={Hello}/>
@@ -29,21 +29,5 @@ export default class IndexComponent extends React.Component {
                 </Route>
             </Router>
         );
-        /*if (this.isComponentReady()) {
-         if (this.isUserAuthenticated()) {
-         return this.renderHTML();
-         } else {
-         /* render Errors*/
-
-
-        /*
-         return (
-
-         <Router history={hashHistory}>
-         <Route path='/' component={Hello}/>
-
-         <Route path='/*' component={Error404}/>
-         </Router>
-         );*/
     }
 }

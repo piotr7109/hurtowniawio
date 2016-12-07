@@ -6,15 +6,14 @@ import UserUtils from './../../utils/UserUtils';
 
 export default class Menu extends React.Component {
 
-    constructor() {
-        super();
+    handleRouteChange() {
+        this.forceUpdate();
     }
 
     getMenuItem(item) {
         if (item.hasOwnProperty('path') && item.hasOwnProperty('title')) {
-            console.log(item.path)
             return (
-                <Link to={item.path}>
+                <Link to={item.path} onClick={() => this.handleRouteChange()}>
                     <div className="menu-item">
                         {item.title}
                     </div>
@@ -25,8 +24,10 @@ export default class Menu extends React.Component {
     }
 
     getMenuItems() {
-        let items = [];
-        for (let item of MenuUtils.menuData[UserUtils.loggedUser.type]) {
+        let items = [],
+            loggedUserType = UserUtils.loggedUser ? UserUtils.loggedUser.type : 'unlogged';
+
+        for (let item of MenuUtils.menuData[loggedUserType]) {
             items.push(this.getMenuItem(item));
         }
         return items;

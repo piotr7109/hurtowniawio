@@ -9,10 +9,11 @@ import javax.servlet.http.HttpSession;
 public class AuthenticationService {
 
     public static User login(HttpSession session, User user) {
-        if (UserHelper.isUserValid(user)) {
-            user.setPassword("");
-            session.setAttribute(Utils.sessionUserName, user);
-            return user;
+        User dbUser = UserHelper.isUserValid(user);
+        if (dbUser != null) {
+            dbUser.setPassword("");
+            session.setAttribute(Utils.sessionUserName, dbUser);
+            return dbUser;
         } else {
             return null;
         }
