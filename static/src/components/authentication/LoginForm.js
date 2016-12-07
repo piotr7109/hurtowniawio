@@ -1,13 +1,24 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class LoginForm extends React.Component {
 
-
     handleSubmit(event) {
         let serialize = require('form-serialize'),
-            target = event.target;
-        console.log(serialize(target, {hash: true}));
+            target = event.target,
+            data = serialize(target, {hash: true});
+
         event.preventDefault();
+
+        axios({
+            method: 'post',
+            url: '/login',
+            data: {
+                userData: data
+            }
+        }).then((resultData) => {
+            console.log(resultData);
+        });
     }
 
     render() {
@@ -17,7 +28,7 @@ export default class LoginForm extends React.Component {
                     <input className="form-control" type="text" name="login"/>
                     <input className="form-control" type="password" name="password"/>
                 </div>
-                <input type="submit" value="Log in" className="ButtonSubmit" />
+                <input type="submit" className="ButtonSubmit" value="Log in" />
             </form>
         );
     }

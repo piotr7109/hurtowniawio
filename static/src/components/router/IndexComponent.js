@@ -10,8 +10,6 @@ import MainLayout from "../../template/mainLayout/MainLayout";
 export default class IndexComponent extends React.Component {
 
     render() {
-        console.log(UserUtils.loggedUser);
-        console.log(MenuUtils.menuData);
         let links = new Set();
         for (let i = 0; i < MenuUtils.menuData; i++) {
             for (let j = 0; j < MenuUtils.menuData[i]; j++) {
