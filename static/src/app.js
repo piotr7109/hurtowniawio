@@ -5,7 +5,7 @@ import UserUtils from './utils/UserUtils';
 import MenuUtils from './utils/MenuUtils';
 
 let wrappers = {
-    body: 'body.app'
+    app: '.app'
 };
 
 UserUtils.setLoggedUser()
@@ -13,5 +13,5 @@ UserUtils.setLoggedUser()
         return MenuUtils.setMenuData();
     })
     .then(() => {
-        ReactDOM.render( <IndexComponent />, document.querySelector(wrappers.body));
+        ReactDOM.render( <IndexComponent />, document.querySelector(wrappers.app));
     });

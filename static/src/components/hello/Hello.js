@@ -16,7 +16,7 @@ export default class Hello extends BaseComponent {
                 <h2>BEEF INDUSTRY</h2>
                 <div>FUCK ME IF IT'S WORKING</div>
                 <Link to="/moje_sellegro">Link to some link</Link>
-                <form onSubmit={this.handleSubmit} className="formularz">
+                <form onSubmit={this.handleSubmit}>
                     <input type="text" name="firstName" />
                     <input type="text" name="lastName" />
                     <input type="submit" value="Submit" />
@@ -29,6 +29,7 @@ export default class Hello extends BaseComponent {
     handleSubmit(event) {
         let serialize = require('form-serialize'),
             target = event.target;
+
         console.log(serialize(target, { hash: true }));
         event.preventDefault();
     }
