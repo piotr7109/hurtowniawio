@@ -1,6 +1,6 @@
 import React from 'react';
-import Menu from './../template/menu/Menu';
-import CustomHeader from './../template/header/Header';
+import Menu from '../menu/Menu';
+import CustomHeader from '../header/Header';
 
 export default class MainLayout extends React.Component {
 

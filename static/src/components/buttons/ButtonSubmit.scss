@@ -1,0 +1,30 @@
+.ButtonSubmit {
+  margin-right: 10px;
+  background-color: $green-light;
+  border-radius: 5px;
+  padding: 5px 15px;
+  color: $light-lemon-chiffon;
+  box-shadow: #0f0f0f 1px 2px 6px -1px, inset $green 1px -1px 13px 8px;
+  font-size: 17px;
+  border: none;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: $green;
+    box-shadow: #0f0f0f 2px 3px 6px -1px, inset $green-dark 1px -1px 13px 8px;
+  }
+
+  &:active {
+    border: none; //for html button css reset
+    transform: scale(.95);
+  }
+
+  &:focus {
+    outline: none; //for html button css reset
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    color: #ddd;
+  }
+}
