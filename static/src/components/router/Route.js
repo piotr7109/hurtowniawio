@@ -10,8 +10,6 @@ import MainLayout from "../../template/mainLayout/MainLayout";
 export default class IndexComponent extends React.Component {
 
     render() {
-        console.log(UserUtils.loggedUser);
-        console.log(MenuUtils.menuData);
         let links = new Set();
         for (let i = 0; i < MenuUtils.menuData; i++) {
             for (let j = 0; j < MenuUtils.menuData[i]; j++) {
@@ -20,7 +18,7 @@ export default class IndexComponent extends React.Component {
         }
 
         return (
-            <Router  history={hashHistory}>
+            <Router history={hashHistory}>
                 <Route component={MainLayout}>
                     <Route path='/' component={Hello}/>
                     <Route path='/moje_sellegro' component={Hello}/>
@@ -31,21 +29,5 @@ export default class IndexComponent extends React.Component {
                 </Route>
             </Router>
         );
-        /*if (this.isComponentReady()) {
-         if (this.isUserAuthenticated()) {
-         return this.renderHTML();
-         } else {
-         /* render Errors*/
-
-
-        /*
-         return (
-
-         <Router history={hashHistory}>
-         <Route path='/' component={Hello}/>
-
-         <Route path='/*' component={Error404}/>
-         </Router>
-         );*/
     }
 }

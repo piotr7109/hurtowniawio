@@ -6,7 +6,7 @@ import javax.persistence.TypedQuery;
 
 public class UserHelper {
 
-    public static boolean isUserValid(User user) {
+    public static User isUserValid(User user) {
         HibernateBase.createEntityManagers();
 
         TypedQuery<User> query = HibernateBase.entityManager.createQuery("select u from User u where u.login=:login and u.password=:password", User.class);
@@ -20,7 +20,7 @@ public class UserHelper {
         }
 
         HibernateBase.closeEntityManagers();
-        return user != null;
+        return user;
     }
 
     public static boolean isUserExisting(User user) {

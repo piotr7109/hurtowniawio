@@ -5,7 +5,7 @@ export default class UserUtils {
         return axios({
             method: 'post',
             url: '/getLoggedUser'
-        }).then((user) => UserUtils.loggedUser = {type: 'rolnik'});
+        }).then((user) => UserUtils.loggedUser = user.data);
     }
 
     static loggedUser = null;

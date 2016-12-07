@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import IndexComponent from './components/router/IndexComponent';
+import IndexComponent from './components/router/Route';
 import UserUtils from './utils/UserUtils';
 import MenuUtils from './utils/MenuUtils';
 
