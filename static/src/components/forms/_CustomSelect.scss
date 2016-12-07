@@ -1,0 +1,39 @@
+.CustomSelectWrapper {
+  width: 200px;
+
+  .CustomSelect {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-self: center;
+    background: $light-lemon-chiffon;
+    cursor: pointer;
+
+    .selected {
+      flex: 1 0 auto;
+      background: lemonchiffon;
+      padding: 5px;
+      border: 1px solid $dark-gray;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      border: 1px solid $dark-gray;
+
+      background: lemonchiffon;
+      width: 100%;
+
+      .item {
+        flex: 1 0 auto;
+        border-bottom: 1px solid $dark-gray;
+        padding: 5px;
+
+        &:hover {
+          background-color: $seagreen;
+        }
+      }
+    }
+  }
+}
