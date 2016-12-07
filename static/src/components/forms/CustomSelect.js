@@ -2,10 +2,7 @@ import React from 'react';
 import _ from 'underscore';
 
 export default class CustomSelect extends React.Component {
-
-    // let values = [
-    //     {text: 'ASasA', value: 'asdasd'}
-    // ]
+    
     constructor() {
         super();
 
@@ -23,18 +20,13 @@ export default class CustomSelect extends React.Component {
 
     getList() {
         let outputList = [];
-
         let selected = this.state.selected ? this.state.selected : this.props.items[0];
-        console.log(selected)
         let listOfItems = _.without(this.props.items, selected);
-
-
-
-        console.log('aaaaaaa', listOfItems)
 
         for (let item of listOfItems) {
             outputList.push(this.getItem(item));
         }
+
         return outputList;
     }
 

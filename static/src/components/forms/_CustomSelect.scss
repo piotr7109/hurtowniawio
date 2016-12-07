@@ -19,11 +19,12 @@
     .list {
       display: flex;
       flex-direction: column;
-      position: absolute;
-      border: 1px solid $dark-gray;
-
-      background: lemonchiffon;
       width: 100%;
+      position: absolute;
+      top: 100%;
+      border: 1px solid $dark-gray;
+      border-top: none;
+      background: lemonchiffon;
 
       .item {
         flex: 1 0 auto;
