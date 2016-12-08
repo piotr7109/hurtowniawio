@@ -3,7 +3,8 @@
 let gulp = require('gulp'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
-    autoprefixer = require('gulp-autoprefixer');
+    autoprefixer = require('gulp-autoprefixer'),
+    classNames = require('classnames');
 
 
 gulp.task('watch', () => {
