@@ -4,6 +4,7 @@ import MenuUtils from './../../utils/MenuUtils';
 import Error404 from "../error/Errors";
 import Hello from "./../hello/Hello";
 import RegisterForm from './../authentication/RegisterForm';
+import LoginForm from './../authentication/LoginForm';
 import MainLayout from "../../template/mainLayout/MainLayout";
 
 export default class IndexComponent extends React.Component {
@@ -20,8 +21,8 @@ export default class IndexComponent extends React.Component {
             <Router history={hashHistory}>
                 <Route component={MainLayout}>
                     <Route path='/' component={Hello}/>
-                    <Route path='/moje_sellegro' component={Hello}/>
-                    <Route path='/lista_przetargow' component={Hello}/>
+                    <Route path='/login' component={LoginForm}/>
+                    <Route path='/register' component={RegisterForm}/>
                     <Route path='/kontakt' component={RegisterForm}/>
 
                     <Route path='/*' component={Error404}/>

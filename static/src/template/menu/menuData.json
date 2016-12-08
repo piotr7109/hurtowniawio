@@ -5,18 +5,22 @@
       "path": "/moje_sellegro"
     },
     {
-      "title": "Przetargi",
-      "path": "/lista_przetargow"
+      "title": "Rejestracja",
+      "path": "/register"
     },
     {
-      "title": "Kontakt",
-      "path": "/kontakt"
+      "title": "Logowanie",
+      "path": "/login"
     }
   ],
   "unlogged": [
     {
-      "title": "Moje Sellegro",
-      "path": "/moje_sellegro"
+      "title": "Rejestracja",
+      "path": "/register"
+    },
+    {
+      "title": "Logowanie",
+      "path": "/login"
     }
   ],
   "admin": [

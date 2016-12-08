@@ -1,9 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import {BasicInputControl, BasicSubmitControl} from './../forms/controls/BasicInputControl';
 import SimpleSelect from './../forms/controls/SimpleSelect';
 import CustomSelect from '../forms/controls/CustomSelect';
 import BaseForm from './../forms/BaseForm';
+
 export default class RegisterForm extends BaseForm {
 
     formControls = [
@@ -35,19 +35,27 @@ export default class RegisterForm extends BaseForm {
         return controls;
     }
 
+    getDataObject(data) {
+        return {userData: JSON.stringify(data)}
+    }
+
     handleSubmit(event) {
-        let serialize = require('form-serialize'),
-            target = event.target,
-            data = serialize(target, {hash: true});
-
-        event.preventDefault();
-        this.handleRequest(data).then(() => {
-
+        this.handleFormEvents(event, '/register', 'post').then(() => {
+            let data = response.data;
+            console.log(data);
         });
     }
 
     getForm() {
-
+        return (
+            <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit.bind(this)} role="register">
+                <div className="form-group">
+                    {this.getFormControls()}
+                    <CustomSelect items={this.userTypes}/>
+                </div>
+                <BasicSubmitControl text="Rejestruj"/>
+            </form>
+        );
     }
 
     getSuccessMessage() {
@@ -56,21 +64,5 @@ export default class RegisterForm extends BaseForm {
 
     getErrorMessage() {
 
-    }
-
-    getUserTypes() {
-        return this.userTypes;
-    }
-
-    render() {
-        return (
-            <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit} role="register">
-                <div className="form-group">
-                    {this.getFormControls()}
-                    <CustomSelect items={this.getUserTypes()}/>
-                </div>
-                <BasicSubmitControl text="Rejestruj"/>
-            </form>
-        );
     }
 }

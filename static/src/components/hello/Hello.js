@@ -4,7 +4,7 @@ import Menu from '../../template/menu/Menu';
 import CustomHeader from '../../template/header/Header';
 import BaseComponent from "../BaseComponent";
 import LoginForm from '../authentication/LoginForm';
-import CustomSelect from '../forms/CustomSelect';
+import CustomSelect from '../forms/controls/CustomSelect';
 
 export default class Hello extends BaseComponent {
     constructor() {
