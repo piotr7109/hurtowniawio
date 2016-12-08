@@ -3,6 +3,7 @@ import {BasicInputControl, BasicSubmitControl} from './../forms/controls/BasicIn
 import SimpleSelect from './../forms/controls/SimpleSelect';
 import CustomSelect from '../forms/controls/CustomSelect';
 import BaseForm from './../forms/BaseForm';
+
 export default class RegisterForm extends BaseForm {
 
     formControls = [

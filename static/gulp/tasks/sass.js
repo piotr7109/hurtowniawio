@@ -4,8 +4,7 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     bs = require('browser-sync'),
     gutil = require('gulp-util'),
-    bulk = require('gulp-sass-bulk-import'),
-    autoprefixer = require('gulp-autoprefixer');
+    bulk = require('gulp-sass-bulk-import');
 
 gulp.task('build-css', function () {
     return gulp.src('src/scss/**/main.scss')
