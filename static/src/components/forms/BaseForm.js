@@ -8,8 +8,6 @@ export default class BaseForm extends React.Component {
         this.state = ({mode: 0});
     }
 
-
-
     handleFormEvents(event, url, method) {
         event.preventDefault();
 
