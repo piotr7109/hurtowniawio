@@ -34,6 +34,10 @@ export default class RegisterForm extends BaseForm {
         return controls;
     }
 
+    getDataObject(data) {
+        return {userData: JSON.stringify(data)}
+    }
+
     handleSubmit(event) {
         this.handleFormEvents(event, '/register', 'post').then(() => {
             let data = response.data;
