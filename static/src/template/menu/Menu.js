@@ -37,7 +37,6 @@ export default class Menu extends React.Component {
             <div className="menu">
                 {this.getMenuItems()}
             </div>
-
         );
     }
 }
