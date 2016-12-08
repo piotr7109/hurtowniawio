@@ -1,5 +1,5 @@
 import React from 'react';
-import BasicInputControl from './../forms/BasicInputControl';
+import {BasicInputControl, BasicSubmitControl} from './../forms/BasicInputControl';
 import SimpleSelect from './../forms/SimpleSelect';
 
 export default class RegisterForm extends React.Component {
@@ -45,7 +45,7 @@ export default class RegisterForm extends React.Component {
                     {this.getFormControls()}
                     <SimpleSelect name="type" values={this.userTypes} />
                 </div>
-                <input type="submit" className="btn btn-default" value="Register"/>
+                <BasicSubmitControl text="Rejestruj"/>
             </form>
         );
     }

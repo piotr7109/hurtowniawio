@@ -1,7 +1,6 @@
 import React from 'react';
 import {Router, Route, Link, IndexRoute, hashHistory, browserHistory} from 'react-router'
 import MenuUtils from './../../utils/MenuUtils';
-import UserUtils from './../../utils/UserUtils';
 import Error404 from "../error/Errors";
 import Hello from "./../hello/Hello";
 import RegisterForm from './../authentication/RegisterForm';
