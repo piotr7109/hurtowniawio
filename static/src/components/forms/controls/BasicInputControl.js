@@ -7,8 +7,8 @@ export class BasicInputControl extends React.Component {
             text = this.props.text,
             type = this.props.type;
         return (
-            <div>
-                <label htmlFor={name}>{text}</label>
+            <div className="form-row">
+                <label htmlFor={name} className="form-label">{text}</label>
                 <input id={name} type={type} className="form-control" name={name} placeholder={text}/>
             </div>
         );

@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import {BasicInputControl, BasicSubmitControl} from './../forms/controls/BasicInputControl';
 import SimpleSelect from './../forms/controls/SimpleSelect';
+import CustomSelect from '../forms/controls/CustomSelect';
 import BaseForm from './../forms/BaseForm';
-
 export default class RegisterForm extends BaseForm {
 
     formControls = [
@@ -25,7 +25,11 @@ export default class RegisterForm extends BaseForm {
         let controls = [];
 
         for (let item of this.formControls) {
-            controls.push(<BasicInputControl name={item.name} type={item.type} text={item.text}/>);
+            controls.push(<BasicInputControl
+                name={item.name}
+                type={item.type}
+                text={item.text}
+                key={item.name}/>);
         }
 
         return controls;
@@ -54,12 +58,16 @@ export default class RegisterForm extends BaseForm {
 
     }
 
+    getUserTypes() {
+        return this.userTypes;
+    }
+
     render() {
         return (
-            <form className="navbar-form navbar-left" onSubmit={this.handleSubmit} role="register">
+            <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit} role="register">
                 <div className="form-group">
                     {this.getFormControls()}
-                    <SimpleSelect name="type" values={this.userTypes} />
+                    <CustomSelect items={this.getUserTypes()}/>
                 </div>
                 <BasicSubmitControl text="Rejestruj"/>
             </form>
