@@ -14,7 +14,7 @@ export default class CustomSelect extends React.Component {
 
     getItem(item) {
         return (
-            <div className="item" onClick={(event) => this.select(event)}>{item.text}</div>
+            <div className="item" onClick={(event) => this.select(event)} key={item.text}>{item.text}</div>
         );
     }
 

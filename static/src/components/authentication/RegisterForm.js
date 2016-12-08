@@ -24,7 +24,11 @@ export default class RegisterForm extends React.Component {
         let controls = [];
 
         for (let item of this.formControls) {
-            controls.push(<BasicInputControl name={item.name} type={item.type} text={item.text}/>);
+            controls.push(<BasicInputControl
+                name={item.name}
+                type={item.type}
+                text={item.text}
+                key={item.name}/>);
         }
 
         return controls;
