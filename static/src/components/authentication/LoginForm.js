@@ -1,35 +1,25 @@
 import React from 'react';
-import axios from 'axios';
 import {Link} from 'react-router';
 import {browserHistory} from 'react-router';
 import UserUtils from './../../utils/UserUtils';
-import {BasicInputControl, BasicSubmitControl} from './../forms/BasicInputControl';
+import {BasicInputControl, BasicSubmitControl} from './../forms/controls/BasicInputControl';
 
-export default class LoginForm extends React.Component {
+import BaseForm from './../forms/BaseForm';
 
-    constructor() {
-        super();
-
-        this.state = {mode: 0};
-    }
+export default class LoginForm extends BaseForm {
 
     handleSubmit(event) {
-        let serialize = require('form-serialize'),
-            target = event.target,
-            data = serialize(target, {hash: true});
-
-        event.preventDefault();
-        axios({
-            method: 'post',
-            url: '/login',
-            params: {userData: JSON.stringify(data)}
-        }).then((response) => {
+        this.handleFormEvents(event, '/login', 'post').then((response) => {
             let data = response.data,
                 newMode = data ? 1 : -1;
 
             UserUtils.loggedUser = data;
             this.setState({mode: newMode});
         });
+    }
+
+    getDataObject(data) {
+        return {userData: JSON.stringify(data)}
     }
 
     getForm() {
@@ -53,21 +43,7 @@ export default class LoginForm extends React.Component {
         );
     }
 
-    render() {
-        switch (this.state.mode) {
-            case 0:
-                return this.getForm();
-                break;
-            case 1:
-                return this.getSuccessMessage(this.state.mode);
-                break;
-            case -1:
-                return (
-                    <div>
-                        <div>Złę danę</div>
-                        {this.getForm()}
-                    </div>
-                );
-        }
+    getErrorMessage() {
+        return <div>Złę danę</div>;
     }
 }

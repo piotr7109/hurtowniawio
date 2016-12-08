@@ -19,7 +19,9 @@ export default class Menu extends React.Component {
                 </Link>
             );
         }
-        else return null;
+        else {
+            return null;
+        }
     }
 
     getMenuItems() {
@@ -33,10 +35,6 @@ export default class Menu extends React.Component {
     }
 
     render() {
-        return (
-            <div className="menu">
-                {this.getMenuItems()}
-            </div>
-        );
+        return <div className="menu">{this.getMenuItems()}</div>;
     }
 }

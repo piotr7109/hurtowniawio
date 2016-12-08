@@ -1,8 +1,10 @@
 import React from 'react';
-import {BasicInputControl, BasicSubmitControl} from './../forms/BasicInputControl';
-import SimpleSelect from './../forms/SimpleSelect';
+import axios from 'axios';
+import {BasicInputControl, BasicSubmitControl} from './../forms/controls/BasicInputControl';
+import SimpleSelect from './../forms/controls/SimpleSelect';
+import BaseForm from './../forms/BaseForm';
 
-export default class RegisterForm extends React.Component {
+export default class RegisterForm extends BaseForm {
 
     formControls = [
         {name: 'login', text: 'Login', type: 'text'},
@@ -34,8 +36,22 @@ export default class RegisterForm extends React.Component {
             target = event.target,
             data = serialize(target, {hash: true});
 
-        console.log(data);
         event.preventDefault();
+        this.handleRequest(data).then(() => {
+
+        });
+    }
+
+    getForm() {
+
+    }
+
+    getSuccessMessage() {
+
+    }
+
+    getErrorMessage() {
+
     }
 
     render() {
