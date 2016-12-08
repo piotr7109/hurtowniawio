@@ -1,19 +1,28 @@
 import React from 'react';
+import {Link} from 'react-router';
 import UserUtils from './../../utils/UserUtils';
 
 export default class Header extends React.Component {
 
     getAuthButtons() {
-        return (
-            <div>
+        if (UserUtils.loggedUser) {
+            return (
                 <button className="header-button">
-                    Sign in
+                    <Link to="/logout">Wyloguj</Link>
                 </button>
-                <button className="header-button">
-                    Login
-                </button>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div>
+                    <button className="header-button">
+                        <Link to="/login">Logowanie</Link>
+                    </button>
+                    <button className="header-button">
+                        <Link to="/register">Rejestracja</Link>
+                    </button>
+                </div>
+            );
+        }
     }
 
     render() {
@@ -24,7 +33,7 @@ export default class Header extends React.Component {
                     <img className="logo-image" src="public/uploads/images/logo-image.png"/>
                 </h1>
                 <div className="header-button-wrapper">
-                    {UserUtils.loggedUser != null ? this.getAuthButtons: ''}
+                    {this.getAuthButtons()}
                 </div>
             </header>
         );
