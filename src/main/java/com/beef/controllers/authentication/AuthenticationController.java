@@ -19,13 +19,13 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public boolean regiser(@RequestParam("userData") String userData) throws IOException {
+    public boolean register(@RequestParam("userData") String userData) throws IOException {
         User user = new ObjectMapper().readValue(userData, User.class);
 
         return AuthenticationService.register(user);
     }
 
-    @RequestMapping("/getLoggedUser")
+    @GetMapping("/getLoggedUser")
     public User getLoggedUser(HttpSession session) {
         return (User) session.getAttribute(Utils.sessionUserName);
     }

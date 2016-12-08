@@ -1,17 +1,15 @@
 import React from 'react';
 import _ from 'underscore';
-import classNames from 'classNames';
 
 export default class CustomSelect extends React.Component {
-    
+
     constructor() {
         super();
 
         this.state = {
-            isExpanded: false
+            expanded: false
         };
     }
-
 
     getItem(item) {
         return (
@@ -20,9 +18,9 @@ export default class CustomSelect extends React.Component {
     }
 
     getList() {
-        let outputList = [];
-        let selected = this.state.selected ? this.state.selected : this.props.items[0];
-        let listOfItems = _.without(this.props.items, selected);
+        let outputList = [],
+            selected = this.state.selected || this.props.items[0],
+            listOfItems = _.without(this.props.items, selected);
 
         for (let item of listOfItems) {
             outputList.push(this.getItem(item));
@@ -32,33 +30,34 @@ export default class CustomSelect extends React.Component {
     }
 
     toggle() {
-        this.setState({isExpanded: !this.state.isExpanded});
+        this.setState({expanded: !this.state.expanded});
     }
 
     select(event) {
+        let target = event.target;
+
         this.setState({
-            selected: _.find(this.props.items, {text: event.currentTarget.textContent}),
-            isExpanded: !this.state.isExpanded
+            selected: _.find(this.props.items, {text: target.textContent}),
+            expanded: !this.state.expanded
         })
     }
 
     render() {
-        let cssStyle = this.state.isExpanded ? null : {display: "none"};
-        let iconCssClass = classNames({
-            "icon-down-dir": !this.state.isExpanded,
-            "icon-up-dir": this.state.isExpanded
-        });
-        let list = this.getList();
-        let selected = this.state.selected ? this.state.selected.text : this.props.items[0].text;
+        let cssStyle = this.state.expanded ? null : {display: "none"},
+            iconCssClass = this.state.expanded ? "icon-up-dir" : "icon-down-dir",
+            list = this.getList(),
+            selected = this.state.selected ? this.state.selected.text : this.props.items[0].text;
 
         return (
             <div className="CustomSelectWrapper">
                 <div className="CustomSelect">
-                    <div className="selected" onClick={() => this.toggle()}>
+                    <div tabIndex="0" className="selected" onClick={() => this.toggle()}>
                         {selected}
                         <span className={iconCssClass}/>
-                        </div>
-                    <div className="list" style={cssStyle}>{list}</div>
+                    </div>
+                    <div className="list" style={cssStyle}>
+                        {list}
+                    </div>
                 </div>
             </div>
         );

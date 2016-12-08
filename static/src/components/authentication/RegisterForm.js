@@ -1,6 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router';
 import {BasicInputControl, BasicSubmitControl} from './../forms/controls/BasicInputControl';
-import SimpleSelect from './../forms/controls/SimpleSelect';
 import CustomSelect from '../forms/controls/CustomSelect';
 import BaseForm from './../forms/BaseForm';
 
@@ -36,13 +36,16 @@ export default class RegisterForm extends BaseForm {
     }
 
     getDataObject(data) {
+        data.type = 'rolnik'; //temporary due to not working dropdown select
         return {userData: JSON.stringify(data)}
     }
 
     handleSubmit(event) {
-        this.handleFormEvents(event, '/register', 'post').then(() => {
-            let data = response.data;
-            console.log(data);
+        this.handleFormEvents(event, '/register', 'post').then((response) => {
+            let data = response.data,
+                newMode = data ? 1 : -1;
+
+                this.setState({mode: newMode});
         });
     }
 
@@ -59,10 +62,19 @@ export default class RegisterForm extends BaseForm {
     }
 
     getSuccessMessage() {
-
+        return (
+            <div>
+                Rejestracja przebiegła pomyślnie
+                <Link to="/login">Zaloguj się</Link>
+            </div>
+        );
     }
 
     getErrorMessage() {
-
+        return (
+            <div>
+                Użytkownik już istnieje, użyj innego loginu
+            </div>
+        );
     }
 }
