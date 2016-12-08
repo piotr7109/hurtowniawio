@@ -1,6 +1,7 @@
 import React from 'react';
 import {BasicInputControl, BasicSubmitControl} from './../forms/BasicInputControl';
 import SimpleSelect from './../forms/SimpleSelect';
+import CustomSelect from '../forms/CustomSelect';
 
 export default class RegisterForm extends React.Component {
 
@@ -38,12 +39,16 @@ export default class RegisterForm extends React.Component {
         event.preventDefault();
     }
 
+    getUserTypes() {
+        return this.userTypes;
+    }
+
     render() {
         return (
-            <form className="navbar-form navbar-left" onSubmit={this.handleSubmit} role="register">
+            <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit} role="register">
                 <div className="form-group">
                     {this.getFormControls()}
-                    <SimpleSelect name="type" values={this.userTypes} />
+                    <CustomSelect items={this.getUserTypes()}/>
                 </div>
                 <BasicSubmitControl text="Rejestruj"/>
             </form>

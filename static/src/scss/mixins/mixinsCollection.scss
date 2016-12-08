@@ -11,5 +11,9 @@
     @media (max-width: 991px) {
       @content;
     }
+  } @else if $media == large {
+    @media (min-width: 992px) {
+      @content;
+    }
   }
 }
