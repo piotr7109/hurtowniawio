@@ -34,6 +34,15 @@ public class User {
 
     private String type;
 
+    public void updateData(User user) {
+        login = user.login;
+        password = user.password;
+        firstName = user.firstName;
+        lastName = user.lastName;
+        address = user.address;
+        email = user.email;
+    }
+
     public long getId() {
         return id;
     }

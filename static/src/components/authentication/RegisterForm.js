@@ -15,16 +15,11 @@ export default class RegisterForm extends BaseForm {
         {name: 'email', text: 'E-mail', type: 'email'},
     ];
 
-    userTypes = [
+    userTypesArray = [
         {value: 'rolnik', text: 'Rolnik'},
         {value: 'hurtownik', text: 'Hurtownik'},
         {value: 'dostawca', text: 'Dostawca'}
     ];
-
-    getDataObject(data) {
-        data.type = 'rolnik'; //temporary due to not working dropdown select
-        return {userData: JSON.stringify(data)}
-    }
 
     handleSubmit(event) {
         this.handleFormEvents(event, '/register', 'post').then((response) => {
@@ -46,7 +41,7 @@ export default class RegisterForm extends BaseForm {
                             text={item.text}
                             key={item.name}/>);
                     })}
-                    <CustomSelect items={this.userTypes}/>
+                    <CustomSelect items={this.userTypesArray}/>
                 </div>
                 <BasicSubmitControl text="Rejestruj"/>
             </form>

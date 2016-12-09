@@ -11,8 +11,8 @@
   ],
   "rolnik": [
     {
-      "title": "Moje Sellegro",
-      "path": "/moje_sellegro"
+      "title": "Moje dane",
+      "path": "/editUser"
     },
     {
       "title": "Rejestracja",

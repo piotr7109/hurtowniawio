@@ -1,6 +1,13 @@
 import axios from 'axios';
 
 export default class UserUtils {
+    static userTypes = {
+        rolnik: 'rolnik',
+        dostawca: 'dostawca',
+        hurtownik: 'hurtownik',
+        admin: 'admin'
+    };
+
     static setLoggedUser() {
         return axios({
             method: 'get',

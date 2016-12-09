@@ -5,11 +5,12 @@ import UserUtils from './../utils/UserUtils';
 export default class BaseComponent extends React.Component {
     constructor() {
         super();
+        this.userTypes = UserUtils.userTypes;
         this.allowedUsers = [];
     }
 
     isUserAuthenticated() {
-        return this.allowedUsers.indexOf(UserUtils.loggedUser) > -1
+        return this.allowedUsers.indexOf(UserUtils.loggedUser.type) > -1
             || this.allowedUsers.length === 0;
     }
 

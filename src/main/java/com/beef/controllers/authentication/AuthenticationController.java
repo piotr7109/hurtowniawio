@@ -12,14 +12,14 @@ import java.io.IOException;
 public class AuthenticationController {
 
     @PostMapping("/login")
-    public User login(HttpSession session, @RequestParam("userData") String userData) throws IOException {
+    public User login(HttpSession session, @RequestParam("data") String userData) throws IOException {
         User user = new ObjectMapper().readValue(userData, User.class);
 
         return AuthenticationService.login(session, user);
     }
 
     @PostMapping("/register")
-    public boolean register(@RequestParam("userData") String userData) throws IOException {
+    public boolean register(@RequestParam("data") String userData) throws IOException {
         User user = new ObjectMapper().readValue(userData, User.class);
 
         return AuthenticationService.register(user);

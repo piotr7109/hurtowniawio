@@ -18,10 +18,6 @@ export default class LoginForm extends BaseForm {
         });
     }
 
-    getDataObject(data) {
-        return {userData: JSON.stringify(data)}
-    }
-
     getForm() {
         return (
             <form onSubmit={this.handleSubmit.bind(this)} className="navbar-form navbar-left">

@@ -53,4 +53,19 @@ public class UserHelper {
 
         return canCreate;
     }
+
+    public static User updateUser(User oldUser, User user) {
+        User dbUser = null;
+
+        if (!isUserExisting(user)) {
+            HibernateBase.createEntityManagers();
+            HibernateBase.entityManager.getTransaction().begin();
+            dbUser = HibernateBase.entityManager.find(User.class, oldUser.getId());
+            dbUser.updateData(user);
+            HibernateBase.entityManager.getTransaction().commit();
+            HibernateBase.closeEntityManagers();
+        }
+
+        return dbUser;
+    }
 }

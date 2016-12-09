@@ -5,11 +5,12 @@ export class BasicInputControl extends React.Component {
     render() {
         let name = this.props.name,
             text = this.props.text,
-            type = this.props.type;
+            type = this.props.type,
+            value = this.props.value;
         return (
             <div className="form-row">
                 <label htmlFor={name} className="form-label">{text}</label>
-                <input id={name} type={type} className="form-control" name={name} placeholder={text}/>
+                <input id={name} type={type} className="form-control" defaultValue={value} name={name} placeholder={text}/>
             </div>
         );
     }

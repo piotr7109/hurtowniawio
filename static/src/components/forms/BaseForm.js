@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import BaseComponent from './../BaseComponent';
 
-export default class BaseForm extends React.Component {
+export default class BaseForm extends BaseComponent {
     constructor() {
         super();
 
@@ -14,7 +15,7 @@ export default class BaseForm extends React.Component {
         let serialize = require('form-serialize'),
             target = event.target,
             data = serialize(target, {hash: true}),
-            dataObject = this.getDataObject(data);
+            dataObject = {data: JSON.stringify(data)};
 
         return this.handleRequest(dataObject, url, method);
     }
@@ -31,10 +32,6 @@ export default class BaseForm extends React.Component {
         //this.handleFormEvents()
     }
 
-    getDataObject(data) {
-        return null; //{userData: JSON.stringify(data)}
-    }
-
     getForm() {
         return null;
     }
@@ -47,10 +44,14 @@ export default class BaseForm extends React.Component {
         return null;
     }
 
-    render() {
+    renderHTML() {
         switch (this.state.mode) {
             case 0:
-                return this.getForm();
+                return (
+                    <div>
+                        {this.getForm()}
+                    </div>
+                );
                 break;
             case 1:
                 return this.getSuccessMessage(this.state.mode);
