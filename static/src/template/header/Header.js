@@ -14,12 +14,16 @@ export default class Header extends React.Component {
         } else {
             return (
                 <div>
-                    <button className="header-button">
-                        <Link to="/login">Logowanie</Link>
-                    </button>
-                    <button className="header-button">
-                        <Link to="/register">Rejestracja</Link>
-                    </button>
+                    <Link to="/login">
+                        <button className="header-button">
+                            Logowanie
+                        </button>
+                    </Link>
+                    <Link to="/register">
+                        <button className="header-button">
+                            Rejestracja
+                        </button>
+                    </Link>
                 </div>
             );
         }
