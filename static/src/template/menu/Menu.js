@@ -24,17 +24,15 @@ export default class Menu extends React.Component {
         }
     }
 
-    getMenuItems() {
-        let items = [],
-            loggedUserType = UserUtils.loggedUser ? UserUtils.loggedUser.type : 'unlogged';
-
-        for (let item of MenuUtils.menuData[loggedUserType]) {
-            items.push(this.getMenuItem(item));
-        }
-        return items;
-    }
-
     render() {
-        return <div className="menu">{this.getMenuItems()}</div>;
+        let loggedUserType = UserUtils.loggedUser ? UserUtils.loggedUser.type : 'unlogged';
+
+        return (
+            <div className="menu">
+                { MenuUtils.menuData[loggedUserType].map((item) => {
+                    return this.getMenuItem(item);
+                })}
+            </div>
+        );
     }
 }
