@@ -8,27 +8,39 @@ html {
     flex-direction: column;
     justify-content: space-between;
 
-    .page {
-      flex: 1 0 0;
-      width: 100%;
-      font-family: $primary-font;
-    }
+    .app {
+      height: 100%;
 
-    .wrapper {
-      max-width: 1280px;
-      margin: 20px auto auto auto;
-      background: $light-lemon-chiffon;
-      border-radius: 10px;
-      box-shadow: 15px 15px 15px -10px rgba(0, 0, 0, 0.10);
-
-      @include respond-to(small) {
-        margin: auto;
+      .page {
+        height: 100%;
+        flex: 1 0 0;
+        width: 100%;
+        font-family: $primary-font;
+        display: flex;
+        flex-direction: column;
       }
 
-      > .content {
-        margin: auto;
-        text-align: center;
-        padding: 20px;
+      .header-wrapper {
+        flex: 0 0 70px;
+        display: flex;
+      }
+
+      .wrapper {
+        max-width: 1280px;
+        margin: 20px auto auto auto;
+        background: $light-lemon-chiffon;
+        border-radius: 10px;
+        box-shadow: 15px 15px 15px -10px rgba(0, 0, 0, 0.10);
+
+        @include respond-to(small) {
+          margin: auto;
+        }
+
+        > .content {
+          margin: auto;
+          text-align: center;
+          padding: 20px;
+        }
       }
     }
   }
