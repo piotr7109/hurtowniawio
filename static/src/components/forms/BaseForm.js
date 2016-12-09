@@ -3,6 +3,7 @@ import axios from 'axios';
 import BaseComponent from './../BaseComponent';
 
 export default class BaseForm extends BaseComponent {
+
     constructor() {
         super();
 
