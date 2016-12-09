@@ -21,20 +21,6 @@ export default class RegisterForm extends BaseForm {
         {value: 'dostawca', text: 'Dostawca'}
     ];
 
-    getFormControls() {
-        let controls = [];
-
-        for (let item of this.formControls) {
-            controls.push(<BasicInputControl
-                name={item.name}
-                type={item.type}
-                text={item.text}
-                key={item.name}/>);
-        }
-
-        return controls;
-    }
-
     getDataObject(data) {
         data.type = 'rolnik'; //temporary due to not working dropdown select
         return {userData: JSON.stringify(data)}
@@ -45,7 +31,7 @@ export default class RegisterForm extends BaseForm {
             let data = response.data,
                 newMode = data ? 1 : -1;
 
-                this.setState({mode: newMode});
+            this.setState({mode: newMode});
         });
     }
 
@@ -53,7 +39,13 @@ export default class RegisterForm extends BaseForm {
         return (
             <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit.bind(this)} role="register">
                 <div className="form-group">
-                    {this.getFormControls()}
+                    {this.formControls.map((item) => {
+                        return (<BasicInputControl
+                            name={item.name}
+                            type={item.type}
+                            text={item.text}
+                            key={item.name}/>);
+                    })}
                     <CustomSelect items={this.userTypes}/>
                 </div>
                 <BasicSubmitControl text="Rejestruj"/>

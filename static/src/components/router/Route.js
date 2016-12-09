@@ -11,22 +11,12 @@ import MainLayout from "../../template/mainLayout/MainLayout";
 export default class IndexComponent extends React.Component {
 
     render() {
-        let links = new Set();
-        for (let i = 0; i < MenuUtils.menuData; i++) {
-            for (let j = 0; j < MenuUtils.menuData[i]; j++) {
-                links.add(MenuUtils.menuData[i]);
-            }
-        }
-
-        return (
+         return (
             <Router history={hashHistory}>
                 <Route component={MainLayout}>
-                    <Route path='/' component={Hello}/>
-                    <Route path='/login' component={LoginForm}/>
-                    <Route path='/register' component={RegisterForm}/>
-                    <Route path='/kontakt' component={RegisterForm}/>
-                    <Route path='/logout' component={Logout}/>
-
+                    <Route path="/login" component={LoginForm} />
+                    <Route path="/register" component={RegisterForm} />
+                    <Route path="/logout" component={Logout} />
                     <Route path='/*' component={Error404}/>
                 </Route>
             </Router>

@@ -1,9 +1,5 @@
 {
-  "rolnik": [
-    {
-      "title": "Moje Sellegro",
-      "path": "/moje_sellegro"
-    },
+  "unlogged": [
     {
       "title": "Rejestracja",
       "path": "/register"
@@ -13,7 +9,11 @@
       "path": "/login"
     }
   ],
-  "unlogged": [
+  "rolnik": [
+    {
+      "title": "Moje Sellegro",
+      "path": "/moje_sellegro"
+    },
     {
       "title": "Rejestracja",
       "path": "/register"
