@@ -41,7 +41,7 @@ export default class RegisterForm extends BaseForm {
                             text={item.text}
                             key={item.name}/>);
                     })}
-                    <CustomSelect items={this.userTypesArray}/>
+                    <CustomSelect items={this.userTypesArray} name="type"/>
                 </div>
                 <BasicSubmitControl text="Rejestruj"/>
             </form>

@@ -18,6 +18,7 @@ export default class BaseForm extends BaseComponent {
             data = serialize(target, {hash: true}),
             dataObject = {data: JSON.stringify(data)};
 
+            console.log(data);
         return this.handleRequest(dataObject, url, method);
     }
 
