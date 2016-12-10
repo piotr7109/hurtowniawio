@@ -1,0 +1,11 @@
+//mixins
+@import "mixins/mixinsCollection";
+
+//template
+@import "settings/settings";
+@import "template/AppWrapper";
+
+
+//components
+@import "../template/**/*";
+@import "../components/**/*";

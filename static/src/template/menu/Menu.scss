@@ -1,12 +1,15 @@
 .menu-wrapper {
   width: 100%;
   background-color: $seagreen;
+  display: flex;
+  flex: 0 0 50px;
 
   .menu {
     max-width: 1280px;
     display: flex;
     margin: auto;
     flex-wrap: wrap;
+    align-self: center;
 
     .menu-item {
       display: flex;

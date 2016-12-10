@@ -1,0 +1,40 @@
+{
+  "unlogged": [
+    {
+      "title": "Rejestracja",
+      "path": "/register"
+    },
+    {
+      "title": "Logowanie",
+      "path": "/login"
+    }
+  ],
+  "rolnik": [
+    {
+      "title": "Moje dane",
+      "path": "/editUser"
+    },
+    {
+      "title": "Rejestracja",
+      "path": "/register"
+    },
+    {
+      "title": "Logowanie",
+      "path": "/login"
+    }
+  ],
+  "admin": [
+    {
+      "title": "Moje Sellegro admin",
+      "path": "/moje_sellegro"
+    },
+    {
+      "title": "Przetargi admin",
+      "path": "/lista_przetargow"
+    },
+    {
+      "title": "Kontakt admin",
+      "path": "/kontakt"
+    }
+  ]
+}

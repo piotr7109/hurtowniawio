@@ -5,4 +5,7 @@
 node_modules/
 /npm-debug.log
 .idea
+target
 .settings
+/vegetables-app.iml
+/static/tmpDir/

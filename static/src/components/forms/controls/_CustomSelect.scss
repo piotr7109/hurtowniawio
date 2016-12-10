@@ -1,0 +1,52 @@
+.CustomSelectWrapper {
+  width: 200px;
+
+  .CustomSelect {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-self: center;
+    background: $light-lemon-chiffon;
+    cursor: pointer;
+
+    .selected {
+      display: flex;
+      justify-content: space-between;
+      flex: 1 0 auto;
+      background: lemonchiffon;
+      padding: 5px 10px;
+      border: 1px solid $dark-gray;
+
+      &.expanded {
+
+      }
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      border: 1px solid $dark-gray;
+      border-top: none;
+      background: lemonchiffon;
+
+      .item {
+        display: flex;
+        flex: 1 0 auto;
+        border-bottom: 1px solid $dark-gray;
+        padding: 5px 10px;
+        align-content: flex-start;
+
+        &:hover {
+          background-color: $seagreen;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
