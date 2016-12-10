@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {Router, Route, Link, IndexRoute, hashHistory, browserHistory} from 'react-router'
-import Error404 from "../error/Errors";
+import Error404 from "../pages/error/Errors";
 import MainLayout from "../../template/mainLayout/MainLayout";
-import {RegisterForm} from './../authentication/RegisterForm';
-import {LoginForm} from './../authentication/LoginForm';
-import {Logout} from './../authentication/Logout';
-import {UserDataEditor} from './../users/UserDataEditor';
+import {RegisterForm} from '../pages/authentication/RegisterForm';
+import {LoginForm} from '../pages/authentication/LoginForm';
+import {Logout} from '../pages/authentication/Logout';
+import {EditUserDataForm} from '../pages/users/EditUserDataForm';
 
 
 export default class IndexComponent extends React.Component<{}, {}> {
@@ -17,7 +17,7 @@ export default class IndexComponent extends React.Component<{}, {}> {
                     <Route path="/login" component={LoginForm} />
                     <Route path="/register" component={RegisterForm} />
                     <Route path="/logout" component={Logout} />
-                    <Route path="/editUser" component={UserDataEditor} />
+                    <Route path="/editUser" component={EditUserDataForm} />
                     <Route path='/*' component={Error404}/>
                 </Route>
             </Router>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Link} from 'react-router';
-import UserUtils from '../../utils/UserUtils';
+import UserUtils from './../../../utils/UserUtils';
 
 interface States {
     successLogout: boolean;

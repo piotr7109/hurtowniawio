@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Link} from 'react-router';
-import {RegisterForm} from './../authentication/RegisterForm';
-import {BasicInputControl, BasicSubmitControl} from './../forms/controls/BasicInputControl';
-import UserUtils from '../../utils/UserUtils';
+import {RegisterForm} from '../authentication/RegisterForm';
+import {BasicInputControl, BasicSubmitControl} from '../../forms/controls/BasicInputControl';
+import UserUtils from '../../../utils/UserUtils';
 
-export class UserDataEditor extends RegisterForm {
+export class EditUserDataForm extends RegisterForm {
 
     formControls = [
         {name: 'login', text: 'Login', type: 'text', value: UserUtils.loggedUser.login},

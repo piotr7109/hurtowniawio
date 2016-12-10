@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Link} from 'react-router';
-import {BasicInputControl, BasicSubmitControl} from './../forms/controls/BasicInputControl';
-import CustomSelect from '../forms/controls/CustomSelect';
-import {BaseForm} from './../forms/BaseForm';
+import {BasicInputControl, BasicSubmitControl} from '../../forms/controls/BasicInputControl';
+import CustomSelect from './../../forms/controls/CustomSelect';
+import {BaseForm} from '../BaseForm';
 
 export class RegisterForm extends BaseForm {
 

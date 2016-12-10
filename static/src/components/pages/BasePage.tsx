@@ -1,12 +1,12 @@
 import * as React from 'react';
 import ErrorNonAuthenticatedUser from './error/Errors';
-import UserUtils from '../utils/UserUtils';
+import UserUtils from '../../utils/UserUtils';
 
 interface States {
     mode: Number
 }
 
-export abstract class BaseComponent extends React.Component<{}, States> {
+export abstract class BasePage extends React.Component<{}, States> {
 
     constructor(public state: States, protected allowedUsers: Array<string>, protected userTypes: any) {
         super();
