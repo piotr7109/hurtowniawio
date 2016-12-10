@@ -18,8 +18,7 @@ export class EditUserDataForm extends RegisterForm {
     allowedUsers = [
         this.userTypes.rolnik,
         this.userTypes.hurtownik,
-        this.userTypes.dostawca,
-        this.userTypes.admin
+        this.userTypes.dostawca
     ];
 
     handleSubmit(event: any) {

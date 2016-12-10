@@ -18,7 +18,8 @@ export abstract class BasePage extends React.Component<{}, States> {
 
     isUserAuthenticated() {
         return this.allowedUsers.indexOf(UserUtils.loggedUser.type) > -1
-            || this.allowedUsers.length === 0;
+            || this.allowedUsers.length === 0
+            || UserUtils.isLoggedUserAdmin();
     }
 
     renderHTML(): any {

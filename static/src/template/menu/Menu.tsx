@@ -29,11 +29,9 @@ export default class Menu extends React.Component<Properties, {}> {
     }
 
     render() {
-        let loggedUserType = UserUtils.loggedUser ? UserUtils.loggedUser.type : 'unlogged';
-
         return (
             <div className="menu">
-                { MenuUtils.menuData[loggedUserType].map((item: any) => {
+                { MenuUtils.menuData[UserUtils.loggedUser.type].map((item: any) => {
                     return this.getMenuItem(item);
                 })}
             </div>
