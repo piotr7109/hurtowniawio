@@ -19,6 +19,10 @@
     {
       "title": "Moje dane",
       "path": "/editUser"
+    },
+    {
+      "title": "Dodaj nowy przedmiot",
+      "path": "/addItem"
     }
   ],
   "hurtownik": [
