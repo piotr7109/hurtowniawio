@@ -1,12 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import {Link} from 'react-router';
-import UserUtils from './../../utils/UserUtils';
+import UserUtils from '../../utils/UserUtils';
 
-export default class Logout extends React.Component {
+interface States {
+    successLogout: boolean;
+}
+
+export class Logout extends React.Component<{}, States> {
+
+    state: States = {successLogout: false};
 
     constructor() {
         super();
-        this.state = ({successLogout: false});
         this.handleLogout();
     }
 

@@ -1,6 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 
-export class BasicInputControl extends React.Component {
+interface BasicInputControlProps {
+    name:string;
+    text:string;
+    type:string;
+    value:string;
+}
+
+export class BasicInputControl extends React.Component<BasicInputControlProps, {}> {
 
     render() {
         let name = this.props.name,
@@ -16,7 +23,11 @@ export class BasicInputControl extends React.Component {
     }
 }
 
-export class BasicSubmitControl extends React.Component{
+interface BasicSubmitControlProps {
+    text:string;
+}
+
+export class BasicSubmitControl extends React.Component<BasicSubmitControlProps, {}>{
     render() {
         return <input type="submit" className="ButtonSubmit" value={this.props.text}/>;
     }

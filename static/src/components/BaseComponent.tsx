@@ -1,10 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import ErrorNonAuthenticatedUser from './error/Errors';
-import UserUtils from './../utils/UserUtils';
+import UserUtils from '../utils/UserUtils';
 
-export default class BaseComponent extends React.Component {
-    constructor() {
+interface States {
+    mode: Number
+}
+
+export abstract class BaseComponent extends React.Component<{}, States> {
+
+    constructor(public state: States, protected allowedUsers: Array<string>, protected userTypes: any) {
         super();
+
+        this.state = {mode: 0};
         this.userTypes = UserUtils.userTypes;
         this.allowedUsers = [];
     }
@@ -14,11 +21,11 @@ export default class BaseComponent extends React.Component {
             || this.allowedUsers.length === 0;
     }
 
-    renderHTML() {
+    renderHTML(): any {
         return null;
     }
 
-    render() {
+    public render() {
         if (this.isUserAuthenticated()) {
             return this.renderHTML();
         } else {

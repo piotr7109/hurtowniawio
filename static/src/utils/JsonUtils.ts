@@ -1,8 +1,8 @@
-import axios from 'axios';
+import * as axios from 'axios';
 
 export default class JsonUtils {
 
-    static getRestData(path) {
+    static getRestData(path:any) {
         return axios({
             method: 'get',
             url: path

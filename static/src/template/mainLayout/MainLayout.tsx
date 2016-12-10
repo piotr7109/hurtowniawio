@@ -1,8 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import Menu from '../menu/Menu';
 import CustomHeader from '../header/Header';
 
-export default class MainLayout extends React.Component {
+interface Props {
+    location:any;
+    children:any;
+}
+
+export default class MainLayout extends React.Component<Props, {}> {
 
     render() {
         return (

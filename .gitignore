@@ -8,3 +8,4 @@ node_modules/
 target
 .settings
 /vegetables-app.iml
+/static/tmpDir/

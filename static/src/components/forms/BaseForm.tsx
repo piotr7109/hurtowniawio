@@ -1,16 +1,25 @@
-import React from 'react';
-import axios from 'axios';
-import BaseComponent from './../BaseComponent';
+import * as React from 'react';
+import * as axios from 'axios';
+import {BaseComponent} from '../BaseComponent';
 
-export default class BaseForm extends BaseComponent {
+interface IBaseForm {
+    handleSubmit(event: any): any;
+    getForm(): any;
+    getSuccessMessage(): any;
+    getErrorMessage(): any;
+}
 
-    constructor() {
-        super();
+export abstract class BaseForm extends BaseComponent implements IBaseForm {
 
-        this.state = ({mode: 0});
-    }
+    public abstract handleSubmit(event: any): any;
 
-    handleFormEvents(event, url, method) {
+    public abstract getForm(): any;
+
+    public abstract getSuccessMessage(): any;
+
+    public abstract getErrorMessage(): any;
+
+    public handleFormEvents(event: any, url: any, method: any): any {
         event.preventDefault();
 
         let serialize = require('form-serialize'),
@@ -18,32 +27,15 @@ export default class BaseForm extends BaseComponent {
             data = serialize(target, {hash: true}),
             dataObject = {data: JSON.stringify(data)};
 
-            console.log(data);
         return this.handleRequest(dataObject, url, method);
     }
 
-    handleRequest(dataObject, url, method) {
+    handleRequest(dataObject: any, url: any, method: any) {
         return axios({
             method: method,
             url: url,
             params: dataObject
         })
-    }
-
-    handleSubmit(event) {
-        //this.handleFormEvents()
-    }
-
-    getForm() {
-        return null;
-    }
-
-    getSuccessMessage() {
-        return null;
-    }
-
-    getErrorMessage() {
-        return null;
     }
 
     renderHTML() {
@@ -54,10 +46,8 @@ export default class BaseForm extends BaseComponent {
                         {this.getForm()}
                     </div>
                 );
-                break;
             case 1:
-                return this.getSuccessMessage(this.state.mode);
-                break;
+                return this.getSuccessMessage();
             case -1:
                 return (
                     <div>

@@ -1,15 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import {Link} from 'react-router';
-import {browserHistory} from 'react-router';
-import UserUtils from './../../utils/UserUtils';
+import UserUtils from '../../utils/UserUtils';
 import {BasicInputControl, BasicSubmitControl} from './../forms/controls/BasicInputControl';
+import {BaseForm} from './../forms/BaseForm';
 
-import BaseForm from './../forms/BaseForm';
+export class LoginForm extends BaseForm {
 
-export default class LoginForm extends BaseForm {
-
-    handleSubmit(event) {
-        this.handleFormEvents(event, '/login', 'post').then((response) => {
+    handleSubmit(event:any) {
+        this.handleFormEvents(event, '/login', 'post').then((response:any) => {
             let data = response.data,
                 newMode = data ? 1 : -1;
 
@@ -22,8 +20,8 @@ export default class LoginForm extends BaseForm {
         return (
             <form onSubmit={this.handleSubmit.bind(this)} className="navbar-form navbar-left">
                 <div className="form-group">
-                    <BasicInputControl text="Login" type="text" name="login"/>
-                    <BasicInputControl text="Hasło" type="password" name="password"/>
+                    <BasicInputControl text="Login" type="text" name="login" value=""/>
+                    <BasicInputControl text="Hasło" type="password" name="password" value=""/>
                 </div>
                 <BasicSubmitControl text="Log in"/>
             </form>

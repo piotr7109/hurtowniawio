@@ -1,26 +1,26 @@
-import axios from 'axios';
+import * as axios from 'axios';
 
 export default class UserUtils {
-    static userTypes = {
+    public static userTypes:any = {
         rolnik: 'rolnik',
         dostawca: 'dostawca',
         hurtownik: 'hurtownik',
         admin: 'admin'
     };
 
-    static setLoggedUser() {
+    public static setLoggedUser() {
         return axios({
             method: 'get',
             url: '/getLoggedUser'
         }).then((user) => UserUtils.loggedUser = user.data);
     }
 
-    static logout() {
+    public static logout() {
         return axios({
             method: 'post',
             url: '/logout'
         }).then(() => UserUtils.loggedUser = null);
     }
 
-    static loggedUser = null;
+    public static loggedUser:any = null;
 }

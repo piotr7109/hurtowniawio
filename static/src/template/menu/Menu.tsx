@@ -1,15 +1,19 @@
-import React from 'react';
+import * as React from 'react';
 import {Link} from 'react-router';
-import MenuUtils from './../../utils/MenuUtils';
-import UserUtils from './../../utils/UserUtils';
+import MenuUtils from '../../utils/MenuUtils';
+import UserUtils from '../../utils/UserUtils';
 
-export default class Menu extends React.Component {
+interface Properties {
+    path: string
+}
+
+export default class Menu extends React.Component<Properties, {}> {
 
     handleRouteChange() {
         this.forceUpdate();
     }
 
-    getMenuItem(item) {
+    getMenuItem(item: any) {
         if (item.hasOwnProperty('path') && item.hasOwnProperty('title')) {
             return (
                 <Link to={item.path} onClick={() => this.handleRouteChange()} key={item.title}>
@@ -29,7 +33,7 @@ export default class Menu extends React.Component {
 
         return (
             <div className="menu">
-                { MenuUtils.menuData[loggedUserType].map((item) => {
+                { MenuUtils.menuData[loggedUserType].map((item: any) => {
                     return this.getMenuItem(item);
                 })}
             </div>

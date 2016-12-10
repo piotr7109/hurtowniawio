@@ -9,8 +9,8 @@ let gulp = require('gulp'),
 
 gulp.task('watch', () => {
     gulp.start('build-css');
-    gulp.start('scripts');
+    gulp.start('typescript-bundle');
     gulp.watch('src/**/*.scss', ['build-css']);
-    gulp.watch('src/**/*.js', ['scripts']);
+    gulp.watch('src/**/*.ts', ['typescript-bundle']);
 });
 

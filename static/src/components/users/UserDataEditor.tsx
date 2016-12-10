@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import {Link} from 'react-router';
-import RegisterForm from './../authentication/RegisterForm';
+import {RegisterForm} from './../authentication/RegisterForm';
 import {BasicInputControl, BasicSubmitControl} from './../forms/controls/BasicInputControl';
-import UserUtils from './../../utils/UserUtils';
+import UserUtils from '../../utils/UserUtils';
 
-export default class UserDataEditor extends RegisterForm {
+export class UserDataEditor extends RegisterForm {
 
     formControls = [
         {name: 'login', text: 'Login', type: 'text', value: UserUtils.loggedUser.login},
@@ -15,19 +15,15 @@ export default class UserDataEditor extends RegisterForm {
         {name: 'email', text: 'E-mail', type: 'email', value: UserUtils.loggedUser.email},
     ];
 
-    constructor() {
-        super();
+    allowedUsers = [
+        this.userTypes.rolnik,
+        this.userTypes.hurtownik,
+        this.userTypes.dostawca,
+        this.userTypes.admin
+    ];
 
-        this.allowedUsers = [
-            this.userTypes.rolnik,
-            this.userTypes.hurtownik,
-            this.userTypes.dostawca,
-            this.userTypes.admin
-        ];
-    }
-
-    handleSubmit(event) {
-        this.handleFormEvents(event, '/updateUser', 'post').then((response) => {
+    handleSubmit(event: any) {
+        this.handleFormEvents(event, '/updateUser', 'post').then((response: any) => {
             let data = response.data,
                 newMode = data ? 1 : -1;
 
@@ -41,7 +37,7 @@ export default class UserDataEditor extends RegisterForm {
 
     getForm() {
         return (
-            <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit.bind(this)} role="register">
+            <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
                     {this.formControls.map((item) => {
                         return (<BasicInputControl

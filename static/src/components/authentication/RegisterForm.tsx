@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import {Link} from 'react-router';
 import {BasicInputControl, BasicSubmitControl} from './../forms/controls/BasicInputControl';
 import CustomSelect from '../forms/controls/CustomSelect';
-import BaseForm from './../forms/BaseForm';
+import {BaseForm} from './../forms/BaseForm';
 
-export default class RegisterForm extends BaseForm {
+export class RegisterForm extends BaseForm {
 
     formControls = [
         {name: 'login', text: 'Login', type: 'text'},
@@ -21,8 +21,8 @@ export default class RegisterForm extends BaseForm {
         {value: 'dostawca', text: 'Dostawca'}
     ];
 
-    handleSubmit(event) {
-        this.handleFormEvents(event, '/register', 'post').then((response) => {
+    handleSubmit(event: any) {
+        this.handleFormEvents(event, '/register', 'post').then((response: any) => {
             let data = response.data,
                 newMode = data ? 1 : -1;
 
@@ -32,14 +32,15 @@ export default class RegisterForm extends BaseForm {
 
     getForm() {
         return (
-            <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit.bind(this)} role="register">
+            <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
                     {this.formControls.map((item) => {
                         return (<BasicInputControl
                             name={item.name}
                             type={item.type}
                             text={item.text}
-                            key={item.name}/>);
+                            key={item.name}
+                            value=""/>);
                     })}
                     <CustomSelect items={this.userTypesArray} name="type"/>
                 </div>
