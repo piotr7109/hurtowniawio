@@ -13,28 +13,22 @@
     {
       "title": "Moje dane",
       "path": "/editUser"
-    },
-    {
-      "title": "Rejestracja",
-      "path": "/register"
-    },
-    {
-      "title": "Logowanie",
-      "path": "/login"
     }
   ],
   "admin": [
     {
-      "title": "Moje Sellegro admin",
-      "path": "/moje_sellegro"
+      "title": "Moje dane",
+      "path": "/editUser"
+    }
+  ],
+  "hurtownik": [
+    {
+      "title": "Moje dane",
+      "path": "/editUser"
     },
     {
-      "title": "Przetargi admin",
-      "path": "/lista_przetargow"
-    },
-    {
-      "title": "Kontakt admin",
-      "path": "/kontakt"
+      "title": "Dodaj nowy przedmiot",
+      "path": "/addItem"
     }
   ]
 }

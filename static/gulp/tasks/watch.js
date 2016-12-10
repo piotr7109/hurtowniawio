@@ -11,6 +11,6 @@ gulp.task('watch', () => {
     gulp.start('build-css');
     gulp.start('typescript-bundle');
     gulp.watch('src/**/*.scss', ['build-css']);
-    gulp.watch('src/**/*.ts', ['typescript-bundle']);
+    gulp.watch("src/**/*.{ts,tsx}", ['typescript-bundle']);
 });
 
