@@ -40,10 +40,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        @include respond-to(large) {
-          flex-direction: row;
-        }
       }
 
       @include respond-to(medium) {
