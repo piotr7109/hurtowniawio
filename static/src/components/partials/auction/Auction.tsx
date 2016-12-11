@@ -1,25 +1,32 @@
 import * as React from 'react';
 
-export default class Auction extends React.Component {
+interface States {
 
+}
+
+interface Properties {
+    auction:any;
+}
+
+export default class Auction extends React.Component<Properties, States> {
 
     render() {
         return (
             <article class="auction col-xs-12 col-lg-6">
                 <header class="col-xs-12">
-                    Ziemniak poszukiwany!
+                    {this.props.auction.title}
                 </header>
                 <div class="content col-xs-12">
                     <div class="image col-xs-12 col-md-6">
-                        <img alt="potatoes" src="public/uploads/images/potato.jpg">
+                        <img alt="potatoes" src="public/uploads/images/potato.jpg" />
                     </div>
                     <div class="description col-xs-12 col-md-6">
-                        <p>Szukana ilość: 1000 ton</p>
-                        <p>Data realizacji: 24-02-2017</p>
+                        <p>Szukana ilość: {this.props.auction.amount} kg</p>
+                        <p>Data realizacji: {this.props.auction.dueDate}</p>
                         <div class="details">
-                            Typ: AB <br/>
-                            Odmiana: Lord lub Denar<br/>
-                            Kraj pochodzenia: Polska<br/>
+                            Nazwa artykułu: {this.props.auction.item.name} <br/>
+                            Odmiana: {this.props.auction.item.typeName}<br/>
+                            Kraj pochodzenia: {this.props.auction.item.country}<br/>
                         </div>
                     </div>
                 </div>
