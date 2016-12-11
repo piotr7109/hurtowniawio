@@ -16,15 +16,16 @@ export default class AddAuctionForm extends BaseForm {
             let data = response.data;
 
             if (data) {
-               /* data.map((item: any) => {
-                    this.items.push({})
-                });*/
+                data.map((item: any) => {
+                    this.items.push({text: item.name, value: item.id})
+                });
+
                 this.setState({mode: 0});
             }
         });
     }
 
-    items: any [];
+    items: any = [];
 
     allowedUsers = [
         this.userTypes.hurtownik
@@ -54,6 +55,7 @@ export default class AddAuctionForm extends BaseForm {
                             key={item.name}
                             value=""/>);
                     })}
+                    <CustomSelect labelText="Artykuł" name="item" items={this.items}/>
                 </div>
             </form>
         );
