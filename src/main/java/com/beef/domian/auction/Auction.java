@@ -3,6 +3,8 @@ package com.beef.domian.auction;
 import com.beef.domian.item.Item;
 import com.beef.domian.user.User;
 import com.beef.domian.application.Application;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -36,6 +38,7 @@ public class Auction {
     private String state;
 
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "auctionId")
     private List<Application> applications;
 

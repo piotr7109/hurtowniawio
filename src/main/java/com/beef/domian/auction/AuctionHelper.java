@@ -19,7 +19,6 @@ public class AuctionHelper extends BaseHelper {
         return getAuctions("A");
     }
 
-
     public static List<Auction> getAuctions(String state) {
         HibernateBase.createEntityManagers();
         List<Auction> auctions;
