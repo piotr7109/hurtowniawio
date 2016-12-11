@@ -6,7 +6,11 @@ interface States {
     mode: Number
 }
 
-export abstract class BasePage extends React.Component<{}, States> {
+interface Props {
+    params:any;
+}
+
+export abstract class BasePage extends React.Component<Props, States> {
 
     constructor(public state: States, protected allowedUsers: Array<string>, protected userTypes: any) {
         super();

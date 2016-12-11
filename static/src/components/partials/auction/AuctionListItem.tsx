@@ -8,13 +8,6 @@ interface Properties {
 
 export default class AuctionListItem extends React.Component<Properties, {}> {
 
-    handleOnClick() {
-        return axios({
-            method: "get",
-            url: "/getAuction",
-            params: this.props.auction.id
-        });
-    }
 
     render() {
         return (
@@ -33,8 +26,8 @@ export default class AuctionListItem extends React.Component<Properties, {}> {
                             <span>Nazwa artykułu: {this.props.auction.item.name} </span>
                             <span>Odmiana: {this.props.auction.item.typeName}</span>
                             <span>Kraj pochodzenia: {this.props.auction.item.country}</span>
-                            <Link to={"/auction?id=" + this.props.auction.id}>
-                                <button className="header-button" onClick={() => this.handleOnClick()}>
+                            <Link to={"/auction/" + this.props.auction.id}>
+                                <button className="buttonSubmit">
                                     Logowanie
                                 </button>
                             </Link>
