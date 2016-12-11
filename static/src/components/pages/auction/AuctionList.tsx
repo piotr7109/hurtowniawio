@@ -2,6 +2,7 @@ import {BasePage} from "../BasePage";
 import * as React from 'react';
 import Auction from "../../partials/auction/Auction";
 import UserUtils from "../../../utils/UserUtils";
+import * as axios from 'axios';
 
 export default class AuctionList extends BasePage {
 
@@ -11,108 +12,46 @@ export default class AuctionList extends BasePage {
         UserUtils.userTypes.rolnik
     ];
 
-    auctions = [
-        {
-            title: "ziemniaczki",
-            amount: "1000",
-            creationDate: "20-10-2016",
-            dueDate: "27-10-2016",
-            item: {
-                name: "ziemniak",
-                typeName: "lord",
-                country: "Polska"
-            }
-        },
-        {
-            title: "jabłuszka",
-            amount: "25000",
-            creationDate: "9-6-2016",
-            dueDate: "15-7-2016",
-            item: {
-                name: "jabłko",
-                typeName: "ligol",
-                country: "Polska"
-            }
-        },
-        {
-            title: "gruszeczlo",
-            amount: "12352",
-            creationDate: "1-4-2017",
-            dueDate: "15-4-2017",
-            item: {
-                name: "gruszka",
-                typeName: "jakas",
-                country: "Niemcy"
-            }
-        },
-        {
-            title: "pietruszeczka",
-            amount: "12574",
-            creationDate: "19-10-2016",
-            dueDate: "21-11-2016",
-            item: {
-                name: "pietruszka",
-                typeName: "a jaki moze byc",
-                country: "Holandia"
-            }
-        },
-        {
-            title: "ziemniaczki2",
-            amount: "1000",
-            creationDate: "20-10-2016",
-            dueDate: "27-10-2016",
-            item: {
-                name: "ziemniak",
-                typeName: "lord",
-                country: "Polska"
-            }
-        },
-        {
-            title: "jabłuszka2",
-            amount: "25000",
-            creationDate: "9-6-2016",
-            dueDate: "15-7-2016",
-            item: {
-                name: "jabłko",
-                typeName: "ligol",
-                country: "Polska"
-            }
-        },
-        {
-            title: "gruszeczlo2",
-            amount: "12352",
-            creationDate: "1-4-2017",
-            dueDate: "15-4-2017",
-            item: {
-                name: "gruszka",
-                typeName: "jakas",
-                country: "Niemcy"
-            }
-        },
-        {
-            title: "pietruszeczka2",
-            amount: "12574",
-            creationDate: "19-10-2016",
-            dueDate: "21-11-2016",
-            item: {
-                name: "pietruszka",
-                typeName: "a jaki moze byc",
-                country: "Holandia"
-            }
-        }
-    ];
+    auctions: any;
 
+    postConstruct() {
+        this.state = ({mode: -10});
+        this.loadAuctions();
+    }
+
+    loadAuctions() {
+        this.handleRequest().then((response: any) => {
+            let data: any = response.data;
+
+            if (data) {
+                this.auctions = data;
+                this.setState({mode: 0});
+            } else {
+                this.setState({mode: -1});
+            }
+        });
+    }
+
+    handleRequest(): any {
+        return axios({
+            method: "get",
+            url: "/getActiveAuctions"
+        })
+    }
 
     renderHTML() {
-
-        return (
-            <div className="AuctionList">
-                {this.auctions.map((auction) => {
-                    return (
-                        <Auction auction={auction} key={auction.title}/>
-                    );
-                })}
-            </div>
-        );
+        if(this.state.mode === 0) {
+            return (
+                <div className="AuctionList">
+                    {this.auctions.map((auction) => {
+                        return (
+                            <Auction auction={auction} key={auction.title}/>
+                        );
+                    })}
+                </div>
+            );
+        } else if(this.state.mode === -10) {
+            return <div>Loading</div>;
+        }
     }
 }

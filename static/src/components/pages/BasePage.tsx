@@ -14,7 +14,7 @@ export abstract class BasePage extends React.Component<{}, States> {
         this.state = {mode: 0};
         this.userTypes = UserUtils.userTypes;
         this.allowedUsers = [];
-        this.postConstruct()
+        this.postConstruct();
     }
 
     postConstruct() {
