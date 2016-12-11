@@ -17,6 +17,8 @@ public class Item {
 
     private String typeName;
 
+    private String imagePath;
+
     public long getId() {
         return id;
     }
@@ -47,5 +49,13 @@ public class Item {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

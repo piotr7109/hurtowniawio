@@ -1,10 +1,11 @@
 package com.beef.domian.user;
 
 import com.beef.core.hibernate.HibernateBase;
+import com.beef.domian.BaseHelper;
 
 import javax.persistence.TypedQuery;
 
-public class UserHelper {
+public class UserHelper extends BaseHelper {
 
     public static User isUserValid(User user) {
         HibernateBase.createEntityManagers();
@@ -44,11 +45,7 @@ public class UserHelper {
         boolean canCreate = !isUserExisting(user);
 
         if (canCreate) {
-            HibernateBase.createEntityManagers();
-            HibernateBase.entityManager.getTransaction().begin();
-            HibernateBase.entityManager.persist(user);
-            HibernateBase.entityManager.getTransaction().commit();
-            HibernateBase.closeEntityManagers();
+            create(user);
         }
 
         return canCreate;
