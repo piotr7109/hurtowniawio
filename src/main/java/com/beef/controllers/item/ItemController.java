@@ -22,7 +22,7 @@ public class ItemController {
         return ItemService.addItem(session, request, itemData, image);
     }
 
-    @GetMapping("getItems")
+    @GetMapping("/getItems")
     public List<Item> getItems(HttpSession session) {
         return ItemService.getItems(session);
     }
