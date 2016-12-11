@@ -22,7 +22,7 @@ export default class MainLayout extends React.Component<Props, {}> {
                     <Menu path={this.props.location.pathname} />
                 </nav>
                 <div className="wrapper">
-                    <section className="content row">
+                    <section className="content">
                         <div className="content-wrapper">
                             {this.props.children}
                         </div>

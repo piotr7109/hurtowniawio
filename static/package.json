@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@types/axios": "^0.9.34",
+    "@types/classnames": "0.0.32",
     "@types/react": "^0.14.54",
     "@types/react-dom": "^0.14.19",
     "@types/react-file-input": "0.0.5",

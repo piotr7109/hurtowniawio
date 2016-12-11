@@ -32,7 +32,7 @@ export class RegisterForm extends BaseForm {
 
     getForm() {
         return (
-            <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit.bind(this)}>
+            <form className="Form navbar-form" onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
                     {this.formControls.map((item) => {
                         return (<BasicInputControl
@@ -42,7 +42,7 @@ export class RegisterForm extends BaseForm {
                             key={item.name}
                             value=""/>);
                     })}
-                    <CustomSelect items={this.userTypesArray} name="type"/>
+                    <CustomSelect items={this.userTypesArray} name="type" labelText="Typ użytkownika"/>
                 </div>
                 <BasicSubmitControl text="Rejestruj"/>
             </form>
