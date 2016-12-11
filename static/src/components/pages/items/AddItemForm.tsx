@@ -25,35 +25,35 @@ export default class AddItemForm extends BaseForm {
         let serialize = require('form-serialize'),
             target = event.target,
             formData = JSON.stringify(serialize(target, {hash: true})),
-            imageData = document.getElementById(this.imageControl.name).files,
+            imageData = document.getElementById(this.imageControl.name).files[0],
             data: FormData = new FormData();
 
-        //data.append('data', formData);
+        data.append('data', formData);
         data.append('image', imageData);
 
-        return axios.put('/addItem', data);
+        return axios.post('/addItem', data);
     }
 
     handleSubmit(event: any): any {
-        this.handleFormEvents(event, '/addItem', 'put');
+        this.handleFormEvents(event, '/addItem', 'post');
     }
 
     getForm(): any {
         return (
-            <form encType="multipart/form-data" className="AddItemForm navbar-form"
+            <form encType='multipart/form-data' className='AddItemForm navbar-form'
                   onSubmit={this.handleSubmit.bind(this)}>
-                <div className="form-group">
+                <div className='form-group'>
                     {this.formControls.map((item) => {
                         return (<BasicInputControl
                             name={item.name}
                             type={item.type}
                             text={item.text}
                             key={item.name}
-                            value=""/>);
+                            value=''/>);
                     })}
                     <label htmlFor={this.imageControl.name}>{this.imageControl.text}</label>
-                    <input id={this.imageControl.name} name={this.imageControl.name} type="file"/>
-                    <BasicSubmitControl text="Dodaj"/>
+                    <input id={this.imageControl.name} name={this.imageControl.name} type='file'/>
+                    <BasicSubmitControl text='Dodaj'/>
                 </div>
             </form>
         );
@@ -63,7 +63,7 @@ export default class AddItemForm extends BaseForm {
         return (
             <div>
                 Przedmiot został dodany do bazy przedmiotów
-                <Link to="/">Powrót na stronę główną</Link>
+                <Link to='/'>Powrót na stronę główną</Link>
             </div>
         );
     }
