@@ -35,5 +35,9 @@ export default class UserUtils {
         });
     }
 
+    public static isUserLogged() {
+        return UserUtils.loggedUser.type != UserUtils.userTypes.unlogged;
+    }
+
     public static loggedUser: any = {type: UserUtils.userTypes.unlogged};
 }
