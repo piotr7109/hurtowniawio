@@ -9,7 +9,7 @@ let gulp = require('gulp'),
     project = ts.createProject('src/tsconfig.json', {typescript: typescript});
 
 gulp.task('typescript-compile', function () {
-    let tsResult = gulp.src("src/**/*.{ts,tsx}") // or tsProject.src()
+    let tsResult = project.src() // or tsProject.src()
         .pipe(project());
     return tsResult.js.pipe(gulp.dest('tmpDir'));
 });

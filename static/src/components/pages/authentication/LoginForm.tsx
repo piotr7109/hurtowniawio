@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Link} from 'react-router';
 import UserUtils from '../../../utils/UserUtils';
-import {BasicInputControl, BasicSubmitControl} from '../../forms/controls/BasicInputControl';
+import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/controls/BasicInputControl';
 import {BaseForm} from '../BaseForm';
 
 export class LoginForm extends BaseForm {

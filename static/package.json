@@ -47,7 +47,6 @@
     "@types/axios": "^0.9.34",
     "@types/react": "^0.14.54",
     "@types/react-dom": "^0.14.19",
-    "@types/react-file-input": "0.0.5",
     "@types/react-router": "^2.0.41",
     "@types/underscore": "^1.7.36"
   }

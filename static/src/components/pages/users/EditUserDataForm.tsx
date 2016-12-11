@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Link} from 'react-router';
 import {RegisterForm} from '../authentication/RegisterForm';
-import {BasicInputControl, BasicSubmitControl} from '../../forms/controls/BasicInputControl';
+import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/controls/BasicInputControl';
 import UserUtils from '../../../utils/UserUtils';
 
 export class EditUserDataForm extends RegisterForm {
@@ -18,8 +18,7 @@ export class EditUserDataForm extends RegisterForm {
     allowedUsers = [
         this.userTypes.rolnik,
         this.userTypes.hurtownik,
-        this.userTypes.dostawca,
-        this.userTypes.admin
+        this.userTypes.dostawca
     ];
 
     handleSubmit(event: any) {
