@@ -1,7 +1,9 @@
 import * as React from 'react';
 import {Link} from 'react-router';
+import * as axios from 'axios';
 import {BaseForm} from '../BaseForm';
-import {BasicInputControl} from '../../partials/forms/controls/BasicInputControl';
+import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/controls/BasicInputControl';
+
 
 export default class AddItemForm extends BaseForm {
 
@@ -11,17 +13,35 @@ export default class AddItemForm extends BaseForm {
         {name: 'typeName', text: 'Odmiana', type: 'text'}
     ];
 
+    imageControl = {name: 'image', text: 'Zdjęcie'};
+
     allowedUsers = [
         this.userTypes.hurtownik
     ];
 
+    public handleFormEvents(event: any, url: any, method: any): any {
+        event.preventDefault();
+
+        let serialize = require('form-serialize'),
+            target = event.target,
+            formData = JSON.stringify(serialize(target, {hash: true})),
+            imageData = document.getElementById(this.imageControl.name).files,
+            data: FormData = new FormData();
+
+        //data.append('data', formData);
+        data.append('image', imageData);
+
+        return axios.put('/addItem', data);
+    }
+
     handleSubmit(event: any): any {
-        return undefined;
+        this.handleFormEvents(event, '/addItem', 'put');
     }
 
     getForm(): any {
         return (
-            <form className="AddItemForm navbar-form" onSubmit={this.handleSubmit.bind(this)}>
+            <form encType="multipart/form-data" className="AddItemForm navbar-form"
+                  onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
                     {this.formControls.map((item) => {
                         return (<BasicInputControl
@@ -31,6 +51,9 @@ export default class AddItemForm extends BaseForm {
                             key={item.name}
                             value=""/>);
                     })}
+                    <label htmlFor={this.imageControl.name}>{this.imageControl.text}</label>
+                    <input id={this.imageControl.name} name={this.imageControl.name} type="file"/>
+                    <BasicSubmitControl text="Dodaj"/>
                 </div>
             </form>
         );
