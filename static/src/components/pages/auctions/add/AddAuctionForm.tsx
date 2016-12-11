@@ -1,6 +1,7 @@
 import * as React from 'react';
+import * as axios from 'axios';
 import {BaseForm} from "../../BaseForm";
-import {BasicInputControl} from "../../../partials/forms/controls/BasicInputControl";
+import {BasicInputControl, BasicSubmitControl} from "../../../partials/forms/controls/BasicInputControl";
 import CustomSelect from "../../../partials/forms/controls/CustomSelect";
 import JsonUtils from "../../../../utils/JsonUtils";
 
@@ -39,8 +40,35 @@ export default class AddAuctionForm extends BaseForm {
 
     descriptionField = {name: 'Description', text: 'Opis'};
 
+    public handleFormEvents(event: any, url: any, method: any): any {
+        event.preventDefault();
+
+        let serialize = require('form-serialize'),
+            target = event.target,
+            data = serialize(target, {hash: true}),
+            itemData = +data.item,
+            auctionData,
+            formData: FormData = new FormData();
+
+        delete data.item;
+        auctionData = JSON.stringify(data);
+
+        formData.append('auctionData', auctionData);
+        formData.append('itemData', itemData);
+
+        return axios.post(url, formData);
+    }
+
     handleSubmit(event: any): any {
-        return undefined;
+        this.handleFormEvents(event, '/addAuction', 'post').then((response: any) => {
+            let data = response.data;
+
+            if (data) {
+                this.setState({mode: 1});
+            } else {
+                this.setState({mode: -1});
+            }
+        });
     }
 
     getForm(): any {
@@ -56,17 +84,26 @@ export default class AddAuctionForm extends BaseForm {
                             value=""/>);
                     })}
                     <CustomSelect labelText="Artykuł" name="item" items={this.items}/>
+                    <BasicSubmitControl text='Dodaj przetarg'/>
                 </div>
             </form>
         );
     }
 
     getSuccessMessage(): any {
-        return undefined;
+        return (
+            <div>
+                Pomyślnie dodano nowy przetarg!
+            </div>
+        );
     }
 
     getErrorMessage(): any {
-        return null;
+        return (
+            <div>
+                Coś poszło nie tak!
+            </div>
+        );
     }
 
 }

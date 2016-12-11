@@ -26,4 +26,13 @@ public class ItemHelper extends BaseHelper {
         HibernateBase.closeEntityManagers();
         return items;
     }
+
+    public static Item getItemById(long id) {
+        HibernateBase.createEntityManagers();
+
+        Item item = HibernateBase.entityManager.find(Item.class, id);
+
+        HibernateBase.closeEntityManagers();
+        return item;
+    }
 }
