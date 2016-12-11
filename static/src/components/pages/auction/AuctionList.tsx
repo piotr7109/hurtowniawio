@@ -1,8 +1,15 @@
 import {BasePage} from "../BasePage";
 import * as React from 'react';
 import Auction from "../../partials/auction/Auction";
+import UserUtils from "../../../utils/UserUtils";
 
 export default class AuctionList extends BasePage {
+
+    allowedUsers = [
+        UserUtils.userTypes.dostawca,
+        UserUtils.userTypes.hurtownik,
+        UserUtils.userTypes.rolnik
+    ];
 
     auctions = [
         {
@@ -96,7 +103,7 @@ export default class AuctionList extends BasePage {
     ];
 
 
-    render() {
+    renderHTML() {
 
         return (
             <div className="AuctionList">
