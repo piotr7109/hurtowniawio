@@ -1,0 +1,13 @@
+//mixins
+@import "mixins/mixinsCollection";
+
+//template
+@import "settings/settings";
+@import "template/template";
+@import "template/header";
+@import "template/menu";
+@import "template/footer";
+@import "template/background-image";
+
+//components
+@import "../components/components";

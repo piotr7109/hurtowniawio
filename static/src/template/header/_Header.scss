@@ -1,0 +1,47 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $light-lemon-chiffon;
+  flex: 1 0 auto;
+
+  .logo {
+    padding: 10px;
+
+    .logo-link {
+      font-weight: bold;
+      color: $gray;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .logo-image {
+      display: inline-block;
+      width: 70px;
+
+      @include respond-to(small) {
+        display: none;
+      }
+    }
+  }
+
+  .header-button-wrapper {
+    flex: 1 0 0;
+    display: flex;
+    justify-content: flex-end;
+
+    @include respond-to(very-small) {
+      flex-direction: column;
+      .header-button {
+        &:first-child {
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    .header-button {
+      @extend .buttonSubmit;
+    }
+  }
+}

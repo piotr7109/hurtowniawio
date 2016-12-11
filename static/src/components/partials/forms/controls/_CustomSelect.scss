@@ -1,0 +1,89 @@
+.CustomSelectWrapper {
+  width: 200px;
+
+  .CustomSelect {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-self: center;
+    background: $white;
+    cursor: pointer;
+
+    @include respond-to(large) {
+      flex-direction: row;
+    }
+
+    .form-label {
+      padding-right: 10px;
+      width: 100%;
+
+      @include respond-to(large) {
+        width: 50%;
+      }
+    }
+
+    .selected {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex: 1 0 auto;
+      background: $white;
+      padding: 5px 10px;
+      border: 1px solid $dark-gray;
+      border-radius: 4px;
+      box-shadow: none;
+      @include respond-to(large) {
+        width: 50%;
+      }
+
+      span {
+        font-size: 15px;
+        line-height: 15px;
+      }
+
+      &:focus {
+        box-shadow: none;
+        outline: none;
+      }
+
+      &.expanded {
+        border-radius: 4px 4px 0 0;
+      }
+    }
+
+    .list {
+      width:100%;
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      border: 1px solid $dark-gray;
+      border-top: none;
+      background: $white;
+      border-radius: 0 0 4px 4px;
+      box-shadow: none;
+
+      @include respond-to(large) {
+        width: 50%;
+        left: 50%;
+      }
+
+      .item {
+        display: flex;
+        flex: 1 0 auto;
+        border-bottom: 1px solid $dark-gray;
+        padding: 5px 10px;
+        align-content: flex-start;
+
+        &:hover {
+          background-color: $seagreen;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
