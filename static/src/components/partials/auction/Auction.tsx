@@ -1,0 +1,29 @@
+import * as React from 'react';
+
+export default class Auction extends React.Component {
+
+
+    render() {
+        return (
+            <article class="auction col-xs-12 col-lg-6">
+                <header class="col-xs-12">
+                    Ziemniak poszukiwany!
+                </header>
+                <div class="content col-xs-12">
+                    <div class="image col-xs-12 col-md-6">
+                        <img alt="potatoes" src="public/uploads/images/potato.jpg">
+                    </div>
+                    <div class="description col-xs-12 col-md-6">
+                        <p>Szukana ilość: 1000 ton</p>
+                        <p>Data realizacji: 24-02-2017</p>
+                        <div class="details">
+                            Typ: AB <br/>
+                            Odmiana: Lord lub Denar<br/>
+                            Kraj pochodzenia: Polska<br/>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        );
+    }
+}
