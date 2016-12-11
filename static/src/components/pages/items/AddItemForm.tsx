@@ -31,7 +31,7 @@ export default class AddItemForm extends BaseForm {
         data.append('data', formData);
         data.append('image', imageData);
 
-        return axios.post('/addItem', data);
+        return axios.post(url, data);
     }
 
     handleSubmit(event: any): any {

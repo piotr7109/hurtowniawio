@@ -55,6 +55,12 @@ export abstract class BaseForm extends BasePage implements IBaseForm {
                         {this.getForm()}
                     </div>
                 );
+            case -10:
+                return (
+                    <div>
+                        Ładowanie
+                    </div>
+                );
         }
     }
 }

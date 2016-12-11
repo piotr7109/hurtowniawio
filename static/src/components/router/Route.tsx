@@ -7,6 +7,7 @@ import {LoginForm} from '../pages/authentication/LoginForm';
 import {Logout} from '../pages/authentication/Logout';
 import {EditUserDataForm} from '../pages/users/EditUserDataForm';
 import AddItemForm from "../pages/items/AddItemForm";
+import AddAuctionForm from "../pages/auctions/add/AddAuctionForm";
 import AuctionList from "../pages/auction/AuctionList";
 
 
@@ -21,6 +22,7 @@ export default class IndexComponent extends React.Component<{}, {}> {
                     <Route path="/logout" component={Logout} />
                     <Route path="/editUser" component={EditUserDataForm} />
                     <Route path="/addItem" component={AddItemForm} />
+                    <Route path="/addAuction" component={AddAuctionForm} />
                     <Route path="/auctionList" component={AuctionList} />
                     <Route path='/*' component={Error404}/>
                 </Route>

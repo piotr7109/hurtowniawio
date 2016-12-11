@@ -23,6 +23,14 @@
     {
       "title": "Dodaj nowy przedmiot",
       "path": "/addItem"
+    },
+    {
+      "title": "Rejestracja",
+      "path": "/register"
+    },
+    {
+      "title": "Dodaj przetarg",
+      "path": "/addAuction"
     }
   ],
   "hurtownik": [

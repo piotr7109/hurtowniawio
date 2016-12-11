@@ -5,7 +5,7 @@ import UserUtils from '../../utils/UserUtils';
 export default class Header extends React.Component<{}, {}> {
 
     getAuthButtons() {
-        if (UserUtils.loggedUser) {
+        if (UserUtils.isUserLogged()) {
             return (
                 <Link to="/logout">
                     <button className="header-button">

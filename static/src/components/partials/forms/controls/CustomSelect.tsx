@@ -59,7 +59,7 @@ export default class CustomSelect extends React.Component<Properties, States> {
             <div className="CustomSelectWrapper">
                 <div className="CustomSelect">
                     <input type="hidden" className="form-control" name={this.props.name} value={selected.value}/>
-                    {this.props.labelText && <label htmlFor={this.props.name} className="form-label">{this.props.labelText}</label>}
+                    <label htmlFor={this.props.name} className="form-label">{this.props.labelText}</label>
                     <div tabIndex={0} className={selectedItemCssClass} onClick={() => this.toggle()}>
                         {selected.text}
                         <span className={iconCssClass}/>
