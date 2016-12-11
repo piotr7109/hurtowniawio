@@ -31,6 +31,10 @@
     {
       "title": "Dodaj przetarg",
       "path": "/addAuction"
+    },
+    {
+      "title": "Lista użytkowników",
+      "path": "/userList"
     }
   ],
   "hurtownik": [

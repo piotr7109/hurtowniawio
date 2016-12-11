@@ -1,0 +1,8 @@
+.UserList {
+  .user-row {
+    width: 100%;
+    td {
+      width: calc(100% / 10);
+    }
+  }
+}

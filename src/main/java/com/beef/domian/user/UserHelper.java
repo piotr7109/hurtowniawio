@@ -4,6 +4,7 @@ import com.beef.core.hibernate.HibernateBase;
 import com.beef.domian.BaseHelper;
 
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class UserHelper extends BaseHelper {
 
@@ -64,5 +65,20 @@ public class UserHelper extends BaseHelper {
         }
 
         return dbUser;
+    }
+
+    public static List<User> getUsers() {
+        HibernateBase.createEntityManagers();
+        List<User> users;
+        TypedQuery<User> query = HibernateBase.entityManager.createQuery("select u from User u", User.class);
+
+        try {
+            users = query.getResultList();
+        } catch (Exception e) {
+            users = null;
+        }
+
+        HibernateBase.closeEntityManagers();
+        return users;
     }
 }

@@ -40,17 +40,17 @@ export default class AuctionList extends BasePage {
     }
 
     renderHTML() {
-        if(this.state.mode === 0) {
+        if (this.state.mode === 0) {
             return (
                 <div className="AuctionList">
-                    {this.auctions.map((auction) => {
+                    {this.auctions.map((auction: any) => {
                         return (
                             <AuctionListItem auction={auction} key={auction.title}/>
                         );
                     })}
                 </div>
             );
-        } else if(this.state.mode === -10) {
+        } else if (this.state.mode === -10) {
             return <div>Loading</div>;
         }
     }
