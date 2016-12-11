@@ -35,7 +35,13 @@ export default class AddItemForm extends BaseForm {
     }
 
     handleSubmit(event: any): any {
-        this.handleFormEvents(event, '/addItem', 'post');
+        this.handleFormEvents(event, '/addItem', 'post').then((reponse: any) => {
+            if (reponse.data) {
+                this.setState({mode: 1});
+            } else {
+                this.setState({mode: -1});
+            }
+        });
     }
 
     getForm(): any {

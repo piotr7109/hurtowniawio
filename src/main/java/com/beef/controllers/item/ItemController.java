@@ -1,5 +1,6 @@
 package com.beef.controllers.item;
 
+import com.beef.domian.item.Item;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,11 +15,9 @@ import java.io.IOException;
 public class ItemController {
 
     @PostMapping("/addItem")
-    public String addItem(HttpSession session, HttpServletRequest request, @RequestParam("data") String itemData,
-                        @RequestParam("image") MultipartFile image) throws IOException {
+    public Item addItem(HttpSession session, HttpServletRequest request, @RequestParam("data") String itemData,
+                          @RequestParam("image") MultipartFile image) throws IOException {
 
-        String itemPathNameRef = ItemService.saveImage(request, image);
-
-        return itemData;
+        return ItemService.addItem(session, request, itemData, image);
     }
 }
