@@ -16,7 +16,7 @@ public class UserUtils {
         User authenticatedUser = (User) session.getAttribute(Utils.sessionUserName);
 
         if (authenticatedUser != null) {
-            if(authenticatedUser.getType().equals(type) || authenticatedUser.getType().equals("admin")) {
+            if (authenticatedUser.getType().equals(type) || authenticatedUser.getType().equals("admin")) {
                 return true;
             }
         }
