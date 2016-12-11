@@ -1,4 +1,4 @@
-.RegisterForm {
+.Form {
   @include respond-to(large) {
     display: flex;
     flex-direction: column;
@@ -33,6 +33,18 @@
     }
     .CustomSelectWrapper {
       align-self: flex-end;
+      padding-bottom: 10px;
+      width: 100%;
+
+      .CustomSelect {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include respond-to(large) {
+          flex-direction: row;
+        }
+      }
 
       @include respond-to(medium) {
         margin: auto;

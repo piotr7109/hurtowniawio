@@ -18,7 +18,7 @@ export class LoginForm extends BaseForm {
 
     getForm() {
         return (
-            <form onSubmit={this.handleSubmit.bind(this)} className="navbar-form navbar-left">
+            <form onSubmit={this.handleSubmit.bind(this)} className="Form navbar-form">
                 <div className="form-group">
                     <BasicInputControl text="Login" type="text" name="login" value=""/>
                     <BasicInputControl text="Hasło" type="password" name="password" value=""/>
@@ -30,14 +30,16 @@ export class LoginForm extends BaseForm {
 
     getSuccessMessage() {
         return (
-            <div>
-                Zalogowałeś się!
-                <Link to="/kontakt">idź gdzieś (teraz to /kontakt)</Link>
+            <div className="message">
+                <div>Zalogowałeś się!</div>
+                <Link to="/">Idź do strony głównej</Link>
             </div>
         );
     }
 
     getErrorMessage() {
-        return <div>Złę danę</div>;
+        return (<div className="message">
+            <div>Wprowadzono złe dane, </div>
+        </div>);
     }
 }

@@ -7,9 +7,11 @@ export default class Header extends React.Component<{}, {}> {
     getAuthButtons() {
         if (UserUtils.loggedUser) {
             return (
-                <button className="header-button">
-                    <Link to="/logout">Wyloguj</Link>
-                </button>
+                <Link to="/logout">
+                    <button className="header-button">
+                        Wyloguj
+                    </button>
+                </Link>
             );
         } else {
             return (

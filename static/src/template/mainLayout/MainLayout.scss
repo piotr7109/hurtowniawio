@@ -37,6 +37,8 @@ html {
         }
 
         > .content {
+          display: flex;
+          justify-content: center;
           margin: auto;
           text-align: center;
           padding: 20px;

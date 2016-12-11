@@ -8,6 +8,7 @@ interface States {
 interface Properties {
     items:any;
     name:string;
+    labelText:string;
 }
 
 export default class CustomSelect extends React.Component<Properties, States> {
@@ -50,15 +51,17 @@ export default class CustomSelect extends React.Component<Properties, States> {
     render() {
         let cssStyle = this.state.expanded ? null : {display: "none"},
             iconCssClass = this.state.expanded ? "icon-up-dir" : "icon-down-dir",
+            selectedItemCssClass = this.state.expanded ? "selected expanded" : "selected",
             list = this.getList(),
-            selected = this.selected ? this.selected.text : this.props.items[0].text;
+            selected = this.selected ? this.selected : this.props.items[0];
 
         return (
             <div className="CustomSelectWrapper">
                 <div className="CustomSelect">
-                    <input type="hidden" className="form-control" name={this.props.name} value={selected}/>
-                    <div tabIndex={0} className="selected" onClick={() => this.toggle()}>
-                        {selected}
+                    <input type="hidden" className="form-control" name={this.props.name} value={selected.value}/>
+                    {this.props.labelText && <label htmlFor={this.props.name} className="form-label">{this.props.labelText}</label>}
+                    <div tabIndex={0} className={selectedItemCssClass} onClick={() => this.toggle()}>
+                        {selected.text}
                         <span className={iconCssClass}/>
                     </div>
                     <div className="list" style={cssStyle}>
