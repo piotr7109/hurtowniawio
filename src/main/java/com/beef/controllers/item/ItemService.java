@@ -1,17 +1,16 @@
 package com.beef.controllers.item;
 
 import com.beef.core.utils.UserUtils;
-import com.beef.core.utils.Utils;
 import com.beef.domian.item.Item;
 import com.beef.domian.item.ItemHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class ItemService {
 
@@ -36,6 +35,14 @@ public class ItemService {
 
             return item;
 
+        }
+
+        return null;
+    }
+
+    protected static List<Item> getItems(HttpSession session) {
+        if (UserUtils.isUserAuthenticated(session)) {
+            return ItemHelper.getItems();
         }
 
         return null;
