@@ -1,6 +1,6 @@
 import {BasePage} from "../BasePage";
 import * as React from 'react';
-import Auction from "../../partials/auction/Auction";
+import AuctionListItem from "../../partials/auction/AuctionListItem";
 import UserUtils from "../../../utils/UserUtils";
 import * as axios from 'axios';
 
@@ -45,7 +45,7 @@ export default class AuctionList extends BasePage {
                 <div className="AuctionList">
                     {this.auctions.map((auction) => {
                         return (
-                            <Auction auction={auction} key={auction.title}/>
+                            <AuctionListItem auction={auction} key={auction.title}/>
                         );
                     })}
                 </div>

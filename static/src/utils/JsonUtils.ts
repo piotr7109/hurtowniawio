@@ -6,6 +6,6 @@ export default class JsonUtils {
         return axios({
             method: 'get',
             url: path
-        })
+        });
     }
 }

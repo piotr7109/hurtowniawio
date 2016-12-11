@@ -29,6 +29,6 @@ interface BasicSubmitControlProps {
 
 export class BasicSubmitControl extends React.Component<BasicSubmitControlProps, {}>{
     render() {
-        return <input type="submit" className="ButtonSubmit" value={this.props.text}/>;
+        return <input type="submit" className="buttonSubmit" value={this.props.text}/>;
     }
 }
