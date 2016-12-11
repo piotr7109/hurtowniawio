@@ -32,11 +32,17 @@ public class AuctionService {
         return null;
     }
 
+    protected static Auction getAuctionById(HttpSession session, String auctionId) {
+        if (UserUtils.isUserAuthenticated(session)) {
+            return AuctionHelper.getAuctionById(Long.parseLong(auctionId));
+        }
+        return null;
+    }
+
     protected static List<Auction> getActiveAuctions(HttpSession session) {
         if (UserUtils.isUserAuthenticated(session)) {
             return AuctionHelper.getActiveAuctions();
         }
-
         return null;
     }
 }

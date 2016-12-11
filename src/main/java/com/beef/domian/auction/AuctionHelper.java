@@ -15,6 +15,14 @@ public class AuctionHelper extends BaseHelper {
         create(auction);
     }
 
+    public static Auction getAuctionById(long id) {
+        HibernateBase.createEntityManagers();
+        Auction auction = HibernateBase.entityManager.find(Auction.class, id);
+        HibernateBase.closeEntityManagers();
+        auction.clearUser();
+        return auction;
+    }
+
     public static List<Auction> getActiveAuctions() {
         return getAuctions("A");
     }
@@ -27,6 +35,7 @@ public class AuctionHelper extends BaseHelper {
 
         try {
             auctions = query.getResultList();
+            auctions.forEach(auction -> auction.clearUser());
         } catch (Exception e) {
             auctions = null;
         }

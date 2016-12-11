@@ -121,4 +121,8 @@ public class Auction {
     public void setApplications(List<Application> applications) {
         this.applications = applications;
     }
+
+    public void clearUser() {
+        user.setPassword("");
+    }
 }
