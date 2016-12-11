@@ -36,7 +36,7 @@ export default class AuctionList extends BasePage {
         return axios({
             method: "get",
             url: "/getActiveAuctions"
-        })
+        });
     }
 
     renderHTML() {
