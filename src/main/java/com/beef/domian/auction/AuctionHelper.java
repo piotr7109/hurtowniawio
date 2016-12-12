@@ -12,7 +12,13 @@ public class AuctionHelper extends BaseHelper {
     public static void createAuction(Auction auction) {
         auction.setCreationDate(new Date());
         auction.setState("A");
-        create(auction);
+        persist(auction);
+    }
+
+    public static Auction getAuctionById(long id) {
+        Auction auction = HibernateBase.entityManager.find(Auction.class, id);
+        auction.clearUser();
+        return auction;
     }
 
     public static Auction finishAuction(long id) {
@@ -35,18 +41,17 @@ public class AuctionHelper extends BaseHelper {
     }
 
     public static List<Auction> getAuctions(String state) {
-        HibernateBase.createEntityManagers();
         List<Auction> auctions;
         TypedQuery<Auction> query = HibernateBase.entityManager.createQuery("select a from Auction a where a.state = :state", Auction.class);
         query.setParameter("state", state);
 
         try {
             auctions = query.getResultList();
+            auctions.forEach(auction -> auction.clearUser());
         } catch (Exception e) {
             auctions = null;
         }
 
-        HibernateBase.closeEntityManagers();
         return auctions;
     }
 }

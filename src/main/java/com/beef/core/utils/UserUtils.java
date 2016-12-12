@@ -7,13 +7,11 @@ import javax.servlet.http.HttpSession;
 public class UserUtils {
 
     public static boolean isUserAuthenticated(HttpSession session) {
-        User authenticatedUser = (User) session.getAttribute(Utils.sessionUserName);
-
-        return authenticatedUser != null;
+        return getSessionUser(session) != null;
     }
 
     public static boolean checkUserType(HttpSession session, String type) {
-        User authenticatedUser = (User) session.getAttribute(Utils.sessionUserName);
+        User authenticatedUser = getSessionUser(session);
 
         if (authenticatedUser != null) {
             if (authenticatedUser.getType().equals(type) || authenticatedUser.getType().equals("admin")) {
@@ -22,6 +20,10 @@ public class UserUtils {
         }
 
         return false;
+    }
+
+    public static User getSessionUser(HttpSession session) {
+        return (User) session.getAttribute(Utils.sessionUserName);
     }
 
 }
