@@ -11,26 +11,42 @@
     flex-wrap: wrap;
     align-self: center;
 
-    .menu-item {
-      display: flex;
+    .menu-item-link {
+      position: relative;
+      color: $white;
+      text-decoration: none;
+      white-space: nowrap;
       flex: 1 0 0;
-      justify-content: center;
-      padding: 5px 10px;
-      font-size: 25px;
-      color: $black;
 
-      .menu-item-link {
-        color: $light-lemon-chiffon;
-        text-decoration: none;
-        white-space: nowrap;
-        flex: 1 0 0;
+      &:hover,
+      &:focus,
+      &:active {
+        color: $light-white;
+      }
 
-        &:hover,
-        &:focus,
-        &:active {
-          color: #ddd;
+      &:first-child {
+        &::before {
+          display: none;
         }
       }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 25%;
+        width: 1px;
+        height: 50%;
+        background: $dark-gray;
+      }
+
+      .menu-item {
+        display: flex;
+        flex: 1 0 0;
+        justify-content: center;
+        padding: 5px 10px;
+        font-size: 25px;
+      }
+
     }
   }
 }

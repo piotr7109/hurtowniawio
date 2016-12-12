@@ -11,7 +11,7 @@ public class UserHelper extends BaseHelper {
     public static User isUserValid(User user) {
         HibernateBase.createEntityManagers();
 
-        TypedQuery<User> query = HibernateBase.entityManager.createQuery("select u from User u where u.login=:login and u.password=:password", User.class);
+        TypedQuery<User> query = HibernateBase.entityManager.createQuery("select u from User u where u.login=:login and u.password=:password and u.status = 'A'", User.class);
         query.setParameter("login", user.getLogin());
         query.setParameter("password", user.getPassword());
 
@@ -46,6 +46,7 @@ public class UserHelper extends BaseHelper {
         boolean canCreate = !isUserExisting(user);
 
         if (canCreate) {
+            user.setStatus("A");
             create(user);
         }
 
@@ -65,6 +66,16 @@ public class UserHelper extends BaseHelper {
         }
 
         return dbUser;
+    }
+
+    public static void deactivateUser(long id) {
+        HibernateBase.createEntityManagers();
+        HibernateBase.entityManager.getTransaction().begin();
+        User dbUser = HibernateBase.entityManager.find(User.class, id);
+        dbUser.setStatus("X");
+        HibernateBase.entityManager.persist(dbUser);
+        HibernateBase.entityManager.getTransaction().commit();
+        HibernateBase.closeEntityManagers();
     }
 
     public static List<User> getUsers() {

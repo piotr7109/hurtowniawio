@@ -25,6 +25,13 @@ export default class UserList extends BasePage {
         });
     }
 
+    deactivateUser(user: any) {
+        let formData: FormData = new FormData();
+
+        formData.append('userId', user.id);
+        axios.post('/deactivateUser', formData);
+    }
+
     getUserRow(user: any) {
         return (
             <tr className="user-row">
@@ -37,11 +44,9 @@ export default class UserList extends BasePage {
                 <td>{user.email}</td>
                 <td>{user.status}</td>
                 <td>
-                    <Link to="/login">
-                        <button className="buttonSubmit">
-                            Usuń
-                        </button>
-                    </Link>
+                    <button className="buttonSubmit" onClick={() =>this.deactivateUser(user)}>
+                        Usuń
+                    </button>
                 </td>
             </tr>
         );
@@ -52,9 +57,9 @@ export default class UserList extends BasePage {
             return (
                 <table className="UserList">
                     <tbody>
-                        {this.users.map((user: any) => {
-                            return this.getUserRow(user);
-                        })}
+                    {this.users.map((user: any) => {
+                        return this.getUserRow(user);
+                    })}
                     </tbody>
                 </table>
             );

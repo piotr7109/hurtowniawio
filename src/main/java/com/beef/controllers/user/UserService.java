@@ -4,8 +4,10 @@ import com.beef.core.utils.UserUtils;
 import com.beef.core.utils.Utils;
 import com.beef.domian.user.User;
 import com.beef.domian.user.UserHelper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 public class UserService {
@@ -24,5 +26,11 @@ public class UserService {
             return UserHelper.getUsers();
         }
         return null;
+    }
+
+    public static void deactivateUser(HttpSession session, String id) throws IOException {
+        if (UserUtils.checkUserType(session, "admin")) {
+            UserHelper.deactivateUser(Long.parseLong(id));
+        }
     }
 }

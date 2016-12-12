@@ -16,7 +16,7 @@ export default class Menu extends React.Component<Properties, {}> {
     getMenuItem(item: any) {
         if (item.hasOwnProperty('path') && item.hasOwnProperty('title')) {
             return (
-                <Link to={item.path} onClick={() => this.handleRouteChange()} key={item.title}>
+                <Link className="menu-item-link" to={item.path} onClick={() => this.handleRouteChange()} key={item.title}>
                     <div className="menu-item">
                         {item.title}
                     </div>

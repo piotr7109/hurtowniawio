@@ -25,4 +25,9 @@ public class UserController {
     public List<User> getUsers(HttpSession session) {
         return UserService.getUsers(session);
     }
+
+    @PostMapping("/deactivateUser")
+    public void deactivateUser(HttpSession session, @RequestParam("userId") String id) throws IOException {
+        UserService.deactivateUser(session, id);
+    }
 }
