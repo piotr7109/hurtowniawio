@@ -15,6 +15,21 @@ public class AuctionHelper extends BaseHelper {
         create(auction);
     }
 
+    public static Auction finishAuction(long id) {
+        Auction dbAuction = null;
+
+        if (!isAuctionExisting(Auction)) {
+            HibernateBase.createEntityManagers();
+            HibernateBase.entityManager.getTransaction().begin();
+            dbAuction = HibernateBase.entityManager.find(dbAuction.getId(), oldUser.getId());
+            dbAuction.updateData(user);
+            HibernateBase.entityManager.getTransaction().commit();
+            HibernateBase.closeEntityManagers();
+        }
+
+        return dbAuction;
+    }
+
     public static List<Auction> getActiveAuctions() {
         return getAuctions("A");
     }

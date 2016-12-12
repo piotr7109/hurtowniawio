@@ -32,6 +32,17 @@ public class AuctionService {
         return null;
     }
 
+    protected static void finishAuction(HttpSession session, String auctionData, String itemData) throws IOException {
+        if (UserUtils.checkUserType(session, "hurtownik")) {
+            Auction auction = new ObjectMapper().readValue(auctionData, Auction.class);
+            long itemId = Long.parseLong(itemData);
+            User user = (User) session.getAttribute(Utils.sessionUserName);
+
+            auction.setItem(ItemHelper.getItemById(itemId));
+            auction.setUser(user);
+        }
+    }
+
     protected static List<Auction> getActiveAuctions(HttpSession session) {
         if (UserUtils.isUserAuthenticated(session)) {
             return AuctionHelper.getActiveAuctions();
