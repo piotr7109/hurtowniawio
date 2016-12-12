@@ -36,7 +36,7 @@ export class EditUserDataForm extends RegisterForm {
 
     getForm() {
         return (
-            <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit.bind(this)}>
+            <form className="Form navbar-form" onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
                     {this.formControls.map((item) => {
                         return (<BasicInputControl

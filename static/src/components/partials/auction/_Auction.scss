@@ -1,0 +1,84 @@
+.Auction {
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    flex: 1 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    background: $seagreen;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px $darker-white;
+    font-size: 26px;
+    font-weight: 500;
+  }
+
+  .content {
+    flex: 1 0 auto;
+    display: flex;
+
+    .left-panel {
+      flex: 2 0 0;
+
+      .image {
+        img {
+          width: 70%;
+        }
+      }
+    }
+
+    .right-panel {
+      display: flex;
+      justify-content: flex-start;
+      flex: 3 0 0;
+      align-items: flex-start;
+
+      .attributes {
+        flex: 1 0 auto;
+        display: flex;
+        background: lemonchiffon;
+        border-radius: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        box-shadow: 2px 2px 2px 2px $light-white;
+        max-width: 250px;
+
+        span {
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      .details {
+        display: flex;
+        flex-direction: column;
+        flex: 1 0 auto;
+        align-items: flex-start;
+      }
+
+      span {
+        margin: 0 0 10px;
+
+        div {
+          align-self: center;
+          padding: 15px;
+        }
+      }
+
+      .description {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      a {
+        align-self: flex-end;
+        margin-top: auto;
+      }
+    }
+  }
+}

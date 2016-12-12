@@ -33,6 +33,7 @@
 
     @include respond-to(very-small) {
       flex-direction: column;
+
       .header-button {
         &:first-child {
           margin-bottom: 5px;

@@ -38,7 +38,7 @@ export default class AddAuctionForm extends BaseForm {
         {name: 'dueDate', text: 'Data zakończenia', type: 'date'},
     ];
 
-    descriptionField = {name: 'description', text: 'Opis'};
+    descriptionField = {name: 'Description', text: 'Opis'};
 
     public handleFormEvents(event: any, url: any, method: any): any {
         event.preventDefault();
@@ -73,7 +73,7 @@ export default class AddAuctionForm extends BaseForm {
 
     getForm(): any {
         return (
-            <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit.bind(this)}>
+            <form className="Form navbar-form" onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
                     {this.formControls.map((item) => {
                         return (<BasicInputControl
@@ -83,8 +83,6 @@ export default class AddAuctionForm extends BaseForm {
                             key={item.name}
                             value=""/>);
                     })}
-                    <label htmlFor={this.descriptionField.name}>{this.descriptionField.text}</label>
-                    <textarea id="{this.descriptionField.name}" name={this.descriptionField.name}></textarea>
                     <CustomSelect labelText="Artykuł" name="item" items={this.items}/>
                     <BasicSubmitControl text='Dodaj przetarg'/>
                 </div>
