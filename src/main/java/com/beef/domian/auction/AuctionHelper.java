@@ -21,19 +21,17 @@ public class AuctionHelper extends BaseHelper {
         return auction;
     }
 
-    public static Auction finishAuction(long id) {
-        Auction dbAuction = null;
+    public static boolean finishAuction(long id) {
+        Auction auction = HibernateBase.entityManager.find(Auction.class, id);
 
-        if (!isAuctionExisting(Auction)) {
-            HibernateBase.createEntityManagers();
-            HibernateBase.entityManager.getTransaction().begin();
-            dbAuction = HibernateBase.entityManager.find(dbAuction.getId(), oldUser.getId());
-            dbAuction.updateData(user);
-            HibernateBase.entityManager.getTransaction().commit();
-            HibernateBase.closeEntityManagers();
+        if (auction != null) {
+            auction.setState("X");
+            persist(auction);
+
+            return true;
         }
 
-        return dbAuction;
+        return false;
     }
 
     public static List<Auction> getActiveAuctions() {

@@ -20,9 +20,8 @@ public class AuctionController {
     }
 
     @PostMapping("/finishAuction")
-    public void finishAuction(HttpSession session, @RequestParam("auctionData") String auctionData,
-                              @RequestParam("itemData") String itemData) throws IOException {
-        AuctionService.finishAuction(session, auctionData, itemData);
+    public boolean finishAuction(HttpSession session, @RequestParam("auctionId") String auctionId) {
+        return AuctionService.finishAuction(session, auctionId);
     }
 
     @GetMapping("/getActiveAuctions")
