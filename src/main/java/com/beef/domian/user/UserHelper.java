@@ -9,7 +9,6 @@ import java.util.List;
 public class UserHelper extends BaseHelper {
 
     public static User isUserValid(User user) {
-        HibernateBase.createEntityManagers();
 
         TypedQuery<User> query = HibernateBase.entityManager.createQuery("select u from User u where u.login=:login and u.password=:password and u.status = 'A'", User.class);
         query.setParameter("login", user.getLogin());
@@ -21,12 +20,10 @@ public class UserHelper extends BaseHelper {
             user = null;
         }
 
-        HibernateBase.closeEntityManagers();
         return user;
     }
 
     public static boolean isUserExisting(User user) {
-        HibernateBase.createEntityManagers();
 
         TypedQuery<User> query = HibernateBase.entityManager.createQuery("select u from User u where u.login=:login", User.class);
         query.setParameter("login", user.getLogin());
@@ -37,8 +34,6 @@ public class UserHelper extends BaseHelper {
             user = null;
         }
 
-        HibernateBase.closeEntityManagers();
-
         return user != null;
     }
 
@@ -47,7 +42,7 @@ public class UserHelper extends BaseHelper {
 
         if (canCreate) {
             user.setStatus("A");
-            create(user);
+            persist(user);
         }
 
         return canCreate;
@@ -57,29 +52,24 @@ public class UserHelper extends BaseHelper {
         User dbUser = null;
 
         if (!isUserExisting(user)) {
-            HibernateBase.createEntityManagers();
             HibernateBase.entityManager.getTransaction().begin();
             dbUser = HibernateBase.entityManager.find(User.class, oldUser.getId());
             dbUser.updateData(user);
             HibernateBase.entityManager.getTransaction().commit();
-            HibernateBase.closeEntityManagers();
         }
 
         return dbUser;
     }
 
     public static void deactivateUser(long id) {
-        HibernateBase.createEntityManagers();
         HibernateBase.entityManager.getTransaction().begin();
         User dbUser = HibernateBase.entityManager.find(User.class, id);
         dbUser.setStatus("X");
         HibernateBase.entityManager.persist(dbUser);
         HibernateBase.entityManager.getTransaction().commit();
-        HibernateBase.closeEntityManagers();
     }
 
     public static List<User> getUsers() {
-        HibernateBase.createEntityManagers();
         List<User> users;
         TypedQuery<User> query = HibernateBase.entityManager.createQuery("select u from User u", User.class);
 
@@ -89,7 +79,11 @@ public class UserHelper extends BaseHelper {
             users = null;
         }
 
-        HibernateBase.closeEntityManagers();
         return users;
     }
+
+    public static User getUserById(long id) {
+        return HibernateBase.entityManager.find(User.class, id);
+    }
+
 }

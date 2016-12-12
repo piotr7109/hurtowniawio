@@ -9,11 +9,10 @@ import java.util.List;
 public class ItemHelper extends BaseHelper {
 
     public static void createItem(Item item) {
-        create(item);
+        persist(item);
     }
 
     public static List<Item> getItems() {
-        HibernateBase.createEntityManagers();
         List<Item> items;
         TypedQuery<Item> query = HibernateBase.entityManager.createQuery("select i from Item i", Item.class);
 
@@ -23,16 +22,11 @@ public class ItemHelper extends BaseHelper {
             items = null;
         }
 
-        HibernateBase.closeEntityManagers();
         return items;
     }
 
     public static Item getItemById(long id) {
-        HibernateBase.createEntityManagers();
-
         Item item = HibernateBase.entityManager.find(Item.class, id);
-
-        HibernateBase.closeEntityManagers();
         return item;
     }
 }

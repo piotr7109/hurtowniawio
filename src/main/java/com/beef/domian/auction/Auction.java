@@ -7,6 +7,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +39,6 @@ public class Auction {
     private String state;
 
     @OneToMany
-    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "auctionId")
     private List<Application> applications;
 
@@ -124,5 +124,12 @@ public class Auction {
 
     public void clearUser() {
         user.setPassword("");
+    }
+
+    public void addApplication(Application app) {
+        if (applications == null) {
+            applications = new ArrayList<Application>();
+        }
+        applications.add(app);
     }
 }
