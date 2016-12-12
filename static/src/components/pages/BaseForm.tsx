@@ -30,6 +30,10 @@ export abstract class BaseForm extends BasePage implements IBaseForm {
         return this.handleRequest(dataObject, url, method);
     }
 
+    handlePostRequest(formData:FormData, url:any) {
+        return axios.post(url, formData);
+    }
+
     handleRequest(dataObject: any, url: any, method: any) {
         return axios({
             method: method,

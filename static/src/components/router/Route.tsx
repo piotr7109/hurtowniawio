@@ -10,7 +10,7 @@ import AddItemForm from "../pages/items/AddItemForm";
 import AddAuctionForm from "../pages/auctions/add/AddAuctionForm";
 import UserList from "../pages/users/list/UserList";
 import AuctionList from "../pages/auctions/list/AuctionList";
-import Auction from "../partials/auction/Auction";
+import Auction from "../pages/auctions/Auction";
 
 
 export default class IndexComponent extends React.Component<{}, {}> {

@@ -10,6 +10,7 @@ public class AuthenticationService {
 
     public static User login(HttpSession session, User user) {
         User dbUser = UserHelper.isUserValid(user);
+        System.out.print(dbUser);
         if (dbUser != null) {
             dbUser.setPassword("");
             session.setAttribute(Utils.sessionUserName, dbUser);

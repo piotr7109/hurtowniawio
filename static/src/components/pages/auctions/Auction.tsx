@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {BasePage} from "../../pages/BasePage";
+import {BasePage} from "../BasePage";
 import * as axios from 'axios';
 import UserUtils from "../../../utils/UserUtils";
+import AddApplicationForm from "../applications/AddApplicationForm";
 
 
 export default class Auction extends BasePage {
