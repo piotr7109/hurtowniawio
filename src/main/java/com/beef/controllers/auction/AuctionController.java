@@ -19,6 +19,11 @@ public class AuctionController {
         return AuctionService.addAuction(session, auctionData, itemData);
     }
 
+    @PostMapping("/finishAuction")
+    public boolean finishAuction(HttpSession session, @RequestParam("auctionId") String auctionId) {
+        return AuctionService.finishAuction(session, auctionId);
+    }
+
     @GetMapping("/getActiveAuctions")
     public List<Auction> getActiveAuctions(HttpSession session) {
         return AuctionService.getActiveAuctions(session);

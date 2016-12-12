@@ -21,6 +21,19 @@ public class AuctionHelper extends BaseHelper {
         return auction;
     }
 
+    public static boolean finishAuction(long id) {
+        Auction auction = HibernateBase.entityManager.find(Auction.class, id);
+
+        if (auction != null) {
+            auction.setState("X");
+            persist(auction);
+
+            return true;
+        }
+
+        return false;
+    }
+
     public static List<Auction> getActiveAuctions() {
         return getAuctions("A");
     }

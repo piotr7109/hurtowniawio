@@ -32,6 +32,16 @@ public class AuctionService {
         return null;
     }
 
+    protected static boolean finishAuction(HttpSession session, String id) {
+        if (UserUtils.checkUserType(session, "hurtownik")) {
+            long auctionId = Long.parseLong(id);
+
+            return AuctionHelper.finishAuction(auctionId);
+        }
+
+        return false;
+    }
+
     protected static List<Auction> getActiveAuctions(HttpSession session) {
         if (UserUtils.isUserAuthenticated(session)) {
             return AuctionHelper.getActiveAuctions();
