@@ -2,8 +2,6 @@ package com.beef.domian.auction;
 
 import com.beef.core.hibernate.HibernateBase;
 import com.beef.domian.BaseHelper;
-import com.beef.domian.application.Application;
-import org.hibernate.Hibernate;
 
 import javax.persistence.TypedQuery;
 import java.util.Date;

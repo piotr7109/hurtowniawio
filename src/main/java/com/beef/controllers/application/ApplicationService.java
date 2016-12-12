@@ -1,8 +1,6 @@
 package com.beef.controllers.application;
 
-import com.beef.core.hibernate.HibernateBase;
 import com.beef.core.utils.UserUtils;
-import com.beef.core.utils.Utils;
 import com.beef.domian.application.Application;
 import com.beef.domian.application.ApplicationHelper;
 import com.beef.domian.auction.Auction;
