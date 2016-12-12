@@ -6,11 +6,11 @@
     flex-direction: column;
     position: relative;
     align-self: center;
-    background: $white;
     cursor: pointer;
 
     @include respond-to(large) {
       flex-direction: row;
+      align-items: center;
     }
 
     .form-label {
@@ -19,6 +19,7 @@
 
       @include respond-to(large) {
         width: 50%;
+        margin: 0;
       }
     }
 

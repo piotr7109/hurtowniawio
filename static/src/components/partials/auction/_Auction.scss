@@ -44,6 +44,7 @@
         align-items: flex-start;
         padding: 15px;
         box-shadow: 2px 2px 2px 2px $light-white;
+        max-width: 250px;
 
         span {
           &:last-child {
@@ -51,8 +52,6 @@
           }
         }
       }
-
-
 
       .details {
         display: flex;

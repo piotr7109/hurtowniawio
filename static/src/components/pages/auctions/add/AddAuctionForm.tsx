@@ -73,7 +73,7 @@ export default class AddAuctionForm extends BaseForm {
 
     getForm(): any {
         return (
-            <form className="RegisterForm navbar-form" onSubmit={this.handleSubmit.bind(this)}>
+            <form className="Form navbar-form" onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
                     {this.formControls.map((item) => {
                         return (<BasicInputControl

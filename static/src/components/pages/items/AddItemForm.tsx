@@ -46,7 +46,7 @@ export default class AddItemForm extends BaseForm {
 
     getForm(): any {
         return (
-            <form encType='multipart/form-data' className='AddItemForm navbar-form'
+            <form encType='multipart/form-data' className='Form navbar-form'
                   onSubmit={this.handleSubmit.bind(this)}>
                 <div className='form-group'>
                     {this.formControls.map((item) => {
@@ -57,8 +57,10 @@ export default class AddItemForm extends BaseForm {
                             key={item.name}
                             value=''/>);
                     })}
-                    <label htmlFor={this.imageControl.name}>{this.imageControl.text}</label>
-                    <input id={this.imageControl.name} name={this.imageControl.name} type='file'/>
+                    <div className='form-row-file'>
+                        <label htmlFor={this.imageControl.name}>{this.imageControl.text}</label>
+                        <input id={this.imageControl.name} name={this.imageControl.name} type='file'/>
+                    </div>
                     <BasicSubmitControl text='Dodaj'/>
                 </div>
             </form>
