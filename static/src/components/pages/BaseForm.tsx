@@ -35,7 +35,7 @@ export abstract class BaseForm extends BasePage implements IBaseForm {
             method: method,
             url: url,
             params: dataObject
-        });
+        })
     }
 
     renderHTML() {

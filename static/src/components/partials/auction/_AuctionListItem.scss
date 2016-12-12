@@ -19,6 +19,7 @@
     z-index: 1;
     border-radius: 0 0 10px 10px;
     display: flex;
+    box-shadow: 2px 2px 2px 2px $light-white;
 
     .image {
       img {
@@ -30,6 +31,21 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+
+      .details {
+        display: flex;
+        flex-direction: column;
+        flex: 1 0 auto;
+      }
+
+      span {
+        margin: 0 0 10px;
+      }
+
+      a {
+        align-self: flex-end;
+        margin-top: auto;
+      }
     }
   }
 }

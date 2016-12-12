@@ -1,7 +1,7 @@
-import {BasePage} from "../BasePage";
+import {BasePage} from "../../BasePage";
 import * as React from 'react';
-import AuctionListItem from "../../partials/auction/AuctionListItem";
-import UserUtils from "../../../utils/UserUtils";
+import AuctionListItem from "../../../partials/auction/AuctionListItem";
+import UserUtils from "../../../../utils/UserUtils";
 import * as axios from 'axios';
 
 export default class AuctionList extends BasePage {
