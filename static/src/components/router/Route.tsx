@@ -8,7 +8,7 @@ import {Logout} from '../pages/authentication/Logout';
 import {EditUserDataForm} from '../pages/users/EditUserDataForm';
 import AddItemForm from "../pages/items/AddItemForm";
 import AddAuctionForm from "../pages/auctions/add/AddAuctionForm";
-import AuctionList from "../pages/auction/AuctionList";
+import AuctionList from "../pages/auctions/list/AuctionList";
 import Auction from "../partials/auction/Auction";
 
 
