@@ -6,11 +6,7 @@ interface States {
     mode: Number
 }
 
-interface Props {
-    params:any;
-}
-
-export abstract class BasePage extends React.Component<Props, States> {
+export abstract class BasePage extends React.Component<{}, States> {
 
     constructor(public state: States, protected allowedUsers: Array<string>, protected userTypes: any) {
         super();
@@ -18,7 +14,7 @@ export abstract class BasePage extends React.Component<Props, States> {
         this.state = {mode: 0};
         this.userTypes = UserUtils.userTypes;
         this.allowedUsers = [];
-        this.postConstruct();
+        this.postConstruct()
     }
 
     postConstruct() {
