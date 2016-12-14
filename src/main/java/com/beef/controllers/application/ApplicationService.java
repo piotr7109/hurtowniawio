@@ -1,5 +1,6 @@
 package com.beef.controllers.application;
 
+import com.beef.core.hibernate.HibernateBase;
 import com.beef.core.utils.UserUtils;
 import com.beef.domian.application.Application;
 import com.beef.domian.application.ApplicationHelper;
@@ -16,28 +17,32 @@ import java.util.Date;
 public class ApplicationService {
 
     public static boolean createApplication(HttpSession session, String applicationData, String auctionId) throws IOException {
+        boolean result = false;
+        HibernateBase.closeEntityManagers();
+
         if (UserUtils.checkUserType(session, "rolnik")) {
             Auction auction = AuctionHelper.getAuctionById(Long.parseLong(auctionId));
             User user = UserHelper.getUserById(UserUtils.getSessionUser(session).getId());
-            Application app = (Application) new ObjectMapper().readValue(applicationData, Application.class);
+            Application app = new ObjectMapper().readValue(applicationData, Application.class);
 
-            if (!applicationExists(auction, user) && auction.getState().equals("A")) {app.setUser(user);
+            if (!applicationExists(auction, user) && auction.getState().equals("A")) {
+                app.setUser(user);
                 app.setDate(new Date());
                 auction.addApplication(app);
                 ApplicationHelper.createApplication(app);
-                return true;
+                result = true;
             }
         }
-
-        return false;
+        return result;
     }
 
     private static boolean applicationExists(Auction auction, User user) {
+        boolean result = false;
         for (Application app : auction.getApplications()) {
             if (app.getUser().getId() == user.getId()) {
-                return true;
+                result = true;
             }
         }
-        return false;
+        return result;
     }
 }

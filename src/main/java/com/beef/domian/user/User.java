@@ -14,6 +14,11 @@ public class User {
         this.password = password;
     }
 
+    public User(User user) {
+        this.updateData(user);
+        password = "";
+    }
+
     @Id
     @GeneratedValue
     private long id;
