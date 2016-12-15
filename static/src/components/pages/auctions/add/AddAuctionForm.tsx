@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as axios from 'axios';
 import {BaseForm} from "../../BaseForm";
 import {BasicInputControl, BasicSubmitControl} from "../../../partials/forms/controls/BasicInputControl";
 import CustomSelect from "../../../partials/forms/controls/CustomSelect";
@@ -57,7 +56,7 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
         formData.append('auctionData', auctionData);
         formData.append('itemData', itemData);
 
-        return axios.post(url, formData);
+        return this.handlePostRequest(formData, url);
     }
 
     handleSubmit(event: any): any {

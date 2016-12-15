@@ -39,7 +39,7 @@ export default class UserUtils {
         return UserUtils.loggedUser.type != UserUtils.userTypes.unlogged;
     }
 
-    public static deactivateUser(id) {
+    public static deactivateUser(id: number) {
         let formData: FormData = new FormData();
 
         formData.append('userId', id);

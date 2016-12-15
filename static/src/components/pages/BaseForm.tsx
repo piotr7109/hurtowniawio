@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as axios from 'axios';
 import {BasePage, BaseStates, BaseProps} from './BasePage';
 
 interface IBaseForm {
@@ -28,18 +27,6 @@ export abstract class BaseForm<P extends BaseProps, S extends BaseStates> extend
             dataObject = {data: JSON.stringify(data)};
 
         return this.handleRequest(dataObject, url, method);
-    }
-
-    handlePostRequest(formData: FormData, url: any) {
-        return axios.post(url, formData);
-    }
-
-    handleRequest(dataObject: any, url: any, method: any) {
-        return axios({
-            method: method,
-            url: url,
-            params: dataObject
-        })
     }
 
     renderHTML() {

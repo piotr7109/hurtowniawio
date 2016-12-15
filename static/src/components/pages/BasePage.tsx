@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as axios from 'axios';
 import ErrorNonAuthenticatedUser from './error/Errors';
 import UserUtils from '../../utils/UserUtils';
 
@@ -7,7 +8,6 @@ export interface BaseStates {
 }
 
 export interface BaseProps {
-
 }
 
 export abstract class BasePage<P extends BaseProps, S extends BaseStates> extends React.Component<P, S> {
@@ -19,8 +19,8 @@ export abstract class BasePage<P extends BaseProps, S extends BaseStates> extend
         this.allowedUsers = [];
     }
 
-    componentWillMount():void {
-        this.state = { mode: 0 } as S;
+    componentWillMount(): void {
+        this.state = {mode: 0} as S;
     }
 
     updateMode(mode: number) {
@@ -33,12 +33,24 @@ export abstract class BasePage<P extends BaseProps, S extends BaseStates> extend
             || UserUtils.isLoggedUserAdmin();
     }
 
+    handlePostRequest(formData: FormData, url: any) {
+        return axios.post(url, formData);
+    }
+
+    handleRequest(dataObject: any, url: any, method: any) {
+        return axios({
+            method: method,
+            url: url,
+            params: dataObject
+        })
+    }
+
     renderHTML(): any {
         return null;
     }
 
     public render() {
-        if(this.state.mode === -10) {
+        if (this.state.mode === -10) {
             return <div>Ładowanie</div>
         } else {
             if (this.isUserAuthenticated()) {

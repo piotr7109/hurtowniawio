@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {BasePage, BaseStates, BaseProps} from "../BasePage";
-import * as axios from 'axios';
 import UserUtils from "../../../utils/UserUtils";
 import AddApplicationForm from "../applications/AddApplicationForm";
 import ModalWindow from "../../partials/modalWindow/ModalWindow";
@@ -32,16 +31,17 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
             auctionId = this.props.params.id;
 
         formData.append('auctionId', auctionId);
-        axios.post('/getAuctionById', formData).then((response: any) => {
-            let data: any = response.data;
+        this.handlePostRequest(formData, '/getAuctionById')
+            .then((response: any) => {
+                let data: any = response.data;
 
-            if (data) {
-                this.auction = data;
-                this.updateMode(0);
-            } else {
-                this.updateMode(-1);
-            }
-        });
+                if (data) {
+                    this.auction = data;
+                    this.updateMode(0);
+                } else {
+                    this.updateMode(-1);
+                }
+            });
     }
 
     showModalWindow() {
@@ -83,12 +83,9 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                 </div>
                 {this.state.modalVisible &&
                 <ModalWindow hide={this.hideModalWindow.bind(this)}>
-                    <AddApplicationForm hide={this.hideModalWindow.bind(this)}/>
+                    <AddApplicationForm auctionId={this.auction.id} hide={this.hideModalWindow.bind(this)}/>
                 </ModalWindow>}
             </div>
         );
     }
 }
-
-
-

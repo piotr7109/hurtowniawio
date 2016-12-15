@@ -7,6 +7,7 @@ import ModalWindow from "../../partials/modalWindow/ModalWindow";
 
 interface AddApplicationFormProps extends BaseProps {
     hide: any;
+    auctionId: number;
 }
 
 export default class AddApplicationForm extends BaseForm<AddApplicationFormProps, BaseStates> {
@@ -23,17 +24,12 @@ export default class AddApplicationForm extends BaseForm<AddApplicationFormProps
     handleFormEvents(event: any) {
         event.preventDefault();
 
-        console.log(this.props);
-
         let serialize = require('form-serialize'),
             data = serialize(event.target, {hash: true}),
-            formData: FormData = new FormData(),
-            auctionId = this.props.params.id;
-
-
+            formData: FormData = new FormData();
 
         formData.append('applicationData', JSON.stringify(data));
-        formData.append('auctionId', auctionId);
+        formData.append('auctionId', this.props.auctionId);
 
         return this.handlePostRequest(formData, '/addApplication');
     }

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Link} from 'react-router';
-import * as axios from 'axios';
 import {BaseForm} from '../BaseForm';
 import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/controls/BasicInputControl';
 import {BaseProps, BaseStates} from "../BasePage";
@@ -31,7 +30,7 @@ export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
         data.append('data', formData);
         data.append('image', imageData);
 
-        return axios.post(url, data);
+        return this.handlePostRequest(url, data);
     }
 
     handleSubmit(event: any): any {
