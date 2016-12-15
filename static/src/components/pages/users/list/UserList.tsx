@@ -6,6 +6,7 @@ import {BasePage} from "../../BasePage";
 export default class UserList extends BasePage {
 
     users: any;
+    fields: Array<string> = ['ID', 'Login', 'Typ', 'Imię', 'Nazwisko', 'Adres', 'Email', 'Status', 'Operacje'];
 
     postConstruct() {
         this.state = {mode: -10};
@@ -13,12 +14,12 @@ export default class UserList extends BasePage {
     }
 
     loadData() {
-        axios.get('/getUsers').then((response: any) => {
+        return axios.get('/getUsers').then((response: any) => {
             let data = response.data;
 
             this.users = data;
             if (data) {
-                this.setState({mode: 1});
+                this.setState({mode: 0});
             } else {
                 this.setState({mode: -1});
             }
@@ -29,7 +30,11 @@ export default class UserList extends BasePage {
         let formData: FormData = new FormData();
 
         formData.append('userId', user.id);
-        axios.post('/deactivateUser', formData);
+        axios.post('/deactivateUser', formData)
+            .then((response: any) => {
+                return this.loadData()
+            })
+            .then(() => this.forceUpdate());
     }
 
     getUserRow(user: any) {
@@ -53,9 +58,16 @@ export default class UserList extends BasePage {
     }
 
     renderHTML() {
-        if (this.state.mode === 1) {
+        if (this.state.mode === 0) {
             return (
                 <table className="UserList">
+                    <thead>
+                    <tr>
+                        {this.fields.map(field => {
+                            return <th>{field}</th>
+                        })}
+                    </tr>
+                    </thead>
                     <tbody>
                     {this.users.map((user: any) => {
                         return this.getUserRow(user);

@@ -23,6 +23,7 @@ public class UserService {
     }
 
     public static List<User> getUsers(HttpSession session) {
+        HibernateBase.closeEntityManagers();
         List<User> result = null;
 
         if (UserUtils.checkUserType(session, "admin")) {
