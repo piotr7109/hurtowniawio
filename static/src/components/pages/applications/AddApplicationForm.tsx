@@ -11,12 +11,6 @@ interface AddApplicationFormProps extends BaseProps {
 
 export default class AddApplicationForm extends BaseForm<AddApplicationFormProps, BaseStates> {
 
-    auctionID: number;
-
-    postConstruct() {
-
-    }
-
     allowedUsers = [
         this.userTypes.hurtownik
     ];

@@ -14,14 +14,11 @@ export default class AuctionList extends BasePage<BaseProps, BaseStates> {
 
     auctions: any;
 
-    postConstruct() {
-        this.loadAuctions();
-    }
-
-    componentWillMount(): BaseStates {
-        return ({
+    componentWillMount(): void {
+        this.state = ({
             mode: -10
         } as BaseStates);
+        this.loadAuctions();
     }
 
     loadAuctions() {

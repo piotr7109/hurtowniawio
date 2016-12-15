@@ -19,9 +19,6 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
         UserUtils.userTypes.rolnik
     ];
 
-    postConstruct() {
-    }
-
     componentWillMount(): AuctionStates {
         return this.state = ({
             mode: -10,
