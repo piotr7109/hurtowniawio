@@ -46,6 +46,8 @@ public class User {
         lastName = user.lastName;
         address = user.address;
         email = user.email;
+        type = user.type;
+        status = user.status;
     }
 
     public long getId() {

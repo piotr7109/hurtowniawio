@@ -16,7 +16,7 @@ public class AuthenticationService {
 
         if (dbUser != null) {
             session.setAttribute(Utils.sessionUserName, dbUser);
-            result =  new User(dbUser);
+            result = new User(dbUser);
         }
 
         return result;
@@ -29,7 +29,13 @@ public class AuthenticationService {
     }
 
     public static User getLoggedUser(HttpSession session) {
-        return new User((User) session.getAttribute(Utils.sessionUserName));
+        User sessionUser = (User) session.getAttribute(Utils.sessionUserName);
+        if (sessionUser != null) {
+            return new User(sessionUser);
+        } else {
+            return null;
+        }
+
     }
 
 }
