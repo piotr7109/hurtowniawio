@@ -27,9 +27,9 @@ export default class AuctionList extends BasePage<BaseProps, BaseStates> {
 
             if (data) {
                 this.auctions = data;
-                this.setState({mode: 0});
+                this.updateMode(0);
             } else {
-                this.setState({mode: -1});
+                this.updateMode(-1);
             }
         });
     }
@@ -42,7 +42,6 @@ export default class AuctionList extends BasePage<BaseProps, BaseStates> {
     }
 
     renderHTML() {
-        if (this.state.mode === 0) {
             return (
                 <div className="AuctionList">
                     {this.auctions.map((auction: any) => {
@@ -52,8 +51,5 @@ export default class AuctionList extends BasePage<BaseProps, BaseStates> {
                     })}
                 </div>
             );
-        } else if (this.state.mode === -10) {
-            return <div>Loading</div>;
-        }
     }
 }

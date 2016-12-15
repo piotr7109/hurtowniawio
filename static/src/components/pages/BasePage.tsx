@@ -20,7 +20,7 @@ export abstract class BasePage<P extends BaseProps, S extends BaseStates> extend
     }
 
     componentWillMount():void {
-        this.setState({ mode: 0 } as S);
+        this.state = { mode: 0 } as S;
     }
 
     updateMode(mode: number) {
@@ -38,10 +38,14 @@ export abstract class BasePage<P extends BaseProps, S extends BaseStates> extend
     }
 
     public render() {
-        if (this.isUserAuthenticated()) {
-            return this.renderHTML();
+        if(this.state.mode === -10) {
+            return <div>Ładowanie</div>
         } else {
-            return <ErrorNonAuthenticatedUser />;
+            if (this.isUserAuthenticated()) {
+                return this.renderHTML();
+            } else {
+                return <ErrorNonAuthenticatedUser />;
+            }
         }
     }
 

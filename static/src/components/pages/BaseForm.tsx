@@ -30,7 +30,7 @@ export abstract class BaseForm<P extends BaseProps, S extends BaseStates> extend
         return this.handleRequest(dataObject, url, method);
     }
 
-    handlePostRequest(formData:FormData, url:any) {
+    handlePostRequest(formData: FormData, url: any) {
         return axios.post(url, formData);
     }
 
@@ -57,12 +57,6 @@ export abstract class BaseForm<P extends BaseProps, S extends BaseStates> extend
                     <div>
                         {this.getErrorMessage()}
                         {this.getForm()}
-                    </div>
-                );
-            case -10:
-                return (
-                    <div>
-                        Ładowanie
                     </div>
                 );
         }

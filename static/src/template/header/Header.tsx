@@ -64,8 +64,6 @@ export default class Header extends React.Component<{}, HeaderStates> {
     }
 
     render() {
-        console.log("login",this.state.modalLoginVisible)
-        console.log("register",this.state.modalRegisterVisible)
         return (
             <header className="header">
                 <h1 className="logo">

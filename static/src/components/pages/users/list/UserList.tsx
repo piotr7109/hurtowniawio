@@ -22,9 +22,9 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
 
             this.users = data;
             if (data) {
-                this.setState({mode: 0});
+                this.updateMode(0);
             } else {
-                this.setState({mode: -1});
+                this.updateMode(-1);
             }
         });
     }
@@ -58,25 +58,21 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
     }
 
     renderHTML() {
-        if (this.state.mode === 0) {
-            return (
-                <table className="UserList">
-                    <thead>
-                    <tr>
-                        {this.fields.map(field => {
-                            return <th>{field}</th>
-                        })}
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.users.map((user: any) => {
-                        return this.getUserRow(user);
+        return (
+            <table className="UserList">
+                <thead>
+                <tr>
+                    {this.fields.map(field => {
+                        return <th>{field}</th>
                     })}
-                    </tbody>
-                </table>
-            );
-        } else if (this.state.mode === -10) {
-            return <div>Ładowanie</div>;
-        }
+                </tr>
+                </thead>
+                <tbody>
+                {this.users.map((user: any) => {
+                    return this.getUserRow(user);
+                })}
+                </tbody>
+            </table>
+        );
     }
 }
