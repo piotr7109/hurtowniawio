@@ -19,7 +19,7 @@ public class ApplicationService {
         if (UserUtils.checkUserType(session, "rolnik")) {
             Auction auction = AuctionHelper.getAuctionById(Long.parseLong(auctionId));
             User user = UserHelper.getUserById(UserUtils.getSessionUser(session).getId());
-            Application app = (Application) new ObjectMapper().readValue(applicationData, Application.class);
+            Application app = new ObjectMapper().readValue(applicationData, Application.class);
 
             if (!applicationExists(auction, user) && auction.getState().equals("A")) {app.setUser(user);
                 app.setDate(new Date());

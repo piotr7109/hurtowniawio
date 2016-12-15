@@ -9,7 +9,7 @@
     @include respond-to(large) {
       display: flex;
       flex-direction: column;
-      padding-bottom: 20px;
+      padding-bottom: 10px;
     }
 
     .form-row {
@@ -46,6 +46,10 @@
       @include respond-to(medium) {
         margin: auto;
       }
+    }
+
+    .buttonSubmint {
+      margin-top: 20px;
     }
   }
 }

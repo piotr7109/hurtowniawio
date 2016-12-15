@@ -1,10 +1,10 @@
-import {BasePage} from "../../BasePage";
+import {BasePage, BaseStates, BaseProps} from "../../BasePage";
 import * as React from 'react';
 import AuctionListItem from "../../../partials/auction/AuctionListItem";
 import UserUtils from "../../../../utils/UserUtils";
 import * as axios from 'axios';
 
-export default class AuctionList extends BasePage {
+export default class AuctionList extends BasePage<BaseProps, BaseStates> {
 
     allowedUsers = [
         UserUtils.userTypes.dostawca,
@@ -15,8 +15,13 @@ export default class AuctionList extends BasePage {
     auctions: any;
 
     postConstruct() {
-        this.state = ({mode: -10});
         this.loadAuctions();
+    }
+
+    componentWillMount(): BaseStates {
+        return ({
+            mode: -10
+        } as BaseStates);
     }
 
     loadAuctions() {

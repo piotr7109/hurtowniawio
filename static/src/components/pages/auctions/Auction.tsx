@@ -1,11 +1,15 @@
 import * as React from 'react';
-import {BasePage} from "../BasePage";
+import {BasePage, BaseStates, BaseProps} from "../BasePage";
 import * as axios from 'axios';
 import UserUtils from "../../../utils/UserUtils";
 import AddApplicationForm from "../applications/AddApplicationForm";
+import ModalWindow from "../../partials/modalWindow/ModalWindow";
 
+interface AuctionStates extends BaseStates {
+    modalVisible: boolean;
+}
 
-export default class Auction extends BasePage {
+export default class Auction extends BasePage<BaseProps, AuctionStates> {
 
     auction: any;
 
@@ -16,7 +20,13 @@ export default class Auction extends BasePage {
     ];
 
     postConstruct() {
-        this.state = ({mode: -10});
+    }
+
+    componentWillMount(): AuctionStates {
+        return this.state = ({
+            mode: -10,
+            modalVisible: false
+        } as AuctionStates);
     }
 
     loadAuction() {
@@ -29,11 +39,19 @@ export default class Auction extends BasePage {
 
             if (data) {
                 this.auction = data;
-                this.setState({mode: 0});
+                this.updateMode(0);
             } else {
-                this.setState({mode: -1});
+                this.updateMode(-1);
             }
         });
+    }
+
+    showModalWindow() {
+        this.setState({modalVisible: true} as AuctionStates);
+    }
+
+    hideModalWindow() {
+        this.setState({modalVisible: false} as AuctionStates);
     }
 
     renderHTML() {
@@ -67,10 +85,19 @@ export default class Auction extends BasePage {
                                 <span>Opis:</span>
                                 <span>{this.auction.description}</span>
                             </p>
+                            <button onClick={() => {this.showModalWindow()}}>Dodaj aplikację</button>
                         </div>
                     </div>
+                    {this.state.modalVisible &&
+                    <ModalWindow hide={this.hideModalWindow.bind(this)}>
+                        <AddApplicationForm hide={this.hideModalWindow.bind(this)}/>
+                    </ModalWindow>}
                 </div>
             );
         }
     }
+
 }
+
+
+

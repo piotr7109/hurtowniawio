@@ -1,14 +1,14 @@
 import * as React from 'react';
 import * as axios from 'axios';
 import {Link} from 'react-router';
-import {BasePage} from "../../BasePage";
+import {BasePage, BaseStates, BaseProps} from "../../BasePage";
 
-export default class UserList extends BasePage {
+export default class UserList extends BasePage<BaseProps, BaseStates> {
 
     users: any;
 
-    postConstruct() {
-        this.state = {mode: -10};
+    componentWillMount(): void {
+        this.state = ({mode: -10} as BaseStates);
         this.loadData();
     }
 

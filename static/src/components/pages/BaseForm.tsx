@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as axios from 'axios';
-import {BasePage} from './BasePage';
+import {BasePage, BaseStates, BaseProps} from './BasePage';
 
 interface IBaseForm {
     handleSubmit(event: any): any;
@@ -9,7 +9,7 @@ interface IBaseForm {
     getErrorMessage(): any;
 }
 
-export abstract class BaseForm extends BasePage implements IBaseForm {
+export abstract class BaseForm<P extends BaseProps, S extends BaseStates> extends BasePage<P, S> implements IBaseForm {
 
     public abstract handleSubmit(event: any): any;
 

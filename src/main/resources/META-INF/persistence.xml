@@ -8,7 +8,7 @@
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.user" value="vegetable"/>
             <property name="javax.persistence.jdbc.password" value="Admin123$"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/wholesale"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/wholesale?autocommit=false"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
         </properties>
     </persistence-unit>

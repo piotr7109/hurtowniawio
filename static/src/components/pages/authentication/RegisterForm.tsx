@@ -3,8 +3,9 @@ import {Link} from 'react-router';
 import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/controls/BasicInputControl';
 import CustomSelect from './../../partials/forms/controls/CustomSelect';
 import {BaseForm} from '../BaseForm';
+import {BaseProps, BaseStates} from "../BasePage";
 
-export class RegisterForm extends BaseForm {
+export class RegisterForm extends BaseForm<BaseProps, BaseStates> {
 
     formControls = [
         {name: 'login', text: 'Login', type: 'text'},

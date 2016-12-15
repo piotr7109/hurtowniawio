@@ -3,9 +3,10 @@ import {Link} from 'react-router';
 import * as axios from 'axios';
 import {BaseForm} from '../BaseForm';
 import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/controls/BasicInputControl';
+import {BaseProps, BaseStates} from "../BasePage";
 
 
-export default class AddItemForm extends BaseForm {
+export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
 
     formControls = [
         {name: 'name', text: 'Nazwa', type: 'text'},

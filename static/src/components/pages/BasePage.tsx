@@ -2,23 +2,29 @@ import * as React from 'react';
 import ErrorNonAuthenticatedUser from './error/Errors';
 import UserUtils from '../../utils/UserUtils';
 
-interface States {
-    mode: Number
+export interface BaseStates {
+    mode: number
 }
 
-export abstract class BasePage extends React.Component<{}, States> {
+export interface BaseProps {
 
-    constructor(public state: States, protected allowedUsers: Array<string>, protected userTypes: any) {
+}
+
+export abstract class BasePage<P extends BaseProps, S extends BaseStates> extends React.Component<P, S> {
+
+    constructor(public state: S, protected allowedUsers: Array<string>, protected userTypes: any) {
         super();
 
-        this.state = {mode: 0};
         this.userTypes = UserUtils.userTypes;
         this.allowedUsers = [];
-        this.postConstruct()
     }
 
-    postConstruct() {
+    componentWillMount():void {
+        this.setState({ mode: 0 } as S);
+    }
 
+    updateMode(mode: number) {
+        this.setState({mode: mode} as S);
     }
 
     isUserAuthenticated() {

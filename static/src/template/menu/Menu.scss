@@ -34,9 +34,9 @@
         content: '';
         position: absolute;
         top: 25%;
-        width: 1px;
+        width: 0;
         height: 50%;
-        background: $dark-gray;
+        box-shadow: 0 0 2px 2px lemonchiffon;
       }
 
       .menu-item {

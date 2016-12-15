@@ -1,8 +1,44 @@
 import * as React from 'react';
 import {Link} from 'react-router';
 import UserUtils from '../../utils/UserUtils';
+import ModalWindow from "../../components/partials/modalWindow/ModalWindow";
+import {LoginForm} from "../../components/pages/authentication/LoginForm";
+import {RegisterForm} from "../../components/pages/authentication/RegisterForm";
 
-export default class Header extends React.Component<{}, {}> {
+interface HeaderStates {
+    modalLoginVisible:boolean;
+    modalRegisterVisible:boolean;
+}
+
+export default class Header extends React.Component<{}, HeaderStates> {
+
+    constructor() {
+        super();
+
+    }
+
+    componentWillMount() {
+        this.setState({
+            modalLoginVisible: false,
+            modalRegisterVisible: false
+        } as HeaderStates);
+    }
+
+    showLoginWindow() {
+        this.setState({modalLoginVisible: true} as HeaderStates);
+    }
+
+    showRegisterWindow() {
+        this.setState({modalRegisterVisible: true} as HeaderStates);
+    }
+
+
+    hideModalWindows() {
+        this.setState({
+            modalLoginVisible: false,
+            modalRegisterVisible: false
+        } as HeaderStates);
+    }
 
     getAuthButtons() {
         if (UserUtils.isUserLogged()) {
@@ -16,22 +52,20 @@ export default class Header extends React.Component<{}, {}> {
         } else {
             return (
                 <div>
-                    <Link to="/login">
-                        <button className="header-button">
-                            Logowanie
-                        </button>
-                    </Link>
-                    <Link to="/register">
-                        <button className="header-button">
-                            Rejestracja
-                        </button>
-                    </Link>
+                    <button className="header-button" onClick={() => {this.showLoginWindow()}}>
+                        Logowanie
+                    </button>
+                    <button className="header-button" onClick={() => {this.showRegisterWindow()}}>
+                        Rejestracja
+                    </button>
                 </div>
             );
         }
     }
 
     render() {
+        console.log("login",this.state.modalLoginVisible)
+        console.log("register",this.state.modalRegisterVisible)
         return (
             <header className="header">
                 <h1 className="logo">
@@ -41,6 +75,14 @@ export default class Header extends React.Component<{}, {}> {
                 <div className="header-button-wrapper">
                     {this.getAuthButtons()}
                 </div>
+                {this.state.modalLoginVisible &&
+                <ModalWindow hide={this.hideModalWindows.bind(this)}>
+                    <LoginForm />
+                </ModalWindow>}
+                {this.state.modalRegisterVisible &&
+                <ModalWindow hode={this.hideModalWindows.bind(this)}>
+                    <RegisterForm />
+                </ModalWindow>}
             </header>
         );
     }

@@ -19,8 +19,6 @@ export default class IndexComponent extends React.Component<{}, {}> {
         return (
             <Router history={hashHistory}>
                 <Route component={MainLayout}>
-                    <Route path="/login" component={LoginForm} />
-                    <Route path="/register" component={RegisterForm} />
                     <Route path="/logout" component={Logout} />
                     <Route path="/editUser" component={EditUserDataForm} />
                     <Route path="/addItem" component={AddItemForm} />

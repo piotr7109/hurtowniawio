@@ -4,10 +4,11 @@ import {BaseForm} from "../../BaseForm";
 import {BasicInputControl, BasicSubmitControl} from "../../../partials/forms/controls/BasicInputControl";
 import CustomSelect from "../../../partials/forms/controls/CustomSelect";
 import JsonUtils from "../../../../utils/JsonUtils";
+import {BaseProps, BaseStates} from "../../BasePage";
 
-export default class AddAuctionForm extends BaseForm {
+export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
 
-    postConstruct() {
+    componentWillMount():void {
         this.state = ({mode: -10});
         this.loadItems();
     }

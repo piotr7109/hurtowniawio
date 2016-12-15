@@ -1,18 +1,42 @@
 import * as React from 'react';
 import {BaseForm} from "../BaseForm";
+import {BasicSubmitControl, BasicInputControl} from "../../partials/forms/controls/BasicInputControl";
+import {BaseProps, BaseStates} from "../BasePage";
+import ModalWindow from "../../partials/modalWindow/ModalWindow";
 
-export default class AddApplicationForm extends BaseForm {
 
+interface AddApplicationFormProps extends BaseProps {
+    hide: any;
+}
+
+export default class AddApplicationForm extends BaseForm<AddApplicationFormProps, BaseStates> {
+
+    auctionID: number;
+
+    postConstruct() {
+
+    }
+
+    allowedUsers = [
+        this.userTypes.hurtownik
+    ];
+
+    formControls = [
+        {name: 'preferredAmount', text: 'Ilość (kg)', type: 'number'},
+        {name: 'price', text: 'Cena (zł)', type: 'number'}
+    ];
 
     handleFormEvents(event: any) {
         event.preventDefault();
+
+        let auctionId = this.props.params.id;
 
         let serialize = require('form-serialize'),
             data = serialize(event.target, {hash: true}),
             formData: FormData = new FormData();
 
-        formData.append('applicationData', data);
-        formData.append('auctionId', 1);
+        formData.append('applicationData', JSON.stringify(data));
+        formData.append('auctionId', auctionId);
 
         return this.handlePostRequest(formData, '/addApplication');
     }
@@ -22,23 +46,48 @@ export default class AddApplicationForm extends BaseForm {
             let data = response.data;
 
             if (data) {
-
+                this.updateMode(1);
+                this.props.hide();
             } else {
-
+                //this.setState({mode: -5});
             }
         });
     }
 
     getForm(): any {
-        return undefined;
+        return (
+            <form className="Form navbar-form" onSubmit={this.handleSubmit.bind(this)}>
+                <div className="form-group">
+                    <input type="hidden" value={(new Date()).toString()}/>
+                    <input type="hidden" value="5"/>
+                    {this.formControls.map((item) => {
+                        return (<BasicInputControl
+                            name={item.name}
+                            type={item.type}
+                            text={item.text}
+                            key={item.name}
+                            value=""/>);
+                    })}
+                    <BasicSubmitControl text='Dodaj aplikację'/>
+                </div>
+            </form>
+        );
     }
 
     getSuccessMessage(): any {
-        return undefined;
+        return (
+            <div>
+                Wziąłeś udział w przatargu!
+            </div>
+        );
     }
 
     getErrorMessage(): any {
-        return undefined;
+        return (
+            <div>
+                Błąd!
+            </div>
+        );
     }
 
 }

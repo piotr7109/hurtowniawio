@@ -3,8 +3,9 @@ import {Link} from 'react-router';
 import UserUtils from '../../../utils/UserUtils';
 import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/controls/BasicInputControl';
 import {BaseForm} from '../BaseForm';
+import {BaseProps, BaseStates} from "../BasePage";
 
-export class LoginForm extends BaseForm {
+export class LoginForm extends BaseForm<BaseProps, BaseStates> {
 
     handleSubmit(event:any) {
         this.handleFormEvents(event, '/login', 'post').then((response:any) => {
