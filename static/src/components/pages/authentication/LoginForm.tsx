@@ -17,7 +17,7 @@ export class LoginForm extends BaseForm<LoginFormProps, BaseStates> {
                 newMode = data ? 1 : -1;
 
             UserUtils.loggedUser = data;
-            this.setState({mode: newMode});
+            this.updateMode(newMode);
         });
     }
 

@@ -31,7 +31,7 @@ export class RegisterForm extends BaseForm<RegisterFormProps, BaseStates> {
             let data = response.data,
                 newMode = data ? 1 : -1;
 
-            this.setState({mode: newMode});
+            this.updateMode(newMode);
         });
     }
 

@@ -22,7 +22,7 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
                     this.items.push({text: item.name, value: item.id})
                 });
 
-                this.setState({mode: 0});
+                this.updateMode(0);
             }
         });
     }
@@ -65,9 +65,9 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
             let data = response.data;
 
             if (data) {
-                this.setState({mode: 1});
+                this.updateMode(1);
             } else {
-                this.setState({mode: -1});
+                this.updateMode(-1);
             }
         });
     }

@@ -23,11 +23,14 @@ export default class AddApplicationForm extends BaseForm<AddApplicationFormProps
     handleFormEvents(event: any) {
         event.preventDefault();
 
-        let auctionId = this.props.params.id;
+        console.log(this.props);
 
         let serialize = require('form-serialize'),
             data = serialize(event.target, {hash: true}),
-            formData: FormData = new FormData();
+            formData: FormData = new FormData(),
+            auctionId = this.props.params.id;
+
+
 
         formData.append('applicationData', JSON.stringify(data));
         formData.append('auctionId', auctionId);

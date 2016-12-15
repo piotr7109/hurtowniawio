@@ -30,9 +30,7 @@ export default class CustomSelect extends React.Component<Properties, States> {
             selected = this.selected || this.props.items[0],
             listOfItems = _.without(this.props.items, selected);
 
-        for (let item of listOfItems) {
-            outputList.push(this.getItem(item));
-        }
+        listOfItems.map(item => outputList.push(this.getItem(item)));
 
         return outputList;
     }

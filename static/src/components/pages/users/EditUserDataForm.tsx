@@ -30,7 +30,7 @@ export class EditUserDataForm extends RegisterForm {
                 UserUtils.loggedUser = data;
             }
 
-            this.setState({mode: newMode});
+            this.updateMode(newMode);
         });
     }
 
