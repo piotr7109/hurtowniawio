@@ -17,7 +17,7 @@ export class BasicInputControl extends React.Component<BasicInputControlProps, {
         return (
             <div className="form-row">
                 <label htmlFor={name} className="form-label">{text}</label>
-                <input id={name} type={type} className="form-control" defaultValue={value} name={name} placeholder={text}/>
+                <input id={name} type={type} className="form-control form-input-control" defaultValue={value} name={name} placeholder={text}/>
             </div>
         );
     }

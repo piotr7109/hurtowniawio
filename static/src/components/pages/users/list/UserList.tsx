@@ -2,11 +2,14 @@ import * as React from 'react';
 import * as axios from 'axios';
 import {Link} from 'react-router';
 import {BasePage} from "../../BasePage";
+import UserUtils from "../../../../utils/UserUtils";
 
 export default class UserList extends BasePage {
 
     users: any;
     fields: Array<string> = ['ID', 'Login', 'Typ', 'Imię', 'Nazwisko', 'Adres', 'Email', 'Status', 'Operacje'];
+
+    allowedUsers = [UserUtils.userTypes.admin];
 
     postConstruct() {
         this.state = {mode: -10};
@@ -27,10 +30,7 @@ export default class UserList extends BasePage {
     }
 
     deactivateUser(user: any) {
-        let formData: FormData = new FormData();
-
-        formData.append('userId', user.id);
-        axios.post('/deactivateUser', formData)
+        UserUtils.deactivateUser(user.id)
             .then((response: any) => {
                 return this.loadData()
             })

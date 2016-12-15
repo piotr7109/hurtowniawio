@@ -10,10 +10,9 @@ export default class AddItemForm extends BaseForm {
     formControls = [
         {name: 'name', text: 'Nazwa', type: 'text'},
         {name: 'country', text: 'Kraj pochodzenia', type: 'text'},
-        {name: 'typeName', text: 'Odmiana', type: 'text'}
+        {name: 'typeName', text: 'Odmiana', type: 'text'},
+        {name: 'image', text: 'Zdjęcie', type: 'file'}
     ];
-
-    imageControl = {name: 'image', text: 'Zdjęcie'};
 
     allowedUsers = [
         this.userTypes.hurtownik
@@ -25,7 +24,7 @@ export default class AddItemForm extends BaseForm {
         let serialize = require('form-serialize'),
             target = event.target,
             formData = JSON.stringify(serialize(target, {hash: true})),
-            imageData = document.getElementById(this.imageControl.name).files[0],
+            imageData = document.getElementById(this.formControls[3].name).files[0],
             data: FormData = new FormData();
 
         data.append('data', formData);
@@ -57,10 +56,6 @@ export default class AddItemForm extends BaseForm {
                             key={item.name}
                             value=''/>);
                     })}
-                    <div className='form-row-file'>
-                        <label htmlFor={this.imageControl.name}>{this.imageControl.text}</label>
-                        <input id={this.imageControl.name} name={this.imageControl.name} type='file'/>
-                    </div>
                     <BasicSubmitControl text='Dodaj'/>
                 </div>
             </form>

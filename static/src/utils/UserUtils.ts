@@ -39,5 +39,12 @@ export default class UserUtils {
         return UserUtils.loggedUser.type != UserUtils.userTypes.unlogged;
     }
 
+    public static deactivateUser(id) {
+        let formData: FormData = new FormData();
+
+        formData.append('userId', id);
+        return axios.post('/deactivateUser', formData);
+    }
+
     public static loggedUser: any = {type: UserUtils.userTypes.unlogged};
 }
