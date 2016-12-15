@@ -1,14 +1,5 @@
 {
-  "unlogged": [
-    {
-      "title": "Rejestracja",
-      "path": "/register"
-    },
-    {
-      "title": "Logowanie",
-      "path": "/login"
-    }
-  ],
+  "unlogged": [],
   "rolnik": [
     {
       "title": "Moje dane",
@@ -23,10 +14,6 @@
     {
       "title": "Dodaj nowy przedmiot",
       "path": "/addItem"
-    },
-    {
-      "title": "Rejestracja",
-      "path": "/register"
     },
     {
       "title": "Dodaj przetarg",
