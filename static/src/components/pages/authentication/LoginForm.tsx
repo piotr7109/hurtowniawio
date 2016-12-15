@@ -5,7 +5,11 @@ import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/contro
 import {BaseForm} from '../BaseForm';
 import {BaseProps, BaseStates} from "../BasePage";
 
-export class LoginForm extends BaseForm<BaseProps, BaseStates> {
+interface LoginFormProps extends BaseProps {
+    hide:any;
+}
+
+export class LoginForm extends BaseForm<LoginFormProps, BaseStates> {
 
     handleSubmit(event:any) {
         this.handleFormEvents(event, '/login', 'post').then((response:any) => {
@@ -33,7 +37,7 @@ export class LoginForm extends BaseForm<BaseProps, BaseStates> {
         return (
             <div className="message">
                 <div>Zalogowałeś się!</div>
-                <Link to="/">Idź do strony głównej</Link>
+                <Link to="/" onClick={this.props.hide}>Idź do strony głównej</Link>
             </div>
         );
     }

@@ -5,7 +5,11 @@ import CustomSelect from './../../partials/forms/controls/CustomSelect';
 import {BaseForm} from '../BaseForm';
 import {BaseProps, BaseStates} from "../BasePage";
 
-export class RegisterForm extends BaseForm<BaseProps, BaseStates> {
+interface RegisterFormProps extends BaseProps {
+    switch:any;
+}
+
+export class RegisterForm extends BaseForm<RegisterFormProps, BaseStates> {
 
     formControls = [
         {name: 'login', text: 'Login', type: 'text'},
@@ -54,7 +58,7 @@ export class RegisterForm extends BaseForm<BaseProps, BaseStates> {
         return (
             <div>
                 Rejestracja przebiegła pomyślnie
-                <Link to="/login">Zaloguj się</Link>
+                <span onClick={this.props.switch(true, false)}>Zaloguj się</span>
             </div>
         );
     }

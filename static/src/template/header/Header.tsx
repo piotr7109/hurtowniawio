@@ -6,15 +6,14 @@ import {LoginForm} from "../../components/pages/authentication/LoginForm";
 import {RegisterForm} from "../../components/pages/authentication/RegisterForm";
 
 interface HeaderStates {
-    modalLoginVisible:boolean;
-    modalRegisterVisible:boolean;
+    modalLoginVisible: boolean;
+    modalRegisterVisible: boolean;
 }
 
 export default class Header extends React.Component<{}, HeaderStates> {
 
     constructor() {
         super();
-
     }
 
     componentWillMount() {
@@ -24,21 +23,18 @@ export default class Header extends React.Component<{}, HeaderStates> {
         } as HeaderStates);
     }
 
-    showLoginWindow() {
-        this.setState({modalLoginVisible: true} as HeaderStates);
-    }
-
-    showRegisterWindow() {
-        this.setState({modalRegisterVisible: true} as HeaderStates);
-    }
-
-
-    hideModalWindows() {
+    switchModalWindows(modalLoginVisible: boolean,
+                     modalRegisterVisible: boolean) {
         this.setState({
-            modalLoginVisible: false,
-            modalRegisterVisible: false
+            modalLoginVisible: modalLoginVisible,
+            modalRegisterVisible: modalRegisterVisible
         } as HeaderStates);
     }
+
+    hideWindows() {
+        this.switchModalWindows(false, false);
+    }
+
 
     getAuthButtons() {
         if (UserUtils.isUserLogged()) {
@@ -52,10 +48,10 @@ export default class Header extends React.Component<{}, HeaderStates> {
         } else {
             return (
                 <div>
-                    <button className="header-button" onClick={() => {this.showLoginWindow()}}>
+                    <button className="header-button" onClick={() => {this.switchModalWindows(true, false)}}>
                         Logowanie
                     </button>
-                    <button className="header-button" onClick={() => {this.showRegisterWindow()}}>
+                    <button className="header-button" onClick={() => {this.switchModalWindows(false, true)}}>
                         Rejestracja
                     </button>
                 </div>
@@ -64,8 +60,6 @@ export default class Header extends React.Component<{}, HeaderStates> {
     }
 
     render() {
-        console.log("login",this.state.modalLoginVisible)
-        console.log("register",this.state.modalRegisterVisible)
         return (
             <header className="header">
                 <h1 className="logo">
@@ -76,12 +70,12 @@ export default class Header extends React.Component<{}, HeaderStates> {
                     {this.getAuthButtons()}
                 </div>
                 {this.state.modalLoginVisible &&
-                <ModalWindow hide={this.hideModalWindows.bind(this)}>
-                    <LoginForm />
+                <ModalWindow hide={this.hideWindows.bind(this)}>
+                    <LoginForm hide={this.hideWindows.bind(this)}/>
                 </ModalWindow>}
                 {this.state.modalRegisterVisible &&
-                <ModalWindow hode={this.hideModalWindows.bind(this)}>
-                    <RegisterForm />
+                <ModalWindow hide={this.hideWindows.bind(this)}>
+                    <RegisterForm switch={this.switchModalWindows.bind(this)}/>
                 </ModalWindow>}
             </header>
         );
