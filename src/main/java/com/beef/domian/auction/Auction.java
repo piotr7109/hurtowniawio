@@ -3,8 +3,6 @@ package com.beef.domian.auction;
 import com.beef.domian.item.Item;
 import com.beef.domian.user.User;
 import com.beef.domian.application.Application;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -122,14 +120,14 @@ public class Auction {
         this.applications = applications;
     }
 
-    public void clearUser() {
-        user.setPassword("");
-    }
-
     public void addApplication(Application app) {
         if (applications == null) {
             applications = new ArrayList<Application>();
         }
         applications.add(app);
+    }
+
+    public void clearUser() {
+        user.setPassword("");
     }
 }

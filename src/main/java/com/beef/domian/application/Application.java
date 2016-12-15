@@ -1,6 +1,5 @@
 package com.beef.domian.application;
 
-import com.beef.domian.auction.Auction;
 import com.beef.domian.user.User;
 
 import javax.persistence.*;
@@ -61,10 +60,6 @@ public class Application {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public void clearUser() {
-        user.setPassword("");
     }
 
 }

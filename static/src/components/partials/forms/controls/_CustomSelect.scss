@@ -1,81 +1,57 @@
-.CustomSelectWrapper {
-  width: 200px;
+.CustomSelect {
+  width: 100%;
+  padding-bottom: 10px;
+  cursor: pointer;
+  display: block;
 
-  .CustomSelect {
-    display: flex;
-    flex-direction: column;
+  @include respond-to(large) {
+    display: table;
+  }
+
+  .form-label {
+    padding-right: 10px;
+  }
+
+  .dropdown {
     position: relative;
-    align-self: center;
-    cursor: pointer;
-
-    @include respond-to(large) {
-      flex-direction: row;
-      align-items: center;
-    }
-
-    .form-label {
-      padding-right: 10px;
-      width: 100%;
-
-      @include respond-to(large) {
-        width: 50%;
-        margin: 0;
-      }
-    }
 
     .selected {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex: 1 0 auto;
       background: $white;
       padding: 5px 10px;
-      border: 1px solid $dark-gray;
+      border: 1px solid $darker-white;
       border-radius: 4px;
       box-shadow: none;
-      @include respond-to(large) {
-        width: 50%;
+
+      .selectText {
+        margin-right:10px;
       }
 
-      span {
+      .icon {
         font-size: 15px;
-        line-height: 15px;
+        position: absolute;
+        right: 5px;
+        top: calc(50% - 10px);
       }
 
       &:focus {
         box-shadow: none;
         outline: none;
       }
-
-      &.expanded {
-        border-radius: 4px 4px 0 0;
-      }
     }
 
     .list {
-      width:100%;
-      display: flex;
-      flex-direction: column;
       position: absolute;
-      top: 100%;
-      border: 1px solid $dark-gray;
+      display: none;
+      border: 1px solid $darker-white;
       border-top: none;
       background: $white;
       border-radius: 0 0 4px 4px;
       box-shadow: none;
-
-      @include respond-to(large) {
-        width: 50%;
-        left: 50%;
-      }
+      width: 100%;
 
       .item {
-        display: flex;
-        flex: 1 0 auto;
-        border-bottom: 1px solid $dark-gray;
+        border-bottom: 1px solid $darker-white;
         padding: 5px 10px;
-        align-content: flex-start;
 
         &:hover {
           background-color: $seagreen;
@@ -84,6 +60,13 @@
         &:last-child {
           border-bottom: none;
         }
+      }
+    }
+
+    &.expanded {
+      .list {
+        display: block;
+        border-radius: 4px 4px 0 0;
       }
     }
   }

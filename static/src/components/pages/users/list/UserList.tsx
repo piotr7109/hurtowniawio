@@ -2,10 +2,14 @@ import * as React from 'react';
 import * as axios from 'axios';
 import {Link} from 'react-router';
 import {BasePage, BaseStates, BaseProps} from "../../BasePage";
+import UserUtils from "../../../../utils/UserUtils";
 
 export default class UserList extends BasePage<BaseProps, BaseStates> {
 
     users: any;
+    fields: Array<string> = ['ID', 'Login', 'Typ', 'Imię', 'Nazwisko', 'Adres', 'Email', 'Status', 'Operacje'];
+
+    allowedUsers = [UserUtils.userTypes.admin];
 
     componentWillMount(): void {
         this.state = ({mode: -10} as BaseStates);
@@ -13,12 +17,12 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
     }
 
     loadData() {
-        axios.get('/getUsers').then((response: any) => {
+        return axios.get('/getUsers').then((response: any) => {
             let data = response.data;
 
             this.users = data;
             if (data) {
-                this.setState({mode: 1});
+                this.setState({mode: 0});
             } else {
                 this.setState({mode: -1});
             }
@@ -26,10 +30,11 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
     }
 
     deactivateUser(user: any) {
-        let formData: FormData = new FormData();
-
-        formData.append('userId', user.id);
-        axios.post('/deactivateUser', formData);
+        UserUtils.deactivateUser(user.id)
+            .then((response: any) => {
+                return this.loadData()
+            })
+            .then(() => this.forceUpdate());
     }
 
     getUserRow(user: any) {
@@ -53,9 +58,16 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
     }
 
     renderHTML() {
-        if (this.state.mode === 1) {
+        if (this.state.mode === 0) {
             return (
                 <table className="UserList">
+                    <thead>
+                    <tr>
+                        {this.fields.map(field => {
+                            return <th>{field}</th>
+                        })}
+                    </tr>
+                    </thead>
                     <tbody>
                     {this.users.map((user: any) => {
                         return this.getUserRow(user);

@@ -1,5 +1,6 @@
 package com.beef.controllers.item;
 
+import com.beef.core.hibernate.HibernateBase;
 import com.beef.core.utils.UserUtils;
 import com.beef.domian.item.Item;
 import com.beef.domian.item.ItemHelper;
@@ -27,25 +28,29 @@ public class ItemService {
 
     protected static Item addItem(HttpSession session, HttpServletRequest request,
                                   String itemData, MultipartFile image) throws IOException {
+        HibernateBase.closeEntityManagers();
+        Item result = null;
         if (UserUtils.checkUserType(session, "hurtownik")) {
             String imageRef = saveImage(request, image);
             Item item = new ObjectMapper().readValue(itemData, Item.class);
             item.setImagePath(imageRef);
             ItemHelper.createItem(item);
 
-            return item;
+            result =  item;
 
         }
-
-        return null;
+        return result;
     }
 
     protected static List<Item> getItems(HttpSession session) {
+        HibernateBase.closeEntityManagers();
+        List<Item> result = null;
+
         if (UserUtils.isUserAuthenticated(session)) {
-            return ItemHelper.getItems();
+            result = ItemHelper.getItems();
         }
 
-        return null;
+        return result;
     }
 
 }

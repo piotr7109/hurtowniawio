@@ -1,5 +1,6 @@
 package com.beef.controllers.authentication;
 
+import com.beef.core.hibernate.HibernateBase;
 import com.beef.core.utils.Utils;
 import com.beef.domian.user.User;
 import com.beef.domian.user.UserHelper;
@@ -9,19 +10,32 @@ import javax.servlet.http.HttpSession;
 public class AuthenticationService {
 
     public static User login(HttpSession session, User user) {
+        HibernateBase.closeEntityManagers();
+        User result = null;
         User dbUser = UserHelper.isUserValid(user);
-        System.out.print(dbUser);
+
         if (dbUser != null) {
-            dbUser.setPassword("");
             session.setAttribute(Utils.sessionUserName, dbUser);
-            return dbUser;
-        } else {
-            return null;
+            result = new User(dbUser);
         }
+
+        return result;
     }
 
     public static boolean register(User user) {
-        return UserHelper.createUser(user);
+        HibernateBase.closeEntityManagers();
+        boolean result = UserHelper.createUser(user);
+        return result;
+    }
+
+    public static User getLoggedUser(HttpSession session) {
+        User sessionUser = (User) session.getAttribute(Utils.sessionUserName);
+        if (sessionUser != null) {
+            return new User(sessionUser);
+        } else {
+            return null;
+        }
+
     }
 
 }

@@ -1,6 +1,5 @@
 package com.beef.controllers.authentication;
 
-import com.beef.core.utils.Utils;
 import com.beef.domian.user.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +26,7 @@ public class AuthenticationController {
 
     @GetMapping("/getLoggedUser")
     public User getLoggedUser(HttpSession session) {
-        return (User) session.getAttribute(Utils.sessionUserName);
+        return AuthenticationService.getLoggedUser(session);
     }
 
     @PostMapping("/logout")

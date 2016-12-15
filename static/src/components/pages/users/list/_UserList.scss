@@ -1,6 +1,36 @@
 .UserList {
+  text-align: center;
+
+  th, td {
+    padding: 5px;
+  }
+
+  thead {
+    width: 100%;
+
+    th {
+      width: calc(100% / 10);
+      background: $seagreen-light;
+      text-align: center;
+      font-size: 1.4em;
+
+      &:first-child {
+        border-radius: 10px 0 0 10px;
+      }
+
+      &:last-child {
+        border-radius: 0 10px 10px 0;
+      }
+    }
+  }
+
   .user-row {
     width: 100%;
+
+    &:nth-child(2n) {
+      background: $lemon-chiffon;
+    }
+
     td {
       width: calc(100% / 10);
     }

@@ -18,5 +18,7 @@ public class HibernateBase {
     public static void closeEntityManagers() {
         entityManager.close();
         entityManagerFactory.close();
+        entityManagerFactory = Persistence.createEntityManagerFactory("hurtowniawioDatabase");
+        entityManager = entityManagerFactory.createEntityManager();
     }
 }

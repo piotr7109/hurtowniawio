@@ -1,5 +1,6 @@
 package com.beef.controllers.auction;
 
+import com.beef.core.hibernate.HibernateBase;
 import com.beef.core.utils.UserUtils;
 import com.beef.core.utils.Utils;
 import com.beef.domian.auction.Auction;
@@ -15,7 +16,8 @@ import java.util.List;
 public class AuctionService {
 
     protected static Auction addAuction(HttpSession session, String auctionData, String itemData) throws IOException {
-
+        Auction resultAuction = null;
+        HibernateBase.closeEntityManagers();
         if (UserUtils.checkUserType(session, "hurtownik")) {
             Auction auction = new ObjectMapper().readValue(auctionData, Auction.class);
             long itemId = Long.parseLong(itemData);
@@ -26,34 +28,40 @@ public class AuctionService {
 
             AuctionHelper.createAuction(auction);
 
-            return auction;
+            resultAuction = auction;
         }
-
-        return null;
+        return resultAuction;
     }
 
     protected static boolean finishAuction(HttpSession session, String id) {
+        boolean result = false;
+        HibernateBase.closeEntityManagers();
+
         if (UserUtils.checkUserType(session, "hurtownik")) {
             long auctionId = Long.parseLong(id);
 
-            return AuctionHelper.finishAuction(auctionId);
+            result = AuctionHelper.finishAuction(auctionId);
         }
-
-        return false;
+        return result;
     }
 
     protected static List<Auction> getActiveAuctions(HttpSession session) {
+        List<Auction> auctions = null;
+
         if (UserUtils.isUserAuthenticated(session)) {
-            return AuctionHelper.getActiveAuctions();
+            auctions = AuctionHelper.getActiveAuctions();
         }
 
-        return null;
+        return auctions;
     }
 
     protected static Auction getAuctionById(HttpSession session, String auctionId) {
+        Auction resultAuction = null;
+
         if (UserUtils.isUserAuthenticated(session)) {
-            return AuctionHelper.getAuctionById(Long.parseLong(auctionId));
+            resultAuction = AuctionHelper.getAuctionById(Long.parseLong(auctionId));
         }
-        return null;
+
+        return resultAuction;
     }
 }

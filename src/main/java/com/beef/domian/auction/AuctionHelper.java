@@ -17,7 +17,6 @@ public class AuctionHelper extends BaseHelper {
 
     public static Auction getAuctionById(long id) {
         Auction auction = HibernateBase.entityManager.find(Auction.class, id);
-        auction.clearUser();
         return auction;
     }
 

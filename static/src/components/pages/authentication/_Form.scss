@@ -1,50 +1,47 @@
 .Form {
-  @include respond-to(large) {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-  }
-
   .form-group {
-    @include respond-to(large) {
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 10px;
-    }
+    display: block;
 
     .form-row {
       padding-bottom: 10px;
+      display: block;
+      width: 100%;
 
       @include respond-to(large) {
-        display: flex;
-        flex: 1 0 auto;
-        justify-content: flex-end;
-        align-items: center;
+        display: table;
       }
 
       .form-label {
         margin: 0;
         padding-right: 10px;
+        width: 100%;
+        display: inline-block;
+
+        @include respond-to(large) {
+          width: 35%;
+          display: table-cell;
+        }
       }
 
-      .form-control {
+      .form-input-control {
         margin: 0;
-      }
-    }
+        width: 100%;
+        display: inline-block;
 
-    .form-row-file {
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 10px;
-    }
+        @include respond-to(large) {
+          width: 65%;
+          display: table-cell;
 
-    .CustomSelectWrapper {
-      align-self: flex-end;
-      padding-bottom: 10px;
-      width: 100%;
+          &.form-control {
+            width: 100%;
+          }
+        }
 
-      @include respond-to(medium) {
-        margin: auto;
+        &[type="file"] {
+          background: none;
+          border: 0;
+          box-shadow: none;
+        }
       }
     }
 
