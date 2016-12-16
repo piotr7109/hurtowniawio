@@ -17,15 +17,15 @@ export default class UserUtils {
         return false;
     }
 
-    public static setLoggedUser() {
-        JsonUtils.handleGET('/getLoggedUser')
+    public static setLoggedUser(): any {
+        return JsonUtils.handleGET('/getLoggedUser')
             .then((user: any) => {
                 UserUtils.loggedUser = user.data || {type: UserUtils.userTypes.unlogged};
             });
     }
 
-    public static logout() {
-        JsonUtils.handlePOST('/logout', null)
+    public static logout(): any {
+        return JsonUtils.handlePOST('/logout', null)
             .then(() => {
                 UserUtils.loggedUser = {type: UserUtils.userTypes.unlogged};
             });

@@ -32,9 +32,10 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
     deactivateUser(user: any) {
         UserUtils.deactivateUser(user.id)
             .then((response: any) => {
+                this.updateMode(this.modes.loading);
                 return this.loadData()
             })
-            .then(() => this.forceUpdate());
+            .then(() => this.updateMode(this.modes.ready));
     }
 
     getUserRow(user: any) {

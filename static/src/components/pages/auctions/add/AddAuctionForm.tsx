@@ -44,8 +44,7 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
     public handleFormEvents(event: any, url: any): any {
         event.preventDefault();
 
-        let target = event.target,
-            data = Serialize(target, {hash: true}),
+        let data = Serialize(event.target, {hash: true}),
             itemData = +data.item,
             auctionData,
             formData: FormData = new FormData();
