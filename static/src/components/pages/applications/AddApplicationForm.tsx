@@ -3,6 +3,7 @@ import {BaseForm} from "../BaseForm";
 import {BasicSubmitControl, BasicInputControl} from "../../partials/forms/controls/BasicInputControl";
 import {BaseProps, BaseStates} from "../BasePage";
 import ModalWindow from "../../partials/modalWindow/ModalWindow";
+import JsonUtils from "../../../utils/JsonUtils";
 
 
 interface AddApplicationFormProps extends BaseProps {
@@ -24,14 +25,11 @@ export default class AddApplicationForm extends BaseForm<AddApplicationFormProps
     handleFormEvents(event: any) {
         event.preventDefault();
 
-        let serialize = require('form-serialize'),
-            data = serialize(event.target, {hash: true}),
-            formData: FormData = new FormData();
+        let formData:FormData = this.getFormData(event, 'applicationData');
 
-        formData.append('applicationData', JSON.stringify(data));
         formData.append('auctionId', this.props.auctionId);
 
-        return this.handlePostRequest(formData, '/addApplication');
+        return JsonUtils.handlePOST('/addApplication', formData);
     }
 
     handleSubmit(event: any): any {

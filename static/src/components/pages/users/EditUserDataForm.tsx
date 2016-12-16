@@ -22,16 +22,17 @@ export class EditUserDataForm extends RegisterForm {
     ];
 
     handleSubmit(event: any) {
-        this.handleFormEvents(event, '/updateUser', 'post').then((response: any) => {
-            let data = response.data,
-                newMode = data ? 1 : -1;
+        this.handleFormEvents(event, '/updateUser')
+            .then((response: any) => {
+                let data = response.data,
+                    newMode = data ? 1 : -1;
 
-            if (data) {
-                UserUtils.loggedUser = data;
-            }
+                if (data) {
+                    UserUtils.loggedUser = data;
+                }
 
-            this.updateMode(newMode);
-        });
+                this.updateMode(newMode);
+            });
     }
 
     getForm() {

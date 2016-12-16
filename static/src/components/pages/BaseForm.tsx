@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {BasePage, BaseStates, BaseProps} from './BasePage';
+import JsonUtils from '../../utils/JsonUtils'
 
 interface IBaseForm {
     handleSubmit(event: any): any;
@@ -18,15 +19,25 @@ export abstract class BaseForm<P extends BaseProps, S extends BaseStates> extend
 
     public abstract getErrorMessage(): any;
 
-    public handleFormEvents(event: any, url: any, method: any): any {
+    public handleFormEvents(event: any, url: any): any {
         event.preventDefault();
 
+        let formData: FormData = this.getFormData(event, 'data');
+
+        console.log(formData);
+
+        return JsonUtils.handlePOST(url, formData);
+    }
+
+    public getFormData(event: any, name: string): FormData {
         let serialize = require('form-serialize'),
             target = event.target,
             data = serialize(target, {hash: true}),
-            dataObject = {data: JSON.stringify(data)};
+            formData: FormData = new FormData();
 
-        return this.handleRequest(dataObject, url, method);
+        formData.append(name, JSON.stringify(data));
+
+        return formData;
     }
 
     renderHTML() {

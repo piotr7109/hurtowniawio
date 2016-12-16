@@ -6,19 +6,20 @@ import {BaseForm} from '../BaseForm';
 import {BaseProps, BaseStates} from "../BasePage";
 
 interface LoginFormProps extends BaseProps {
-    hide:any;
+    hide: any;
 }
 
 export class LoginForm extends BaseForm<LoginFormProps, BaseStates> {
 
-    handleSubmit(event:any) {
-        this.handleFormEvents(event, '/login', 'post').then((response:any) => {
-            let data = response.data,
-                newMode = data ? 1 : -1;
+    handleSubmit(event: any) {
+        this.handleFormEvents(event, '/login')
+            .then((response: any) => {
+                let data = response.data,
+                    newMode = data ? 1 : -1;
 
-            UserUtils.loggedUser = data;
-            this.updateMode(newMode);
-        });
+                UserUtils.loggedUser = data;
+                this.updateMode(newMode);
+            });
     }
 
     getForm() {
@@ -44,7 +45,7 @@ export class LoginForm extends BaseForm<LoginFormProps, BaseStates> {
 
     getErrorMessage() {
         return (<div className="message">
-            <div>Wprowadzono złe dane, </div>
+            <div>Wprowadzono złe dane,</div>
         </div>);
     }
 }

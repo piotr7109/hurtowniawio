@@ -6,7 +6,7 @@ import {BaseForm} from '../BaseForm';
 import {BaseProps, BaseStates} from "../BasePage";
 
 interface RegisterFormProps extends BaseProps {
-    switch:any;
+    switch: any;
 }
 
 export class RegisterForm extends BaseForm<RegisterFormProps, BaseStates> {
@@ -27,12 +27,12 @@ export class RegisterForm extends BaseForm<RegisterFormProps, BaseStates> {
     ];
 
     handleSubmit(event: any) {
-        this.handleFormEvents(event, '/register', 'post').then((response: any) => {
-            let data = response.data,
-                newMode = data ? 1 : -1;
+        this.handleFormEvents(event, '/register')
+            .then((response: any) => {
+                let newMode = response.data ? 1 : -1;
 
-            this.updateMode(newMode);
-        });
+                this.updateMode(newMode);
+            });
     }
 
     getForm() {

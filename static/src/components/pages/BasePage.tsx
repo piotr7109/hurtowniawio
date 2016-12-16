@@ -33,18 +33,6 @@ export abstract class BasePage<P extends BaseProps, S extends BaseStates> extend
             || UserUtils.isLoggedUserAdmin();
     }
 
-    handlePostRequest(formData: FormData, url: any) {
-        return axios.post(url, formData);
-    }
-
-    handleRequest(dataObject: any, url: any, method: any) {
-        return axios({
-            method: method,
-            url: url,
-            params: dataObject
-        })
-    }
-
     renderHTML(): any {
         return null;
     }

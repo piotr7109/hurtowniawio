@@ -7,13 +7,13 @@ import {BaseProps, BaseStates} from "../../BasePage";
 
 export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
 
-    componentWillMount():void {
+    componentWillMount(): void {
         this.state = ({mode: -10});
         this.loadItems();
     }
 
     loadItems() {
-        JsonUtils.getRestData('/getItems').then((response: any) => {
+        JsonUtils.handleGET('/getItems').then((response: any) => {
             let data = response.data;
 
             if (data) {
@@ -40,7 +40,7 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
 
     descriptionField = {name: 'Description', text: 'Opis'};
 
-    public handleFormEvents(event: any, url: any, method: any): any {
+    public handleFormEvents(event: any, url: any): any {
         event.preventDefault();
 
         let serialize = require('form-serialize'),
@@ -56,19 +56,18 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
         formData.append('auctionData', auctionData);
         formData.append('itemData', itemData);
 
-        return this.handlePostRequest(formData, url);
+        return JsonUtils.handlePOST(url, formData);
     }
 
     handleSubmit(event: any): any {
-        this.handleFormEvents(event, '/addAuction', 'post').then((response: any) => {
-            let data = response.data;
-
-            if (data) {
-                this.updateMode(1);
-            } else {
-                this.updateMode(-1);
-            }
-        });
+        this.handleFormEvents(event, '/addAuction')
+            .then((response: any) => {
+                if (response.data) {
+                    this.updateMode(1);
+                } else {
+                    this.updateMode(-1);
+                }
+            });
     }
 
     getForm(): any {

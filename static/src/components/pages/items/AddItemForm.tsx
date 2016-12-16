@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import {BaseForm} from '../BaseForm';
 import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/controls/BasicInputControl';
 import {BaseProps, BaseStates} from "../BasePage";
+import JsonUtils from "../../../utils/JsonUtils";
 
 
 export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
@@ -18,23 +19,19 @@ export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
         this.userTypes.hurtownik
     ];
 
-    public handleFormEvents(event: any, url: any, method: any): any {
+    public handleFormEvents(event: any, url: any): any {
         event.preventDefault();
 
-        let serialize = require('form-serialize'),
-            target = event.target,
-            formData = JSON.stringify(serialize(target, {hash: true})),
-            imageData = document.getElementById(this.formControls[3].name).files[0],
-            data: FormData = new FormData();
+        let formData:FormData = this.getFormData(event, 'data'),
+            imageData = document.getElementById(this.formControls[3].name).files[0];
 
-        data.append('data', formData);
-        data.append('image', imageData);
+        formData.append('image', imageData);
 
-        return this.handlePostRequest(url, data);
+        return JsonUtils.handlePOST(formData, url);
     }
 
     handleSubmit(event: any): any {
-        this.handleFormEvents(event, '/addItem', 'post').then((reponse: any) => {
+        this.handleFormEvents(event, '/addItem').then((reponse: any) => {
             if (reponse.data) {
                 this.updateMode(1);
             } else {

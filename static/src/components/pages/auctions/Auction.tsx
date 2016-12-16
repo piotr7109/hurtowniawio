@@ -3,6 +3,7 @@ import {BasePage, BaseStates, BaseProps} from "../BasePage";
 import UserUtils from "../../../utils/UserUtils";
 import AddApplicationForm from "../applications/AddApplicationForm";
 import ModalWindow from "../../partials/modalWindow/ModalWindow";
+import JsonUtils from "../../../utils/JsonUtils";
 
 interface AuctionStates extends BaseStates {
     modalVisible: boolean;
@@ -31,7 +32,7 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
             auctionId = this.props.params.id;
 
         formData.append('auctionId', auctionId);
-        this.handlePostRequest(formData, '/getAuctionById')
+        JsonUtils.handlePOST('/getAuctionById', formData)
             .then((response: any) => {
                 let data: any = response.data;
 

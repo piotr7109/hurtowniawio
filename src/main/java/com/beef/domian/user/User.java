@@ -17,6 +17,8 @@ public class User {
     public User(User user) {
         this.updateData(user);
         password = "";
+        type = user.type;
+        status = user.status;
     }
 
     @Id
@@ -46,8 +48,6 @@ public class User {
         lastName = user.lastName;
         address = user.address;
         email = user.email;
-        type = user.type;
-        status = user.status;
     }
 
     public long getId() {
