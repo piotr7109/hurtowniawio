@@ -1,4 +1,4 @@
-import * as axios from 'axios';
+import JsonUtils from "./JsonUtils";
 
 export default class UserUtils {
     public static userTypes: any = {
@@ -18,21 +18,17 @@ export default class UserUtils {
     }
 
     public static setLoggedUser() {
-        return axios({
-            method: 'get',
-            url: '/getLoggedUser'
-        }).then((user) => {
-            UserUtils.loggedUser = user.data || {type: UserUtils.userTypes.unlogged};
-        });
+        JsonUtils.handleGET('/getLoggedUser')
+            .then((user: any) => {
+                UserUtils.loggedUser = user.data || {type: UserUtils.userTypes.unlogged};
+            });
     }
 
     public static logout() {
-        return axios({
-            method: 'post',
-            url: '/logout'
-        }).then(() => {
-            UserUtils.loggedUser = {type: UserUtils.userTypes.unlogged};
-        });
+        JsonUtils.handlePOST('/logout', null)
+            .then(() => {
+                UserUtils.loggedUser = {type: UserUtils.userTypes.unlogged};
+            });
     }
 
     public static isUserLogged() {
@@ -43,7 +39,7 @@ export default class UserUtils {
         let formData: FormData = new FormData();
 
         formData.append('userId', id);
-        return axios.post('/deactivateUser', formData);
+        return JsonUtils.handlePOST('/deactivateUser', formData);
     }
 
     public static loggedUser: any = {type: UserUtils.userTypes.unlogged};

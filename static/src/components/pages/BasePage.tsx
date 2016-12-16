@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as axios from 'axios';
 import ErrorNonAuthenticatedUser from './error/Errors';
 import UserUtils from '../../utils/UserUtils';
+import {LoadingComponent} from "../partials/system/System";
 
 export interface BaseStates {
     mode: number
@@ -19,8 +19,15 @@ export abstract class BasePage<P extends BaseProps, S extends BaseStates> extend
         this.allowedUsers = [];
     }
 
+    modes = {
+        ready: 0,
+        success: 1,
+        fail: -1,
+        loading: -10
+    };
+
     componentWillMount(): void {
-        this.state = {mode: 0} as S;
+        this.state = {mode: this.modes.ready} as S;
     }
 
     updateMode(mode: number) {
@@ -38,8 +45,8 @@ export abstract class BasePage<P extends BaseProps, S extends BaseStates> extend
     }
 
     public render() {
-        if (this.state.mode === -10) {
-            return <div>Ładowanie</div>
+        if (this.state.mode === this.modes.loading) {
+            return <LoadingComponent />
         } else {
             if (this.isUserAuthenticated()) {
                 return this.renderHTML();

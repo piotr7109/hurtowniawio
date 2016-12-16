@@ -29,7 +29,7 @@ export class RegisterForm extends BaseForm<RegisterFormProps, BaseStates> {
     handleSubmit(event: any) {
         this.handleFormEvents(event, '/register')
             .then((response: any) => {
-                let newMode = response.data ? 1 : -1;
+                let newMode = response.data ? this.modes.success : this.modes.fail;
 
                 this.updateMode(newMode);
             });

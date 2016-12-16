@@ -31,12 +31,10 @@ export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
     }
 
     handleSubmit(event: any): any {
-        this.handleFormEvents(event, '/addItem').then((reponse: any) => {
-            if (reponse.data) {
-                this.updateMode(1);
-            } else {
-                this.updateMode(-1);
-            }
+        this.handleFormEvents(event, '/addItem').then((response: any) => {
+            let newMode: number = response.data ? this.modes.success : this.modes.fail;
+
+            this.updateMode(newMode);
         });
     }
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {BasePage, BaseStates, BaseProps} from "../BasePage";
 import UserUtils from "../../../utils/UserUtils";
 import AddApplicationForm from "../applications/AddApplicationForm";
-import ModalWindow from "../../partials/modalWindow/ModalWindow";
+import ModalWindow from "../../partials/system/modalWindow/ModalWindow";
 import JsonUtils from "../../../utils/JsonUtils";
 
 interface AuctionStates extends BaseStates {
@@ -21,7 +21,7 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
 
     componentWillMount(): void {
         this.state = ({
-            mode: -10,
+            mode: this.modes.loading,
             modalVisible: false
         } as AuctionStates);
         this.loadAuction();
@@ -34,14 +34,14 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
         formData.append('auctionId', auctionId);
         JsonUtils.handlePOST('/getAuctionById', formData)
             .then((response: any) => {
-                let data: any = response.data;
+                let data: any = response.data,
+                    newMode:number = data ? this.modes.ready : this.modes.fail;
 
                 if (data) {
                     this.auction = data;
-                    this.updateMode(0);
-                } else {
-                    this.updateMode(-1);
                 }
+
+                this.updateMode(newMode);
             });
     }
 

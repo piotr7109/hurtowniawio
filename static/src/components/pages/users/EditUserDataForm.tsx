@@ -25,7 +25,7 @@ export class EditUserDataForm extends RegisterForm {
         this.handleFormEvents(event, '/updateUser')
             .then((response: any) => {
                 let data = response.data,
-                    newMode = data ? 1 : -1;
+                    newMode = data ? this.modes.success : this.modes.fail;
 
                 if (data) {
                     UserUtils.loggedUser = data;

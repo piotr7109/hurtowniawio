@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Serialize from 'form-serialize';
 import {BasePage, BaseStates, BaseProps} from './BasePage';
 import JsonUtils from '../../utils/JsonUtils'
 
@@ -24,15 +25,12 @@ export abstract class BaseForm<P extends BaseProps, S extends BaseStates> extend
 
         let formData: FormData = this.getFormData(event, 'data');
 
-        console.log(formData);
-
         return JsonUtils.handlePOST(url, formData);
     }
 
     public getFormData(event: any, name: string): FormData {
-        let serialize = require('form-serialize'),
-            target = event.target,
-            data = serialize(target, {hash: true}),
+        let target = event.target,
+            data = Serialize(target, {hash: true}),
             formData: FormData = new FormData();
 
         formData.append(name, JSON.stringify(data));
@@ -42,15 +40,15 @@ export abstract class BaseForm<P extends BaseProps, S extends BaseStates> extend
 
     renderHTML() {
         switch (this.state.mode) {
-            case 0:
+            case this.modes.ready:
                 return (
                     <div>
                         {this.getForm()}
                     </div>
                 );
-            case 1:
+            case this.modes.success:
                 return this.getSuccessMessage();
-            case -1:
+            case this.modes.fail:
                 return (
                     <div>
                         {this.getErrorMessage()}

@@ -7,7 +7,6 @@ interface ModalWindowProps {
 
 export default class ModalWindow extends React.Component<ModalWindowProps, {}> {
 
-
     render() {
         return (
             <div className="ModalWindow">

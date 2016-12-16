@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Serialize from 'form-serialize';
 import {BaseForm} from "../../BaseForm";
 import {BasicInputControl, BasicSubmitControl} from "../../../partials/forms/controls/BasicInputControl";
 import CustomSelect from "../../../partials/forms/controls/CustomSelect";
@@ -8,7 +9,7 @@ import {BaseProps, BaseStates} from "../../BasePage";
 export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
 
     componentWillMount(): void {
-        this.state = ({mode: -10});
+        this.state = ({mode: this.modes.loading});
         this.loadItems();
     }
 
@@ -21,7 +22,7 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
                     this.items.push({text: item.name, value: item.id})
                 });
 
-                this.updateMode(0);
+                this.updateMode(this.modes.ready);
             }
         });
     }
@@ -43,9 +44,8 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
     public handleFormEvents(event: any, url: any): any {
         event.preventDefault();
 
-        let serialize = require('form-serialize'),
-            target = event.target,
-            data = serialize(target, {hash: true}),
+        let target = event.target,
+            data = Serialize(target, {hash: true}),
             itemData = +data.item,
             auctionData,
             formData: FormData = new FormData();
@@ -63,9 +63,9 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
         this.handleFormEvents(event, '/addAuction')
             .then((response: any) => {
                 if (response.data) {
-                    this.updateMode(1);
+                    this.updateMode(this.modes.success);
                 } else {
-                    this.updateMode(-1);
+                    this.updateMode(this.modes.fail);
                 }
             });
     }

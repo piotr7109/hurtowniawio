@@ -2,7 +2,6 @@ import * as React from 'react';
 import {BaseForm} from "../BaseForm";
 import {BasicSubmitControl, BasicInputControl} from "../../partials/forms/controls/BasicInputControl";
 import {BaseProps, BaseStates} from "../BasePage";
-import ModalWindow from "../../partials/modalWindow/ModalWindow";
 import JsonUtils from "../../../utils/JsonUtils";
 
 
@@ -34,14 +33,14 @@ export default class AddApplicationForm extends BaseForm<AddApplicationFormProps
 
     handleSubmit(event: any): any {
         this.handleFormEvents(event).then((response: any) => {
-            let data = response.data;
+            let data = response.data,
+                newMode = data ? this.modes.success : this.modes.fail;
 
             if (data) {
-                this.updateMode(1);
                 this.props.hide();
-            } else {
-                //this.setState({mode: -5});
             }
+
+            this.updateMode(newMode);
         });
     }
 

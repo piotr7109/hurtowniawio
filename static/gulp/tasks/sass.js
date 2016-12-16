@@ -11,7 +11,7 @@ gulp.task('build-css', function () {
         .pipe(sourcemaps.init())  // Process the original sources
         .pipe(bulk())
         .pipe(sass())
-        .on('error', swallowError)
+        .on('error', gutil.log)
         .pipe(autoprefixer({
             browsers: ['last 10 versions', 'iOS 7', 'IE 11', 'Firefox <= 20', 'Firefox ESR', 'Firefox < 20'],
             cascade: false
@@ -22,8 +22,3 @@ gulp.task('build-css', function () {
         .pipe(gulp.dest('public/assets/css'))
         .pipe(bs.reload({stream: true}));
 });
-
-function swallowError (error) {
-    console.log(error.toString());
-    this.emit('end');
-}

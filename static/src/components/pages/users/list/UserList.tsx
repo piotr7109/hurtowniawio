@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as axios from 'axios';
 import {BasePage, BaseStates, BaseProps} from "../../BasePage";
 import UserUtils from "../../../../utils/UserUtils";
+import JsonUtils from "../../../../utils/JsonUtils";
 
 export default class UserList extends BasePage<BaseProps, BaseStates> {
 
@@ -11,21 +11,22 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
     allowedUsers = [UserUtils.userTypes.admin];
 
     componentWillMount(): void {
-        this.state = ({mode: -10} as BaseStates);
+        this.state = ({mode: this.modes.loading} as BaseStates);
         this.loadData();
     }
 
     loadData() {
-        return axios.get('/getUsers').then((response: any) => {
-            let data = response.data;
+        return JsonUtils.handleGET('/getUsers')
+            .then((response: any) => {
+                let data = response.data;
 
-            this.users = data;
-            if (data) {
-                this.updateMode(0);
-            } else {
-                this.updateMode(-1);
-            }
-        });
+                this.users = data;
+                if (data) {
+                    this.updateMode(this.modes.ready);
+                } else {
+                    this.updateMode(this.modes.fail);
+                }
+            });
     }
 
     deactivateUser(user: any) {

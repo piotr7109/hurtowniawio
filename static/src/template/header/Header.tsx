@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Link} from 'react-router';
 import UserUtils from '../../utils/UserUtils';
-import ModalWindow from "../../components/partials/modalWindow/ModalWindow";
+import ModalWindow from "../../components/partials/system/modalWindow/ModalWindow";
 import {LoginForm} from "../../components/pages/authentication/LoginForm";
 import {RegisterForm} from "../../components/pages/authentication/RegisterForm";
 
