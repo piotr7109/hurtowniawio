@@ -6,7 +6,7 @@ abstract class Message extends React.Component<{}, {}> {
 
     render() {
         return (
-            <div className={'Message ' + this.cssClass}>
+            <div className={'alert ' + this.cssClass}>
                 {this.props.children}
             </div>
         );
@@ -14,9 +14,9 @@ abstract class Message extends React.Component<{}, {}> {
 }
 
 export class SuccessMessage extends Message {
-    cssClass = 'SuccessMessage';
+    cssClass = 'alert-success';
 }
 
 export class ErrorMessage extends Message {
-    cssClass = 'ErrorMessage';
+    cssClass = 'alert-danger';
 }

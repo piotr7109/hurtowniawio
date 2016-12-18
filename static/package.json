@@ -48,7 +48,10 @@
     "@types/classnames": "0.0.32",
     "@types/react": "^0.14.54",
     "@types/react-dom": "^0.14.19",
+    "@types/react-onclickoutside": "^5.7.0",
     "@types/react-router": "^2.0.41",
-    "@types/underscore": "^1.7.36"
+    "@types/underscore": "^1.7.36",
+    "react-onclickout": "^2.0.4",
+    "react-onclickoutside": "^5.7.1"
   }
 }

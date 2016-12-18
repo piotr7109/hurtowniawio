@@ -1,0 +1,41 @@
+.Dropdown {
+  position: relative;
+  z-index: 10;
+
+  .dropdown-heading {
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+
+  }
+
+  .dropdown-list {
+    position: absolute;
+    display: none;
+
+    &.expanded {
+      display: block;
+    }
+
+    .item {
+      &:last-child {
+        .menu-item-link {
+          border-radius: 0 0 5px 5px;
+        }
+      }
+
+      .menu-item-link {
+        color: $white;
+        display: block;
+        text-decoration: none;
+        padding: 5px;
+        background: $seagreen-dark;
+
+        &:hover {
+          background: $seagreen;
+        }
+      }
+    }
+  }
+
+}

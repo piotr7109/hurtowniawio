@@ -11,7 +11,7 @@
     flex-wrap: wrap;
     align-self: center;
 
-    .menu-item-link {
+    .menu-item {
       position: relative;
       color: $white;
       text-decoration: none;
@@ -37,14 +37,6 @@
         width: 0;
         height: 50%;
         box-shadow: 0 0 2px 2px lemonchiffon;
-      }
-
-      .menu-item {
-        display: flex;
-        flex: 1 0 0;
-        justify-content: center;
-        padding: 5px 10px;
-        font-size: 25px;
       }
 
     }

@@ -25,7 +25,7 @@ export default class AddApplicationForm extends BaseForm<AddApplicationFormProps
     handleFormEvents(event: any) {
         event.preventDefault();
 
-        let formData:FormData = this.getFormData(event, 'applicationData');
+        let formData: FormData = this.getFormData(event, 'applicationData');
 
         formData.append('auctionId', this.props.auctionId);
 
@@ -46,7 +46,7 @@ export default class AddApplicationForm extends BaseForm<AddApplicationFormProps
                 <div className="form-group">
                     <input type="hidden" value={(new Date()).toString()}/>
                     <input type="hidden" value="5"/>
-                    {this.formControls.map((item) => {
+                    {this.formControls.map(item => {
                         return (<BasicInputControl
                             name={item.name}
                             type={item.type}
@@ -62,10 +62,15 @@ export default class AddApplicationForm extends BaseForm<AddApplicationFormProps
 
     getSuccessMessage(): any {
         return (
-            <SuccessMessage>
-                Wziąłeś udział w przatargu!
-                <button onClick={this.props.hide()} className="buttonSubmit">Wróć do aukcji</button>
-            </SuccessMessage>
+            <div>
+                <SuccessMessage>
+                    Wziąłeś udział w przatargu!
+                </SuccessMessage>
+                <button onClick={() => this.props.hide()} className="buttonSubmit">
+                    Wróć do aukcji
+                </button>
+            </div>
+
         );
     }
 

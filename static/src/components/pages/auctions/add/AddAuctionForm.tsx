@@ -5,7 +5,7 @@ import {BasicInputControl, BasicSubmitControl} from "../../../partials/forms/con
 import CustomSelect from "../../../partials/forms/controls/CustomSelect";
 import JsonUtils from "../../../../utils/JsonUtils";
 import {BaseProps, BaseStates} from "../../BasePage";
-import {SuccessMessage, ErrorMessage, ErrorMessage} from "../../../partials/forms/messages/Messages";
+import {SuccessMessage, ErrorMessage} from "../../../partials/forms/messages/Messages";
 
 export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
 

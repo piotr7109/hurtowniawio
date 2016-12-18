@@ -1,37 +1,37 @@
 {
   "unlogged": [],
   "rolnik": [
-    {
-      "title": "Moje dane",
-      "path": "/editUser"
-    }
   ],
   "admin": [
     {
-      "title": "Moje dane",
-      "path": "/editUser"
+      "Przetargi": [
+        {
+          "title": "Lista przetargów",
+          "path": "/auctionList"
+        },
+        {
+          "title": "Nowy przetarg",
+          "path": "/addAuction"
+        },
+        {
+          "title": "Nowy artykuł",
+          "path": "/addItem"
+        }
+      ]
     },
     {
-      "title": "Dodaj nowy przedmiot",
-      "path": "/addItem"
-    },
-    {
-      "title": "Dodaj przetarg",
-      "path": "/addAuction"
-    },
-    {
-      "title": "Lista użytkowników",
-      "path": "/userList"
+      "Użytkownicy": [
+        {
+          "title": "Lista użytkowników",
+          "path": "/userList"
+        },
+        {
+          "title": "Moje dane",
+          "path": "/editUser"
+        }
+      ]
     }
   ],
   "hurtownik": [
-    {
-      "title": "Moje dane",
-      "path": "/editUser"
-    },
-    {
-      "title": "Dodaj nowy przedmiot",
-      "path": "/addItem"
-    }
   ]
 }

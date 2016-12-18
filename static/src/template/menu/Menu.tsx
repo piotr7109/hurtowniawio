@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Link} from 'react-router';
 import MenuUtils from '../../utils/MenuUtils';
 import UserUtils from '../../utils/UserUtils';
+import Dropdown from "../../components/partials/dropdown/Dropdown";
 
 interface Properties {
     path: string
@@ -13,26 +13,27 @@ export default class Menu extends React.Component<Properties, {}> {
         this.forceUpdate();
     }
 
-    getMenuItem(item: any) {
-        if (item.hasOwnProperty('path') && item.hasOwnProperty('title')) {
-            return (
-                <Link className="menu-item-link" to={item.path} onClick={() => this.handleRouteChange()} key={item.title}>
+    getMenuItems(item: any) {
+        for (let property in item) {
+            if (item.hasOwnProperty(property)) {
+                let itemList = item[property];
+
+                return (
                     <div className="menu-item">
-                        {item.title}
+                        <Dropdown items={itemList} header={property} routeChangeEvent={this.handleRouteChange}/>
                     </div>
-                </Link>
-            );
+                );
+            }
         }
-        else {
-            return null;
-        }
+
+        return null;
     }
 
     render() {
         return (
             <div className="menu">
                 { MenuUtils.menuData[UserUtils.loggedUser.type].map((item: any) => {
-                    return this.getMenuItem(item);
+                    return this.getMenuItems(item);
                 })}
             </div>
         );
