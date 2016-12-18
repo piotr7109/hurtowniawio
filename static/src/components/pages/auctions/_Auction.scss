@@ -34,6 +34,7 @@
       justify-content: flex-start;
       flex: 3 0 0;
       align-items: flex-start;
+      position: relative;
 
       .attributes {
         flex: 1 0 auto;
@@ -73,6 +74,12 @@
         padding: 10px;
         display: flex;
         flex-direction: column;
+      }
+
+      .buttonSubmit {
+        position: absolute;
+        bottom: 0;
+        right: 0;
       }
 
       a {

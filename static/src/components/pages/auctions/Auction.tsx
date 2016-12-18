@@ -35,7 +35,7 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
         JsonUtils.handlePOST('/getAuctionById', formData)
             .then((response: any) => {
                 let data: any = response.data,
-                    newMode:number = data ? this.modes.ready : this.modes.fail;
+                    newMode: number = data ? this.modes.ready : this.modes.fail;
 
                 if (data) {
                     this.auction = data;
@@ -79,7 +79,9 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                             <span>Opis:</span>
                             <span>{this.auction.description}</span>
                         </p>
-                        <button onClick={() => {this.showModalWindow()}}>Dodaj aplikację</button>
+                        <button className="buttonSubmit" onClick={() => {this.showModalWindow()}}>
+                            Dodaj aplikację
+                        </button>
                     </div>
                 </div>
                 {this.state.modalVisible &&
