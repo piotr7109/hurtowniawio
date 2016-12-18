@@ -18,6 +18,7 @@ public class AuctionService {
     protected static Auction addAuction(HttpSession session, String auctionData, String itemData) throws IOException {
         Auction resultAuction = null;
         HibernateBase.closeEntityManagers();
+
         if (UserUtils.checkUserType(session, "hurtownik")) {
             Auction auction = new ObjectMapper().readValue(auctionData, Auction.class);
             long itemId = Long.parseLong(itemData);
@@ -46,16 +47,20 @@ public class AuctionService {
     }
 
     protected static List<Auction> getActiveAuctions(HttpSession session) {
+        HibernateBase.closeEntityManagers();
         List<Auction> auctions = null;
 
-        if (UserUtils.isUserAuthenticated(session)) {
-            auctions = AuctionHelper.getActiveAuctions();
+        if (UserUtils.checkUserType(session, "hurtownik")) {
+            auctions = AuctionHelper.getActiveAuctions(true);
+        } else if (UserUtils.checkUserType(session, "rolnik")) {
+            auctions = AuctionHelper.getActiveAuctions(true);
         }
 
         return auctions;
     }
 
     protected static Auction getAuctionById(HttpSession session, String auctionId) {
+        HibernateBase.closeEntityManagers();
         Auction resultAuction = null;
 
         if (UserUtils.isUserAuthenticated(session)) {

@@ -4,6 +4,7 @@ import UserUtils from "../../../utils/UserUtils";
 import AddApplicationForm from "../applications/AddApplicationForm";
 import ModalWindow from "../../partials/system/modalWindow/ModalWindow";
 import JsonUtils from "../../../utils/JsonUtils";
+import ApplicationList from "../../partials/application/ApplicationList";
 
 interface AuctionStates extends BaseStates {
     modalVisible: boolean;
@@ -32,7 +33,7 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
             auctionId = this.props.params.id;
 
         formData.append('auctionId', auctionId);
-        JsonUtils.handlePOST('/getAuctionById', formData)
+        return JsonUtils.handlePOST('/getAuctionById', formData)
             .then((response: any) => {
                 let data: any = response.data,
                     newMode: number = data ? this.modes.ready : this.modes.fail;
@@ -50,7 +51,13 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
     }
 
     hideModalWindow() {
-        this.setState({modalVisible: false} as AuctionStates);
+        this.loadAuction()
+            .then(() => this.setState({modalVisible: false} as AuctionStates));
+    }
+
+    refreshHandler() {
+        this.setState({mode: -10} as AuctionStates);
+        this.loadAuction();
     }
 
     renderHTML() {
@@ -79,15 +86,26 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                             <span>Opis:</span>
                             <span>{this.auction.description}</span>
                         </p>
-                        <button className="buttonSubmit" onClick={() => {this.showModalWindow()}}>
-                            Dodaj aplikację
-                        </button>
+                        {
+                            UserUtils.checkUserType(UserUtils.userTypes.rolnik) &&
+                            <button className="buttonSubmit" onClick={() => {this.showModalWindow()}}>
+                                Dodaj aplikację
+                            </button>
+                        }
                     </div>
                 </div>
-                {this.state.modalVisible &&
-                <ModalWindow hide={this.hideModalWindow.bind(this)}>
-                    <AddApplicationForm auctionId={this.auction.id} hide={this.hideModalWindow.bind(this)}/>
-                </ModalWindow>}
+                {
+                    UserUtils.checkUserType(UserUtils.userTypes.hurtownik) &&
+                    this.auction.applications.length > 0 &&
+                    <ApplicationList items={this.auction.applications} refreshHandler={this.refreshHandler}/>
+                }
+
+                {
+                    this.state.modalVisible &&
+                    <ModalWindow hide={this.hideModalWindow.bind(this)}>
+                        <AddApplicationForm auctionId={this.auction.id} hide={this.hideModalWindow.bind(this)}/>
+                    </ModalWindow>
+                }
             </div>
         );
     }

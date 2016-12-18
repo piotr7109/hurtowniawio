@@ -40,7 +40,7 @@ export default class UserUtils {
 
         formData.append('userId', id);
 
-        switch(status) {
+        switch (status) {
             case 'A':
                 return JsonUtils.handlePOST('/activateUser', formData);
             case 'X':
@@ -53,6 +53,14 @@ export default class UserUtils {
 
         formData.append('userId', id);
         return JsonUtils.handlePOST('/activateUser', formData);
+    }
+
+    public static checkUserType(type: string) {
+        if (UserUtils.loggedUser.type === UserUtils.userTypes.admin || UserUtils.loggedUser.type === type) {
+            return true
+        }
+
+        return false
     }
 
     public static loggedUser: any = {type: UserUtils.userTypes.unlogged};

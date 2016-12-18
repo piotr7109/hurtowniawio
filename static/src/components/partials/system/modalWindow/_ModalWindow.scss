@@ -4,6 +4,7 @@
   height: 100%;
   top: 0;
   left: 0;
+  z-index: 100;
 
   .close-window {
     font-size: 22px;
@@ -29,7 +30,6 @@
     opacity: 1;
     border-radius: 10px;
     background: $light-lemon-chiffon;
-    z-index: 2;
   }
 
   .modal-window-content {

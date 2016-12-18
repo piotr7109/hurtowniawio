@@ -1,0 +1,28 @@
+.ApplicationList {
+  margin-top: 25px;
+
+  .application-header,
+  .application-row {
+    width: 80%;
+
+    span {
+      display: inline-block;
+      width: 20%;
+    }
+  }
+
+  .application-header {
+    padding: 5px;
+    font-size: 16px;
+    background: $seagreen-light;
+    border-radius: 5px;
+  }
+
+  .application-row {
+    padding: 2px;
+
+    &:nth-child(2n) {
+      background: $lemon-chiffon;
+    }
+  }
+}

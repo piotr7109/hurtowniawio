@@ -34,11 +34,11 @@ public class AuctionHelper extends BaseHelper {
         return false;
     }
 
-    public static List<Auction> getActiveAuctions() {
-        return getAuctions("A");
+    public static List<Auction> getActiveAuctions(boolean widthApplications) {
+        return getAuctions("A", widthApplications);
     }
 
-    public static List<Auction> getAuctions(String state) {
+    public static List<Auction> getAuctions(String state, boolean withApplications) {
         List<Auction> auctions;
         TypedQuery<Auction> query = HibernateBase.entityManager.createQuery("select a from Auction a where a.state = :state", Auction.class);
         query.setParameter("state", state);
@@ -47,7 +47,9 @@ public class AuctionHelper extends BaseHelper {
             auctions = query.getResultList();
             auctions.forEach(auction -> {
                 auction.clearUser();
-                auction.setApplications(null);
+                if (!withApplications) {
+                    auction.setApplications(null);
+                }
             });
         } catch (Exception e) {
             auctions = null;
