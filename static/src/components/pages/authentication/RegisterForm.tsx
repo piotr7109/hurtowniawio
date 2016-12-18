@@ -4,6 +4,7 @@ import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/contro
 import CustomSelect from './../../partials/forms/controls/CustomSelect';
 import {BaseForm} from '../BaseForm';
 import {BaseProps, BaseStates} from "../BasePage";
+import {ErrorMessage, SuccessMessage} from "../../partials/forms/messages/Messages";
 
 interface RegisterFormProps extends BaseProps {
     switch: any;
@@ -57,7 +58,7 @@ export class RegisterForm extends BaseForm<RegisterFormProps, BaseStates> {
     getSuccessMessage() {
         return (
             <div>
-                Rejestracja przebiegła pomyślnie
+                <SuccessMessage>Rejestracja przebiegła pomyślnie</SuccessMessage>
                 <span onClick={this.props.switch(true, false)}>Zaloguj się</span>
             </div>
         );
@@ -65,9 +66,9 @@ export class RegisterForm extends BaseForm<RegisterFormProps, BaseStates> {
 
     getErrorMessage() {
         return (
-            <div>
+            <ErrorMessage>
                 Użytkownik już istnieje, użyj innego loginu
-            </div>
+            </ErrorMessage>
         );
     }
 }

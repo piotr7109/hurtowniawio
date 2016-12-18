@@ -1,9 +1,10 @@
-import * as React from 'react';
-import {Link} from 'react-router';
-import UserUtils from '../../../utils/UserUtils';
-import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/controls/BasicInputControl';
-import {BaseForm} from '../BaseForm';
+import * as React from "react";
+import {Link} from "react-router";
+import UserUtils from "../../../utils/UserUtils";
+import {BasicInputControl, BasicSubmitControl} from "../../partials/forms/controls/BasicInputControl";
+import {BaseForm} from "../BaseForm";
 import {BaseProps, BaseStates} from "../BasePage";
+import {SuccessMessage, ErrorMessage} from "../../partials/forms/messages/Messages";
 
 interface LoginFormProps extends BaseProps {
     hide: any;
@@ -36,16 +37,18 @@ export class LoginForm extends BaseForm<LoginFormProps, BaseStates> {
 
     getSuccessMessage() {
         return (
-            <div className="message">
-                <div>Zalogowałeś się!</div>
+            <div>
+                <SuccessMessage>Zalogowałeś się!</SuccessMessage>
                 <Link to="/" onClick={this.props.hide}>Idź do strony głównej</Link>
             </div>
         );
     }
 
     getErrorMessage() {
-        return (<div className="message">
-            <div>Wprowadzono złe dane,</div>
-        </div>);
+        return (
+            <ErrorMessage>
+                <div>Wprowadzono złe dane,</div>
+            </ErrorMessage>
+        );
     }
 }

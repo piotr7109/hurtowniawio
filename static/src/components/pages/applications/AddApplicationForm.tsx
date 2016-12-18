@@ -3,6 +3,7 @@ import {BaseForm} from "../BaseForm";
 import {BasicSubmitControl, BasicInputControl} from "../../partials/forms/controls/BasicInputControl";
 import {BaseProps, BaseStates} from "../BasePage";
 import JsonUtils from "../../../utils/JsonUtils";
+import {ErrorMessage, SuccessMessage} from "../../partials/forms/messages/Messages";
 
 
 interface AddApplicationFormProps extends BaseProps {
@@ -33,12 +34,7 @@ export default class AddApplicationForm extends BaseForm<AddApplicationFormProps
 
     handleSubmit(event: any): any {
         this.handleFormEvents(event).then((response: any) => {
-            let data = response.data,
-                newMode = data ? this.modes.success : this.modes.fail;
-
-            if (data) {
-                this.props.hide();
-            }
+            let newMode = response.data ? this.modes.success : this.modes.fail;
 
             this.updateMode(newMode);
         });
@@ -66,17 +62,19 @@ export default class AddApplicationForm extends BaseForm<AddApplicationFormProps
 
     getSuccessMessage(): any {
         return (
-            <div>
+            <SuccessMessage>
                 Wziąłeś udział w przatargu!
-            </div>
+                <button onClick={this.props.hide()} className="buttonSubmit">Wróć do aukcji</button>
+            </SuccessMessage>
         );
     }
 
     getErrorMessage(): any {
         return (
-            <div>
-                Błąd!
-            </div>
+            <ErrorMessage>
+                Brałeś już udział w przetargu! <br />
+                Musisz najpierw wycofać swoją ofertę, by móc ponownie brać udział w tym przetargu!
+            </ErrorMessage>
         );
     }
 

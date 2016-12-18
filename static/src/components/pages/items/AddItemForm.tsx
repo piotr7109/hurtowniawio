@@ -4,6 +4,7 @@ import {BaseForm} from '../BaseForm';
 import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/controls/BasicInputControl';
 import {BaseProps, BaseStates} from "../BasePage";
 import JsonUtils from "../../../utils/JsonUtils";
+import {SuccessMessage, ErrorMessage} from "../../partials/forms/messages/Messages";
 
 
 export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
@@ -22,7 +23,7 @@ export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
     public handleFormEvents(event: any, url: any): any {
         event.preventDefault();
 
-        let formData:FormData = this.getFormData(event, 'data'),
+        let formData: FormData = this.getFormData(event, 'data'),
             imageData = document.getElementById(this.formControls[3].name).files[0];
 
         formData.append('image', imageData);
@@ -60,7 +61,9 @@ export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
     getSuccessMessage(): any {
         return (
             <div>
-                Przedmiot został dodany do bazy przedmiotów
+                <SuccessMessage>
+                    Przedmiot został dodany do bazy przedmiotów
+                </SuccessMessage>
                 <Link to='/'>Powrót na stronę główną</Link>
             </div>
         );
@@ -68,9 +71,9 @@ export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
 
     getErrorMessage(): any {
         return (
-            <div>
+            <ErrorMessage>
                 Błąd, ale nie wiem ;____;
-            </div>
+            </ErrorMessage>
         );
     }
 

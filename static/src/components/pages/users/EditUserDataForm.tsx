@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import {RegisterForm} from '../authentication/RegisterForm';
 import {BasicInputControl, BasicSubmitControl} from '../../partials/forms/controls/BasicInputControl';
 import UserUtils from '../../../utils/UserUtils';
+import {SuccessMessage} from "../../partials/forms/messages/Messages";
 
 export class EditUserDataForm extends RegisterForm {
 
@@ -56,7 +57,7 @@ export class EditUserDataForm extends RegisterForm {
     getSuccessMessage() {
         return (
             <div>
-                Dane zostały zmienione!
+                <SuccessMessage>Dane zostały zmienione!</SuccessMessage>
                 <Link to="/">Wróć na stronę głóną</Link>
             </div>
         );
