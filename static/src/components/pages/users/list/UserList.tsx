@@ -29,9 +29,9 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
             });
     }
 
-    deactivateUser(user: any) {
-        UserUtils.deactivateUser(user.id)
-            .then((response: any) => {
+    changeUserStatus(user: any, status: string) {
+        UserUtils.changeUserStatus(user.id, status)
+            .then(() => {
                 this.updateMode(this.modes.loading);
                 return this.loadData()
             })
@@ -50,8 +50,11 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
                 <td>{user.email}</td>
                 <td>{user.status}</td>
                 <td>
-                    <button className="buttonSubmit" onClick={() =>this.deactivateUser(user)}>
-                        Usuń
+                    <button className="buttonSubmit" onClick={() =>this.changeUserStatus(user, "X")}>
+                        U
+                    </button>
+                    <button className="buttonSubmit" onClick={() =>this.changeUserStatus(user, "A")}>
+                        A
                     </button>
                 </td>
             </tr>

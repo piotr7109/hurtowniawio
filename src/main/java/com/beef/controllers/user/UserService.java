@@ -33,10 +33,10 @@ public class UserService {
         return result;
     }
 
-    public static void deactivateUser(HttpSession session, String id) throws IOException {
+    public static void changeUserStatus(HttpSession session, String id, String status) {
         HibernateBase.closeEntityManagers();
         if (UserUtils.checkUserType(session, "admin")) {
-            UserHelper.deactivateUser(Long.parseLong(id));
+            UserHelper.changeUserStatus(Long.parseLong(id), status);
         }
     }
 }

@@ -61,10 +61,10 @@ public class UserHelper extends BaseHelper {
         return dbUser;
     }
 
-    public static void deactivateUser(long id) {
+    public static void changeUserStatus(long id, String status) {
         HibernateBase.entityManager.getTransaction().begin();
         User dbUser = HibernateBase.entityManager.find(User.class, id);
-        dbUser.setStatus("X");
+        dbUser.setStatus(status);
         HibernateBase.entityManager.persist(dbUser);
         HibernateBase.entityManager.getTransaction().commit();
     }

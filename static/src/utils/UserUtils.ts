@@ -35,11 +35,24 @@ export default class UserUtils {
         return UserUtils.loggedUser.type != UserUtils.userTypes.unlogged;
     }
 
-    public static deactivateUser(id: number) {
+    public static changeUserStatus(id: number, status: string) {
         let formData: FormData = new FormData();
 
         formData.append('userId', id);
-        return JsonUtils.handlePOST('/deactivateUser', formData);
+
+        switch(status) {
+            case 'A':
+                return JsonUtils.handlePOST('/activateUser', formData);
+            case 'X':
+                return JsonUtils.handlePOST('/deactivateUser', formData);
+        }
+    }
+
+    public static activateUser(id: number) {
+        let formData: FormData = new FormData();
+
+        formData.append('userId', id);
+        return JsonUtils.handlePOST('/activateUser', formData);
     }
 
     public static loggedUser: any = {type: UserUtils.userTypes.unlogged};

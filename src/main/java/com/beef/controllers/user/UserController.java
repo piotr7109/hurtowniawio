@@ -28,6 +28,11 @@ public class UserController {
 
     @PostMapping("/deactivateUser")
     public void deactivateUser(HttpSession session, @RequestParam("userId") String id) throws IOException {
-        UserService.deactivateUser(session, id);
+        UserService.changeUserStatus(session, id, "X");
+    }
+
+    @PostMapping("/activateUser")
+    public void activateUser(HttpSession session, @RequestParam("userId") String id) throws IOException {
+        UserService.changeUserStatus(session, id, "A");
     }
 }

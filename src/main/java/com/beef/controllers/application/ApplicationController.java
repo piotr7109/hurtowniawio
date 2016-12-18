@@ -16,4 +16,9 @@ public class ApplicationController {
                                   @RequestParam("auctionId") String auctionId) throws IOException {
         return ApplicationService.createApplication(session, applicationData, auctionId);
     }
+
+    @PostMapping("removeApplication")
+    public boolean removeApplication(HttpSession session, @RequestParam("applicationId") String applicationId) throws IOException {
+        return ApplicationService.removeApplication(session, applicationId);
+    }
 }

@@ -16,6 +16,18 @@ import java.util.Date;
 
 public class ApplicationService {
 
+    public static boolean removeApplication(HttpSession session, String applicationId) {
+        HibernateBase.closeEntityManagers();
+        long id = Long.parseLong(applicationId);
+
+        if (UserUtils.checkUserType(session, "rolnik")) {
+            long userId = UserUtils.getSessionUser(session).getId();
+            return ApplicationHelper.removeApplication(id, userId);
+        }
+
+        return false;
+    }
+
     public static boolean createApplication(HttpSession session, String applicationData, String auctionId) throws IOException {
         boolean result = false;
         HibernateBase.closeEntityManagers();

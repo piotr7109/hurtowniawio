@@ -17,6 +17,7 @@ public class AuctionHelper extends BaseHelper {
 
     public static Auction getAuctionById(long id) {
         Auction auction = HibernateBase.entityManager.find(Auction.class, id);
+        auction.getApplications().forEach((app) -> app.getUser().setPassword(""));
         return auction;
     }
 
@@ -44,7 +45,10 @@ public class AuctionHelper extends BaseHelper {
 
         try {
             auctions = query.getResultList();
-            auctions.forEach(auction -> auction.clearUser());
+            auctions.forEach(auction -> {
+                auction.clearUser();
+                auction.setApplications(null);
+            });
         } catch (Exception e) {
             auctions = null;
         }
