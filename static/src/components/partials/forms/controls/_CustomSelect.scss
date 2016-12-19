@@ -1,7 +1,7 @@
 .CustomSelect {
   width: 100%;
   padding-bottom: 10px;
-  cursor: pointer;
+  cursor: $cursorPointer;
   display: block;
 
   @include respond-to(large) {

@@ -8,7 +8,7 @@
 
   .close-window {
     font-size: 22px;
-    cursor: pointer;
+    cursor: $cursorPointer;
     align-self: flex-end;
 
     &:hover {

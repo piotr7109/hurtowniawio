@@ -19,6 +19,10 @@
         {
           "title": "Moje przetargi",
           "path": "/userAuctions"
+        },
+        {
+          "title": "Archiwalne przetargi",
+          "path": "/archiveAuctions"
         }
       ]
     },

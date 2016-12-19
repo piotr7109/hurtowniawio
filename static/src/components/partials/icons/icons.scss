@@ -3,7 +3,7 @@
   font-size: 20px;
   padding: 2px 0;
   border-radius: 20px;
-  cursor: pointer;
+  cursor: $cursorPointer;
 
   &:hover {
     color: $lemon-chiffon;
