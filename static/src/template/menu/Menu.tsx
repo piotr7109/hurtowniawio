@@ -2,6 +2,7 @@ import * as React from 'react';
 import MenuUtils from '../../utils/MenuUtils';
 import UserUtils from '../../utils/UserUtils';
 import Dropdown from "../../components/partials/dropdown/Dropdown";
+import Utils from "../../utils/Utils";
 
 interface Properties {
     path: string
@@ -19,7 +20,8 @@ export default class Menu extends React.Component<Properties, {}> {
                 let itemList = item[property];
 
                 return (
-                    <div className="menu-item">
+                    <div className="menu-item"
+                         key={Utils.getTimeStamp()}>
                         <Dropdown items={itemList} header={property} routeChangeEvent={this.handleRouteChange}/>
                     </div>
                 );
