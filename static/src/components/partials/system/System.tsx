@@ -4,9 +4,7 @@ export class LoadingComponent extends React.Component<void, void> {
 
     render() {
         return (
-            <div>
-                Ładowanie...
-            </div>
+            <div className="icon-spin6" />
         );
     }
 }

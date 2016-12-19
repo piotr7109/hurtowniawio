@@ -69,4 +69,17 @@ public class AuctionService {
 
         return resultAuction;
     }
+
+    protected static List<Auction> getUserAuctions(HttpSession session) {
+        HibernateBase.closeEntityManagers();
+        List<Auction> resultAuction = null;
+        long userId = UserUtils.getSessionUser(session).getId();
+
+        if (UserUtils.isUserAuthenticated(session)) {
+            resultAuction = AuctionHelper.getUserAuctions(userId);
+        }
+
+        return resultAuction;
+
+    }
 }

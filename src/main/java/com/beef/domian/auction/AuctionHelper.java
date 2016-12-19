@@ -57,4 +57,23 @@ public class AuctionHelper extends BaseHelper {
 
         return auctions;
     }
+
+    public static List<Auction> getUserAuctions(long userId) {
+        List<Auction> auctions;
+        TypedQuery<Auction> query = HibernateBase.entityManager.createQuery("select a from Auction a where a.user.id =:userId", Auction.class);
+        query.setParameter("userId", userId);
+
+        try {
+            auctions = query.getResultList();
+            auctions.forEach(auction -> {
+                auction.clearUser();
+                auction.setApplications(null);
+            });
+        }
+        catch (Exception e) {
+            auctions = null;
+        }
+
+        return auctions;
+    }
 }
