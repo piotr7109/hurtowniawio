@@ -1,7 +1,6 @@
 {
   "unlogged": [],
-  "rolnik": [
-  ],
+  "rolnik": [],
   "admin": [
     {
       "Przetargi": [
@@ -16,6 +15,10 @@
         {
           "title": "Nowy artykuł",
           "path": "/addItem"
+        },
+        {
+          "title": "Moje przetargi",
+          "path": "/userAuctions"
         }
       ]
     },

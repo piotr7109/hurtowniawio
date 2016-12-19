@@ -36,7 +36,7 @@ public class AuctionController {
         return AuctionService.getAuctionById(session, auctionId);
     }
 
-    @PostMapping("/getUserAuctions")
+    @GetMapping("/getUserAuctions")
     public List<Auction> getUserAuctions(HttpSession session) {
         return AuctionService.getUserAuctions(session);
     }
