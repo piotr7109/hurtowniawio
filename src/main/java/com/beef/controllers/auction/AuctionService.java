@@ -34,14 +34,15 @@ public class AuctionService {
         return resultAuction;
     }
 
-    protected static boolean finishAuction(HttpSession session, String id) {
+    protected static boolean finishAuction(HttpSession session, String _auctionId, String _applicationId) {
         boolean result = false;
         HibernateBase.closeEntityManagers();
 
         if (UserUtils.checkUserType(session, "hurtownik")) {
-            long auctionId = Long.parseLong(id);
+            long auctionId = Long.parseLong(_auctionId);
+            long applicationId = Long.parseLong(_applicationId);
 
-            result = AuctionHelper.finishAuction(auctionId);
+            result = AuctionHelper.finishAuction(auctionId, applicationId);
         }
         return result;
     }

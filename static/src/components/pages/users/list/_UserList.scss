@@ -32,6 +32,10 @@
       background: $lemon-chiffon;
     }
 
+    &:hover {
+      background: $light-claret;
+    }
+
     td {
       width: calc(100% / 10);
     }

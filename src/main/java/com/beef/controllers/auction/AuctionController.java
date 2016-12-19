@@ -20,8 +20,10 @@ public class AuctionController {
     }
 
     @PostMapping("/finishAuction")
-    public boolean finishAuction(HttpSession session, @RequestParam("auctionId") String auctionId) {
-        return AuctionService.finishAuction(session, auctionId);
+    public boolean finishAuction(HttpSession session,
+                                 @RequestParam("auctionId") String auctionId,
+                                 @RequestParam("applicationId") String applicationId) {
+        return AuctionService.finishAuction(session, auctionId, applicationId);
     }
 
     @GetMapping("/getActiveAuctions")

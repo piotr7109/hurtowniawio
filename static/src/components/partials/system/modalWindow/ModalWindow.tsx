@@ -2,7 +2,6 @@ import * as React from 'react';
 
 interface ModalWindowProps {
     hide: any;
-    showOtherModal?: any;
 }
 
 export default class ModalWindow extends React.Component<ModalWindowProps, {}> {

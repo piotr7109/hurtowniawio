@@ -1,0 +1,12 @@
+.icon-ok {
+  color: $seagreen;
+  font-size: 20px;
+  padding: 2px 0;
+  border-radius: 20px;
+  cursor: pointer;
+
+  &:hover {
+    color: $lemon-chiffon;
+    background: $seagreen;
+  }
+}

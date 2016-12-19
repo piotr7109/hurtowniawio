@@ -25,5 +25,9 @@
     &:nth-child(2n) {
       background: $lemon-chiffon;
     }
+
+    &:hover {
+      background: $light-claret;
+    }
   }
 }

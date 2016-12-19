@@ -40,6 +40,10 @@ public class Auction {
     @JoinColumn(name = "auctionId")
     private List<Application> applications;
 
+    @OneToOne
+    @JoinColumn(name = "victoriousApplicationId")
+    private Application victoriousApplication;
+
     public long getId() {
         return id;
     }
@@ -118,6 +122,14 @@ public class Auction {
 
     public void setApplications(List<Application> applications) {
         this.applications = applications;
+    }
+
+    public Application getVictoriousApplication() {
+        return victoriousApplication;
+    }
+
+    public void setVictoriousApplication(Application victoriousApplication) {
+        this.victoriousApplication = victoriousApplication;
     }
 
     public void addApplication(Application app) {

@@ -2,6 +2,7 @@ package com.beef.domian.auction;
 
 import com.beef.core.hibernate.HibernateBase;
 import com.beef.domian.BaseHelper;
+import com.beef.domian.application.Application;
 
 import javax.persistence.TypedQuery;
 import java.util.Date;
@@ -21,11 +22,13 @@ public class AuctionHelper extends BaseHelper {
         return auction;
     }
 
-    public static boolean finishAuction(long id) {
-        Auction auction = HibernateBase.entityManager.find(Auction.class, id);
+    public static boolean finishAuction(long auctionId, long applicationId) {
+        Auction auction = HibernateBase.entityManager.find(Auction.class, auctionId);
+        Application application = HibernateBase.entityManager.find(Application.class, applicationId);
 
         if (auction != null) {
             auction.setState("X");
+            auction.setVictoriousApplication(application);
             persist(auction);
 
             return true;
