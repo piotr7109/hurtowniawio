@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Link} from 'react-router';
+import Utils from "../../../utils/Utils";
 
 interface Props {
     items: any;
@@ -32,10 +33,9 @@ export default class Dropdown extends React.Component<Props,States> {
 
     getLink(item: any): any {
         return (
-            <div className="item">
+            <div className="item" key={Utils.getTimeStamp()}>
                 <Link className="menu-item-link" to={item.path}
-                      onClick={() => this.props.routeChangeEvent()}
-                      key={item.title}>
+                      onClick={() => this.props.routeChangeEvent()}>
                     {item.title}
                 </Link>
             </div>

@@ -99,7 +99,7 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                     this.auction.applications.length > 0 &&
                     <ApplicationList auctionId={this.auction.id}
                                      items={this.auction.applications}
-                                     refreshHandler={this.refreshHandler}/>
+                                     refreshHandler={this.refreshHandler.bind(this)}/>
                 }
 
                 {

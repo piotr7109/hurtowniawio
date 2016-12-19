@@ -22,14 +22,12 @@ export default class ApplicationList extends React.Component<ApplicationListProp
 
     acceptOffer(): any {
         this.handleRequest()
-            .them((response: any) => {
-                let data = response.data;
-
-                if (data) {
+            .then((response: any) => {
+                if (response.data) {
+                    this.hideModalWindow();
                     this.props.refreshHandler();
                 }
             });
-
     }
 
     handleRequest(): any {
@@ -66,7 +64,7 @@ export default class ApplicationList extends React.Component<ApplicationListProp
                     let userInfo = `${item.user.login} (${item.user.status})`;
 
                     return (
-                        <div className="application-row">
+                        <div className="application-row" key={item.id}>
                             <span>{userInfo}</span>
                             <span>{item.date}</span>
                             <span>{item.preferredAmount}</span>
