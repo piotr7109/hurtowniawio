@@ -31,6 +31,11 @@ public class AuctionController {
         return AuctionService.getActiveAuctions(session);
     }
 
+    @GetMapping("/getArchiveAuctions")
+    public List<Auction> getArchiveAuctions(HttpSession session) {
+        return AuctionService.getArchiveAuctions(session);
+    }
+
     @PostMapping("/getAuctionById")
     public Auction getAuctionById(HttpSession session, @RequestParam("auctionId") String auctionId) {
         return AuctionService.getAuctionById(session, auctionId);

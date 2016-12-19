@@ -54,11 +54,22 @@ public class AuctionService {
         if (UserUtils.checkUserType(session, "hurtownik")) {
             auctions = AuctionHelper.getActiveAuctions(true);
         } else if (UserUtils.checkUserType(session, "rolnik")) {
-            auctions = AuctionHelper.getActiveAuctions(true);
+            auctions = AuctionHelper.getActiveAuctions(false);
         }
 
         return auctions;
     }
+    protected static List<Auction> getArchiveAuctions(HttpSession session) {
+        HibernateBase.closeEntityManagers();
+        List<Auction> auctions = null;
+
+        if (UserUtils.checkUserType(session, "hurtownik")) {
+            auctions = AuctionHelper.getArchiveAuctions(true);
+        }
+
+        return auctions;
+    }
+
 
     protected static Auction getAuctionById(HttpSession session, String auctionId) {
         HibernateBase.closeEntityManagers();

@@ -37,8 +37,12 @@ public class AuctionHelper extends BaseHelper {
         return false;
     }
 
-    public static List<Auction> getActiveAuctions(boolean widthApplications) {
-        return getAuctions("A", widthApplications);
+    public static List<Auction> getActiveAuctions(boolean withApplications) {
+        return getAuctions("A", withApplications);
+    }
+
+    public static List<Auction> getArchiveAuctions(boolean withApplications) {
+        return getAuctions("X", withApplications);
     }
 
     public static List<Auction> getAuctions(String state, boolean withApplications) {
