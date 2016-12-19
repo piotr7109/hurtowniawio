@@ -3,9 +3,10 @@
 
 //template
 @import "settings/settings";
-@import "template/AppWrapper";
-
 
 //components
 @import "../template/**/*";
 @import "../components/**/*";
+
+//animations
+@import "animations/animations";
