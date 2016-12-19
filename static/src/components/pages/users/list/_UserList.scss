@@ -38,6 +38,23 @@
 
     td {
       width: calc(100% / 10);
+
+      &:last-child {
+
+
+        .action-icon {
+          display: inline;
+
+          &:first-child {
+            margin-right: 10px;
+          }
+
+          &:hover {
+            cursor: pointer;
+            color: $seagreen;
+          }
+        }
+      }
     }
   }
 }
