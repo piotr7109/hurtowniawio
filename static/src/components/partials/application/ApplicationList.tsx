@@ -3,8 +3,7 @@ import JsonUtils from "../../../utils/JsonUtils";
 import ModalWindow from "../system/modalWindow/ModalWindow";
 
 interface ApplicationListProps {
-    auctionId: number;
-    items: any;
+    auction: any;
     refreshHandler: any;
 }
 
@@ -32,7 +31,7 @@ export default class ApplicationList extends React.Component<ApplicationListProp
 
     handleRequest(): any {
         let applicationId: number = this.selectedItem.id,
-            auctionId: number = this.props.auctionId,
+            auctionId: number = this.props.auction.id,
             formData: FormData = new FormData();
 
         formData.append('auctionId', auctionId);
@@ -50,7 +49,19 @@ export default class ApplicationList extends React.Component<ApplicationListProp
         this.setState({modalVisible: false});
     }
 
+    private isVictoriousAplication(item: any): any {
+        let vApplication = this.props.auction.victoriousApplication;
+
+        if (vApplication && vApplication.id === item.id) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     render() {
+        let auctionFinished = this.props.auction.state === 'X';
+
         return (
             <div className="ApplicationList">
                 <div className="application-header">
@@ -58,21 +69,24 @@ export default class ApplicationList extends React.Component<ApplicationListProp
                     <span>Data</span>
                     <span>Stawka</span>
                     <span>Ilość</span>
-                    <span>Przyjmij ofertę</span>
+                    {!auctionFinished &&
+                    <span>Przyjmij ofertę</span>}
                 </div>
-                {this.props.items.map((item: any) => {
-                    let userInfo = `${item.user.login} (${item.user.status})`;
+                {this.props.auction.applications.map((item: any) => {
+                    let userInfo = `${item.user.login} (${item.user.status})`,
+                        victoriousOfferCssClass = this.isVictoriousAplication(item) ? 'victorious ' : '';
 
                     return (
-                        <div className="application-row" key={item.id}>
+                        <div className={victoriousOfferCssClass + "application-row"} key={item.id}>
                             <span>{userInfo}</span>
                             <span>{item.date}</span>
                             <span>{item.preferredAmount}</span>
                             <span>{item.price}</span>
+                            {!auctionFinished &&
                             <span>
                                 <i className="icon-ok"
                                    onClick={() => this.showModalWindow(item)}/>
-                            </span>
+                            </span>}
                         </div>
                     );
                 })}
@@ -86,4 +100,6 @@ export default class ApplicationList extends React.Component<ApplicationListProp
             </div>
         )
     }
+
+
 }
