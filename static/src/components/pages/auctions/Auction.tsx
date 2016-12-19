@@ -61,10 +61,13 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
     }
 
     renderHTML() {
+        let auctionFinished = this.auction.state === 'X',
+            auctionCssClass = auctionFinished ? 'Auction finished' : 'Auction ';
         return (
-            <div className="Auction">
+            <div className={auctionCssClass}>
                 <div className="header">
                     {this.auction.title}
+                    <div className="finished-auction">Zakończona</div>
                 </div>
                 <div className="content">
                     <div className="left-panel">
@@ -97,8 +100,7 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                 {
                     UserUtils.checkUserType(UserUtils.userTypes.hurtownik) &&
                     this.auction.applications.length > 0 &&
-                    <ApplicationList auctionId={this.auction.id}
-                                     items={this.auction.applications}
+                    <ApplicationList auction={this.auction}
                                      refreshHandler={this.refreshHandler.bind(this)}/>
                 }
 

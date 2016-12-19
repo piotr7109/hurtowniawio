@@ -8,11 +8,33 @@
     display: flex;
     justify-content: center;
     background: $seagreen;
+    color: $white;
     margin-bottom: 30px;
     border-radius: 10px;
     box-shadow: 2px 2px 2px 2px $darker-white;
     font-size: 26px;
     font-weight: 500;
+    position: relative;
+
+    .finished-auction {
+      display: none;
+      position: absolute;
+      top: 25px;
+      right: -25px;
+      transform: rotate(45deg);
+      color: red;
+
+    }
+  }
+
+  &.finished {
+    .header {
+      background: $gray;
+
+      .finished-auction {
+        display: block;
+      }
+    }
   }
 
   .content {

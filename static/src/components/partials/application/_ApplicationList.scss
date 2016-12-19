@@ -16,7 +16,7 @@
     font-size: 16px;
     color: $white;
     background: $seagreen-light;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
   }
 
   .application-row {
@@ -26,8 +26,17 @@
       background: $lemon-chiffon;
     }
 
+    &:last-child {
+      border-radius: 0 0 5px 5px;
+    }
+
     &:hover {
       background: $light-claret;
+    }
+
+    &.victorious {
+      background: $gray;
+      color: $white;
     }
   }
 }
