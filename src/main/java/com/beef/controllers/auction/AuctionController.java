@@ -35,4 +35,9 @@ public class AuctionController {
     public Auction getAuctionById(HttpSession session, @RequestParam("auctionId") String auctionId) {
         return AuctionService.getAuctionById(session, auctionId);
     }
+
+    @PostMapping("/getUserAuctions")
+    public List<Auction> getUserAuctions(HttpSession session) {
+        return AuctionService.getUserAuctions(session);
+    }
 }
