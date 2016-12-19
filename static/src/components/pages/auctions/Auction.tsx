@@ -97,7 +97,9 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                 {
                     UserUtils.checkUserType(UserUtils.userTypes.hurtownik) &&
                     this.auction.applications.length > 0 &&
-                    <ApplicationList items={this.auction.applications} refreshHandler={this.refreshHandler}/>
+                    <ApplicationList auctionId={this.auction.id}
+                                     items={this.auction.applications}
+                                     refreshHandler={this.refreshHandler}/>
                 }
 
                 {
