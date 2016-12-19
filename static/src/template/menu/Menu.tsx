@@ -20,9 +20,8 @@ export default class Menu extends React.Component<Properties, {}> {
                 let itemList = item[property];
 
                 return (
-                    <div className="menu-item"
-                         key={Utils.getTimeStamp()}>
-                        <Dropdown items={itemList} header={property} routeChangeEvent={this.handleRouteChange}/>
+                    <div className="menu-item" key={property}>
+                        <Dropdown items={itemList} header={property} routeChangeEvent={this.handleRouteChange.bind(this)}/>
                     </div>
                 );
             }
