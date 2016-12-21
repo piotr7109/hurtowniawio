@@ -93,16 +93,23 @@ public class AuctionService {
         return resultAuction;
     }
 
-    protected static List<Auction> getUserAuctions(HttpSession session) {
+    protected static List<Auction> getWholesalerAuctions(HttpSession session) {
         HibernateBase.closeEntityManagers();
-        List<Auction> resultAuction = null;
-        long userId = UserUtils.getSessionUser(session).getId();
 
         if (UserUtils.isUserAuthenticated(session)) {
-            resultAuction = AuctionHelper.getUserAuctions(userId);
+            long userId = UserUtils.getSessionUser(session).getId();
+            return AuctionHelper.getWholersalerAuctions(userId);
         }
+        return null;
+    }
 
-        return resultAuction;
+    protected static List<Auction> getFarmerAuctions(HttpSession session) {
+        HibernateBase.closeEntityManagers();
 
+        if (UserUtils.isUserAuthenticated(session)) {
+            long userId = UserUtils.getSessionUser(session).getId();
+            return AuctionHelper.getFarmerAuctions(userId);
+        }
+        return null;
     }
 }

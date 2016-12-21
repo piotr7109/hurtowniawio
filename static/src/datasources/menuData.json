@@ -9,6 +9,10 @@
           "path": "/auctionList"
         },
         {
+          "title": "Lista Przetargów (Rolnik)",
+          "path": "/farmerAuctions"
+        },
+        {
           "title": "Nowy przetarg",
           "path": "/addAuction"
         },

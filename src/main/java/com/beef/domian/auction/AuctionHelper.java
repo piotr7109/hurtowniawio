@@ -74,9 +74,9 @@ public class AuctionHelper extends BaseHelper {
         return auctions;
     }
 
-    public static List<Auction> getUserAuctions(long userId) {
+    private static List<Auction> getUserAuctions(String queryValue, long userId) {
         List<Auction> auctions;
-        TypedQuery<Auction> query = HibernateBase.entityManager.createQuery("select a from Auction a where a.user.id =:userId", Auction.class);
+        TypedQuery<Auction> query = HibernateBase.entityManager.createQuery(queryValue, Auction.class);
         query.setParameter("userId", userId);
 
         try {
@@ -92,4 +92,16 @@ public class AuctionHelper extends BaseHelper {
 
         return auctions;
     }
-}
+
+    public static List<Auction> getWholersalerAuctions(long userId) {
+        String query = "select a from Auction a where a.user.id =:userId";
+
+        return getUserAuctions(query, userId);
+    }
+
+    public static List<Auction> getFarmerAuctions(long userId) {
+        String query = "select a from Auction a inner join a.applications app where app.user.id =:userId and a.state = 'A'";
+
+        return getUserAuctions(query, userId);
+    }
+ }

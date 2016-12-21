@@ -47,7 +47,13 @@ public class AuctionController {
     }
 
     @GetMapping("/getUserAuctions")
-    public List<Auction> getUserAuctions(HttpSession session) {
-        return AuctionService.getUserAuctions(session);
+    public List<Auction> getWholesalerAuctions(HttpSession session) {
+        return AuctionService.getWholesalerAuctions(session);
+    }
+
+
+    @GetMapping("/getFarmerAuctions")
+    public List<Auction> getFarmerAuctions(HttpSession session) {
+        return AuctionService.getFarmerAuctions(session);
     }
 }
