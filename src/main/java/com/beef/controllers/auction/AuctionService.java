@@ -16,8 +16,8 @@ import java.util.List;
 public class AuctionService {
 
     protected static Auction addAuction(HttpSession session, String auctionData, String itemData) throws IOException {
-        Auction resultAuction = null;
         HibernateBase.closeEntityManagers();
+        Auction resultAuction = null;
 
         if (UserUtils.checkUserType(session, "hurtownik")) {
             Auction auction = new ObjectMapper().readValue(auctionData, Auction.class);
@@ -35,16 +35,26 @@ public class AuctionService {
     }
 
     protected static boolean finishAuction(HttpSession session, String _auctionId, String _applicationId) {
-        boolean result = false;
         HibernateBase.closeEntityManagers();
 
         if (UserUtils.checkUserType(session, "hurtownik")) {
             long auctionId = Long.parseLong(_auctionId);
             long applicationId = Long.parseLong(_applicationId);
 
-            result = AuctionHelper.finishAuction(auctionId, applicationId);
+            return AuctionHelper.finishAuction(auctionId, applicationId);
         }
-        return result;
+        return false;
+    }
+
+    protected static boolean closeAuction(HttpSession session, String _auctionId) {
+        HibernateBase.closeEntityManagers();
+
+        if (UserUtils.checkUserType(session, "hurtownik")) {
+            long auctionId = Long.parseLong(_auctionId);
+
+            return AuctionHelper.closeAuction(auctionId);
+        }
+        return false;
     }
 
     protected static List<Auction> getActiveAuctions(HttpSession session) {
@@ -59,6 +69,7 @@ public class AuctionService {
 
         return auctions;
     }
+
     protected static List<Auction> getArchiveAuctions(HttpSession session) {
         HibernateBase.closeEntityManagers();
         List<Auction> auctions = null;

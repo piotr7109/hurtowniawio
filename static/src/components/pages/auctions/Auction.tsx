@@ -56,8 +56,16 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
     }
 
     refreshHandler() {
-        this.setState({mode: -10} as AuctionStates);
+        this.setState({mode: this.modes.loading} as AuctionStates);
         this.loadAuction();
+    }
+
+    private closeAuction() {
+        let formData: FormData = new FormData();
+
+        formData.append('auctionId', this.auction.id);
+        JsonUtils.handlePOST('/closeAuction', formData)
+            .then(() => this.refreshHandler());
     }
 
     renderHTML() {
@@ -90,9 +98,15 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                             <span>{this.auction.description}</span>
                         </p>
                         {
+                            UserUtils.checkUserType(UserUtils.userTypes.rolnik) && !auctionFinished &&
+                            <button className="buttonSubmit" onClick={() => {this.closeAuction()}}>
+                                Zamknij przetarg
+                            </button>
+                        }
+                        {
                             UserUtils.checkUserType(UserUtils.userTypes.rolnik) &&
                             <button className="buttonSubmit" onClick={() => {this.showModalWindow()}}>
-                                Dodaj aplikację
+                                Weź udział
                             </button>
                         }
                     </div>
@@ -103,7 +117,6 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                     <ApplicationList auction={this.auction}
                                      refreshHandler={this.refreshHandler.bind(this)}/>
                 }
-
                 {
                     this.state.modalVisible &&
                     <ModalWindow hide={this.hideModalWindow.bind(this)}>

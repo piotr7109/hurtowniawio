@@ -30,11 +30,20 @@ public class AuctionHelper extends BaseHelper {
             auction.setState("X");
             auction.setVictoriousApplication(application);
             persist(auction);
-
-            return true;
         }
 
-        return false;
+        return auction != null;
+    }
+
+    public static boolean closeAuction(long auctionId) {
+        Auction auction = HibernateBase.entityManager.find(Auction.class, auctionId);
+
+        if (auction != null) {
+            auction.setState("X");
+            persist(auction);
+        }
+
+        return auction != null;
     }
 
     public static List<Auction> getActiveAuctions(boolean withApplications) {

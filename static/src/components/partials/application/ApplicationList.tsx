@@ -49,14 +49,10 @@ export default class ApplicationList extends React.Component<ApplicationListProp
         this.setState({modalVisible: false});
     }
 
-    private isVictoriousAplication(item: any): any {
+    private isVictoriousApplication(item: any): any {
         let vApplication = this.props.auction.victoriousApplication;
 
-        if (vApplication && vApplication.id === item.id) {
-            return true;
-        } else {
-            return false;
-        }
+        return vApplication && vApplication.id === item.id;
     }
 
     render() {
@@ -74,7 +70,7 @@ export default class ApplicationList extends React.Component<ApplicationListProp
                 </div>
                 {this.props.auction.applications.map((item: any) => {
                     let userInfo = `${item.user.login} (${item.user.status})`,
-                        victoriousOfferCssClass = this.isVictoriousAplication(item) ? 'victorious ' : '';
+                        victoriousOfferCssClass = this.isVictoriousApplication(item) ? 'victorious ' : '';
 
                     return (
                         <div className={victoriousOfferCssClass + "application-row"} key={item.id}>

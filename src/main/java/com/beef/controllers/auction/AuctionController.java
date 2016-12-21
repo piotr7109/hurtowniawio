@@ -26,6 +26,11 @@ public class AuctionController {
         return AuctionService.finishAuction(session, auctionId, applicationId);
     }
 
+    @PostMapping("/closeAuction")
+    public boolean closeAuction(HttpSession session, @RequestParam("auctionId") String auctionId) {
+        return AuctionService.closeAuction(session, auctionId);
+    }
+
     @GetMapping("/getActiveAuctions")
     public List<Auction> getActiveAuctions(HttpSession session) {
         return AuctionService.getActiveAuctions(session);
