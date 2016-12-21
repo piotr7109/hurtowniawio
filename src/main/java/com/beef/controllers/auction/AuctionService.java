@@ -72,25 +72,23 @@ public class AuctionService {
 
     protected static List<Auction> getArchiveAuctions(HttpSession session) {
         HibernateBase.closeEntityManagers();
-        List<Auction> auctions = null;
 
         if (UserUtils.checkUserType(session, "hurtownik")) {
-            auctions = AuctionHelper.getArchiveAuctions(true);
+            return AuctionHelper.getArchiveAuctions(true);
         }
 
-        return auctions;
+        return null;
     }
 
 
     protected static Auction getAuctionById(HttpSession session, String auctionId) {
         HibernateBase.closeEntityManagers();
-        Auction resultAuction = null;
 
         if (UserUtils.isUserAuthenticated(session)) {
-            resultAuction = AuctionHelper.getAuctionById(Long.parseLong(auctionId));
+            return AuctionHelper.getAuctionById(Long.parseLong(auctionId));
         }
 
-        return resultAuction;
+        return null;
     }
 
     protected static List<Auction> getWholesalerAuctions(HttpSession session) {
