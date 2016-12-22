@@ -73,7 +73,7 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
     }
 
     refreshHandler() {
-        this.setState({mode: this.modes.loading} as AuctionStates);
+        this.updateMode(this.modes.loading);
         this.loadAuction();
     }
 
