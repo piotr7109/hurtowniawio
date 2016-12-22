@@ -110,4 +110,19 @@ public class AuctionService {
         }
         return null;
     }
+
+    public static boolean hasUserParticipated(HttpSession session, String _auctionId) {
+        List<Auction> auctions = getFarmerAuctions(session);
+
+        if (auctions != null) {
+            long auctionId = Long.parseLong(_auctionId);
+            for (Auction auction : auctions) {
+                if (auction.getId() == auctionId) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }

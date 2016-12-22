@@ -16,13 +16,13 @@ import java.util.Date;
 
 public class ApplicationService {
 
-    public static boolean removeApplication(HttpSession session, String applicationId) {
+    public static boolean removeApplication(HttpSession session, String _auctionId) {
         HibernateBase.closeEntityManagers();
-        long id = Long.parseLong(applicationId);
 
         if (UserUtils.checkUserType(session, "rolnik")) {
             long userId = UserUtils.getSessionUser(session).getId();
-            return ApplicationHelper.removeApplication(id, userId);
+            long auctionId = Long.parseLong(_auctionId);
+            return ApplicationHelper.removeApplication(auctionId, userId);
         }
 
         return false;

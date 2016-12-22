@@ -14,6 +14,8 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
 
     auction: any;
 
+    hasUserParticipated = false;
+
     allowedUsers = [
         UserUtils.userTypes.dostawca,
         UserUtils.userTypes.hurtownik,
@@ -42,6 +44,21 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                     this.auction = data;
                 }
 
+                return newMode;
+            })
+            .then((newMode: number) => {
+                let formData: FormData = new FormData();
+
+                formData.append('auctionId', this.auction.id);
+                return JsonUtils.handlePOST('/hasUserParticipated', formData)
+                    .then((response: any) => {
+                        let data = response.data;
+
+                        this.hasUserParticipated = data;
+                        return newMode = data && newMode ? this.modes.success : this.modes.fail;
+                    });
+            })
+            .then((newMode: number) => {
                 this.updateMode(newMode);
             });
     }
@@ -68,9 +85,40 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
             .then(() => this.refreshHandler());
     }
 
+    private cancelOffer() {
+        let formData: FormData = new FormData();
+
+        formData.append('auctionId', this.auction.id);
+        JsonUtils.handlePOST('/removeApplication', formData) //TODO
+            .then(() => this.refreshHandler());
+    }
+
+    private getFarmerControls(auctionFinished: boolean) {
+        if (!auctionFinished) {
+            if (!this.hasUserParticipated) {
+                return (
+                    <button className="buttonSubmit" onClick={() => {this.showModalWindow()}}>
+                        Weź udział
+                    </button>
+                );
+            } else {
+                return (
+                    <button className="buttonSubmit" onClick={() => {this.cancelOffer()}}>
+                        ZrezyGNÓJ
+                    </button>
+                );
+            }
+        } else {
+            return null;
+        }
+    }
+
     renderHTML() {
         let auctionFinished = this.auction.state === 'X',
-            auctionCssClass = auctionFinished ? 'Auction finished' : 'Auction ';
+            auctionCssClass = auctionFinished ? 'Auction finished' : 'Auction ',
+            isFarmer = UserUtils.checkUserType(UserUtils.userTypes.rolnik),
+            isWholesaler = UserUtils.checkUserType(UserUtils.userTypes.hurtownik);
+
         return (
             <div className={auctionCssClass}>
                 <div className="header">
@@ -98,21 +146,16 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                             <span>{this.auction.description}</span>
                         </p>
                         {
-                            UserUtils.checkUserType(UserUtils.userTypes.rolnik) && !auctionFinished &&
+                            isWholesaler && !auctionFinished &&
                             <button className="buttonSubmit" onClick={() => {this.closeAuction()}}>
                                 Zamknij przetarg
                             </button>
                         }
-                        {
-                            UserUtils.checkUserType(UserUtils.userTypes.rolnik) &&
-                            <button className="buttonSubmit" onClick={() => {this.showModalWindow()}}>
-                                Weź udział
-                            </button>
-                        }
+                        {isFarmer && this.getFarmerControls(auctionFinished)}
                     </div>
                 </div>
                 {
-                    UserUtils.checkUserType(UserUtils.userTypes.hurtownik) &&
+                    isWholesaler &&
                     this.auction.applications.length > 0 &&
                     <ApplicationList auction={this.auction}
                                      refreshHandler={this.refreshHandler.bind(this)}/>

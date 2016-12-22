@@ -56,4 +56,9 @@ public class AuctionController {
     public List<Auction> getFarmerAuctions(HttpSession session) {
         return AuctionService.getFarmerAuctions(session);
     }
+
+    @PostMapping("/hasUserParticipated")
+    public boolean hasUserParticipated(HttpSession session, @RequestParam("auctionId") String auctionId) {
+        return AuctionService.hasUserParticipated(session, auctionId);
+    }
 }
