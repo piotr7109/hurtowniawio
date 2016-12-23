@@ -57,7 +57,7 @@ export class EditUserDataForm extends RegisterForm {
     getSuccessMessage() {
         return (
             <div>
-                <SuccessMessage>Dane zostały zmienione!</SuccessMessage>
+                <SuccessMessage >Dane zostały zmienione!</SuccessMessage>
                 <Link to="/">Wróć na stronę głóną</Link>
             </div>
         );

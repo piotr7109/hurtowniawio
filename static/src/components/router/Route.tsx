@@ -10,8 +10,10 @@ import UserList from "../pages/users/list/UserList";
 import AuctionList from "../pages/auctions/list/AuctionList";
 import Auction from "../pages/auctions/Auction";
 import UserAuctionList from "../pages/auctions/list/UserAuctionList";
-import ArchiveAuctionList from "../pages/auctions/list/ArchiveAuctionList";
 import FarmerAuctionList from "../pages/auctions/list/FarmerAuctionList";
+import FinishedAuctionList from "../pages/auctions/list/FinishedAuctionList";
+import DeliverAuctions from "../pages/auctions/list/DeliverAuctions";
+import EditUserDataAdminForm from "../pages/users/EditUserDataAdminForm";
 import ItemsList from "../pages/items/ItemsList";
 
 export default class IndexComponent extends React.Component<{}, {}> {
@@ -28,8 +30,10 @@ export default class IndexComponent extends React.Component<{}, {}> {
                     <Route path="/userList" component={UserList}/>
                     <Route path="/auction/:id" component={Auction}/>
                     <Route path="/userAuctions" component={UserAuctionList}/>
-                    <Route path="/archiveAuctions" component={ArchiveAuctionList}/>
+                    <Route path="/finishedAuctions" component={FinishedAuctionList}/>
                     <Route path="/farmerAuctions" component={FarmerAuctionList}/>
+                    <Route path="/deliverAuctions" component={DeliverAuctions}/>
+                    <Route path="/editUserAdmin/:id" component={EditUserDataAdminForm}/>
                     <Route path="/itemsList" component={ItemsList}/>
                     <Route path='/*' component={Error404}/>
                 </Route>

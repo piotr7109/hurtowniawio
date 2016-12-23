@@ -1,12 +1,10 @@
 import * as React from 'react';
 import {BasePage, BaseStates, BaseProps} from "../BasePage";
 import UserUtils from "../../../utils/UserUtils";
-import AddApplicationForm from "../applications/AddApplicationForm";
-import ModalWindow from "../../partials/system/modalWindow/ModalWindow";
 import JsonUtils from "../../../utils/JsonUtils";
-import ApplicationList from "../../partials/application/ApplicationList";
+import AuctionHelper from "./AuctionHelper";
 
-interface AuctionStates extends BaseStates {
+export interface AuctionStates extends BaseStates {
     modalVisible: boolean;
 }
 
@@ -27,10 +25,11 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
             mode: this.modes.loading,
             modalVisible: false
         } as AuctionStates);
+        AuctionHelper.setAuction(this);
         this.loadAuction();
     }
 
-    loadAuction() {
+    private loadAuction() {
         let formData: FormData = new FormData(),
             auctionId = this.props.params.id;
 
@@ -55,7 +54,7 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                         let data = response.data;
 
                         this.hasUserParticipated = data;
-                        return newMode = data && newMode ? this.modes.success : this.modes.fail;
+                        return data && newMode ? this.modes.success : this.modes.fail;
                     });
             })
             .then((newMode: number) => {
@@ -63,61 +62,18 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
             });
     }
 
-    showModalWindow() {
-        this.setState({modalVisible: true} as AuctionStates);
-    }
-
-    hideModalWindow() {
-        this.loadAuction()
-            .then(() => this.setState({modalVisible: false} as AuctionStates));
-    }
-
-    refreshHandler() {
+    public refreshHandler() {
         this.updateMode(this.modes.loading);
-        this.loadAuction();
-    }
-
-    private closeAuction() {
-        let formData: FormData = new FormData();
-
-        formData.append('auctionId', this.auction.id);
-        JsonUtils.handlePOST('/closeAuction', formData)
-            .then(() => this.refreshHandler());
-    }
-
-    private cancelOffer() {
-        let formData: FormData = new FormData();
-
-        formData.append('auctionId', this.auction.id);
-        JsonUtils.handlePOST('/removeApplication', formData) //TODO
-            .then(() => this.refreshHandler());
-    }
-
-    private getFarmerControls(auctionFinished: boolean) {
-        if (!auctionFinished) {
-            if (!this.hasUserParticipated) {
-                return (
-                    <button className="buttonSubmit" onClick={() => {this.showModalWindow()}}>
-                        Weź udział
-                    </button>
-                );
-            } else {
-                return (
-                    <button className="buttonSubmit" onClick={() => {this.cancelOffer()}}>
-                        ZrezyGNÓJ
-                    </button>
-                );
-            }
-        } else {
-            return null;
-        }
+        return this.loadAuction();
     }
 
     renderHTML() {
         let auctionFinished = this.auction.state === 'X',
             auctionCssClass = auctionFinished ? 'Auction finished' : 'Auction ',
             isFarmer = UserUtils.checkUserType(UserUtils.userTypes.rolnik),
-            isWholesaler = UserUtils.checkUserType(UserUtils.userTypes.hurtownik);
+            isWholesaler = UserUtils.checkUserType(UserUtils.userTypes.hurtownik),
+            isDeliver = UserUtils.checkUserType(UserUtils.userTypes.dostawca),
+            isAdmin = UserUtils.checkUserType(UserUtils.userTypes.admin);
 
         return (
             <div className={auctionCssClass}>
@@ -145,27 +101,14 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                             <span>Opis:</span>
                             <span>{this.auction.description}</span>
                         </p>
-                        {
-                            isWholesaler && !auctionFinished &&
-                            <button className="buttonSubmit" onClick={() => {this.closeAuction()}}>
-                                Zamknij przetarg
-                            </button>
-                        }
-                        {isFarmer && this.getFarmerControls(auctionFinished)}
+                        {isWholesaler && !auctionFinished && AuctionHelper.getWholesalerControls()}
+                        {isFarmer && !auctionFinished && AuctionHelper.getFarmerControls()}
+                        {isDeliver && auctionFinished && AuctionHelper.getDeliverControls(this.auction.deliveryState)}
+                        {isAdmin && AuctionHelper.getAdminControls()}
                     </div>
                 </div>
-                {
-                    isWholesaler &&
-                    this.auction.applications.length > 0 &&
-                    <ApplicationList auction={this.auction}
-                                     refreshHandler={this.refreshHandler.bind(this)}/>
-                }
-                {
-                    this.state.modalVisible &&
-                    <ModalWindow hide={this.hideModalWindow.bind(this)}>
-                        <AddApplicationForm auctionId={this.auction.id} hide={this.hideModalWindow.bind(this)}/>
-                    </ModalWindow>
-                }
+                {isWholesaler && AuctionHelper.getApplicationList()}
+                {AuctionHelper.getModalWindow()}
             </div>
         );
     }

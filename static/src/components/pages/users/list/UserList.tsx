@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Link} from 'react-router';
 import {BasePage, BaseStates, BaseProps} from "../../BasePage";
 import UserUtils from "../../../../utils/UserUtils";
 import JsonUtils from "../../../../utils/JsonUtils";
@@ -52,6 +53,7 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
                 <td>
                     <div className="action-icon icon-cancel-circled" onClick={() => this.changeUserStatus(user, "X")} />
                     <div className="action-icon icon-arrows-cw" onClick={() => this.changeUserStatus(user, "A")} />
+                    <Link className="action-icon icon-arrows-cw" to={"/editUserAdmin/" + user.id} />
                 </td>
             </tr>
         );
