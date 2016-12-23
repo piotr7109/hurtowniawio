@@ -42,12 +42,34 @@ public class ItemService {
         return result;
     }
 
-    protected static List<Item> getItems(HttpSession session) {
+    protected static List<Item> getAllItems(HttpSession session) {
         HibernateBase.closeEntityManagers();
         List<Item> result = null;
 
         if (UserUtils.isUserAuthenticated(session)) {
-            result = ItemHelper.getItems();
+            result = ItemHelper.getAllItems();
+        }
+
+        return result;
+    }
+
+    protected static List<Item> getUnusedItems(HttpSession session) {
+        HibernateBase.closeEntityManagers();
+        List<Item> result = null;
+
+        if(UserUtils.isUserAuthenticated(session)) {
+            result = ItemHelper.getUnusedItems();
+        }
+
+        return result;
+    }
+
+    protected static List<Item> getUsedItems(HttpSession session) {
+        HibernateBase.closeEntityManagers();
+        List<Item> result = null;
+
+        if(UserUtils.isUserAuthenticated(session)) {
+            result = ItemHelper.getUsedItems();
         }
 
         return result;

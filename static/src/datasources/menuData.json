@@ -27,6 +27,10 @@
         {
           "title": "Archiwalne przetargi",
           "path": "/archiveAuctions"
+        },
+        {
+          "title": "Lista artykułów",
+          "path": "/itemsList"
         }
       ]
     },

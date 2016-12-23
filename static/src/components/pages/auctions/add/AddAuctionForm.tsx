@@ -15,7 +15,7 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
     }
 
     loadItems() {
-        JsonUtils.handleGET('/getItems').then((response: any) => {
+        JsonUtils.handleGET('/getAllItems').then((response: any) => {
             let data = response.data;
 
             if (data) {

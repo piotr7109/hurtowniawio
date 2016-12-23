@@ -12,9 +12,9 @@ public class ItemHelper extends BaseHelper {
         persist(item);
     }
 
-    public static List<Item> getItems() {
+    public static List<Item> getItems(String queryValue) {
         List<Item> items;
-        TypedQuery<Item> query = HibernateBase.entityManager.createQuery("select i from Item i", Item.class);
+        TypedQuery<Item> query = HibernateBase.entityManager.createQuery(queryValue, Item.class);
 
         try {
             items = query.getResultList();
@@ -28,5 +28,23 @@ public class ItemHelper extends BaseHelper {
     public static Item getItemById(long id) {
         Item item = HibernateBase.entityManager.find(Item.class, id);
         return item;
+    }
+
+    public static List<Item> getAllItems() {
+        String query = "select i from Item i";
+
+        return getItems(query);
+    }
+
+    public static List<Item> getUnusedItems() {
+        String query = "select distinct i from Auction a right join a.item i where a.id is null";
+
+        return getItems(query);
+    }
+
+    public static List<Item> getUsedItems() {
+        String query = "select distinct i from Auction a right join a.item i where a.id is not null";
+
+        return getItems(query);
     }
 }

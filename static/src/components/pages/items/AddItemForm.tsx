@@ -28,7 +28,7 @@ export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
 
         formData.append('image', imageData);
 
-        return JsonUtils.handlePOST(formData, url);
+        return JsonUtils.handlePOST(url, formData);
     }
 
     handleSubmit(event: any): any {
@@ -62,7 +62,7 @@ export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
         return (
             <div>
                 <SuccessMessage>
-                    Przedmiot został dodany do bazy przedmiotów
+                    Artykuł został dodany do bazy
                 </SuccessMessage>
                 <Link to='/'>Powrót na stronę główną</Link>
             </div>

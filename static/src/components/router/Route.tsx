@@ -12,6 +12,7 @@ import Auction from "../pages/auctions/Auction";
 import UserAuctionList from "../pages/auctions/list/UserAuctionList";
 import ArchiveAuctionList from "../pages/auctions/list/ArchiveAuctionList";
 import FarmerAuctionList from "../pages/auctions/list/FarmerAuctionList";
+import ItemsList from "../pages/items/ItemsList";
 
 export default class IndexComponent extends React.Component<{}, {}> {
 
@@ -29,6 +30,7 @@ export default class IndexComponent extends React.Component<{}, {}> {
                     <Route path="/userAuctions" component={UserAuctionList}/>
                     <Route path="/archiveAuctions" component={ArchiveAuctionList}/>
                     <Route path="/farmerAuctions" component={FarmerAuctionList}/>
+                    <Route path="/itemsList" component={ItemsList}/>
                     <Route path='/*' component={Error404}/>
                 </Route>
             </Router>
