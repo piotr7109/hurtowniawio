@@ -48,16 +48,11 @@ public class UserHelper extends BaseHelper {
         return canCreate;
     }
 
-    public static User updateUser(User oldUser, User user) {
-        User dbUser = null;
-
-        if (!isUserExisting(user)) {
-            HibernateBase.entityManager.getTransaction().begin();
-            dbUser = HibernateBase.entityManager.find(User.class, oldUser.getId());
-            dbUser.updateData(user);
-            HibernateBase.entityManager.getTransaction().commit();
-        }
-
+    public static User updateUser(long id, User user) {
+        HibernateBase.entityManager.getTransaction().begin();
+        User dbUser = HibernateBase.entityManager.find(User.class, id);
+        dbUser.updateData(user);
+        HibernateBase.entityManager.getTransaction().commit();
         return dbUser;
     }
 

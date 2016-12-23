@@ -12,6 +12,8 @@ import Auction from "../pages/auctions/Auction";
 import UserAuctionList from "../pages/auctions/list/UserAuctionList";
 import FarmerAuctionList from "../pages/auctions/list/FarmerAuctionList";
 import FinishedAuctionList from "../pages/auctions/list/FinishedAuctionList";
+import DeliverAuctions from "../pages/auctions/list/DeliverAuctions";
+import EditUserDataAdminForm from "../pages/users/EditUserDataAdminForm";
 
 export default class IndexComponent extends React.Component<{}, {}> {
 
@@ -29,6 +31,8 @@ export default class IndexComponent extends React.Component<{}, {}> {
                     <Route path="/userAuctions" component={UserAuctionList}/>
                     <Route path="/finishedAuctions" component={FinishedAuctionList}/>
                     <Route path="/farmerAuctions" component={FarmerAuctionList}/>
+                    <Route path="/deliverAuctions" component={DeliverAuctions}/>
+                    <Route path="/editUserAdmin/:id" component={EditUserDataAdminForm}/>
                     <Route path='/*' component={Error404}/>
                 </Route>
             </Router>

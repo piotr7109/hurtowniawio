@@ -3,6 +3,7 @@ package com.beef.domian.auction;
 import com.beef.core.hibernate.HibernateBase;
 import com.beef.domian.BaseHelper;
 import com.beef.domian.application.Application;
+import com.beef.domian.user.User;
 
 import javax.persistence.TypedQuery;
 import java.util.Date;
@@ -46,6 +47,18 @@ public class AuctionHelper extends BaseHelper {
         return auction != null;
     }
 
+    public static boolean changeDeliveryStatus(long auctionId, String state, User user) {
+        Auction auction = HibernateBase.entityManager.find(Auction.class, auctionId);
+
+        if (auction != null) {
+            auction.setDeliver(user);
+            auction.setDeliveryState(state);
+            persist(auction);
+        }
+
+        return auction != null;
+    }
+
     public static List<Auction> getActiveAuctions(boolean withApplications) {
         return getAuctions("A", withApplications);
     }
@@ -56,7 +69,7 @@ public class AuctionHelper extends BaseHelper {
 
     public static List<Auction> getAuctions(String state, boolean withApplications) {
         List<Auction> auctions;
-        TypedQuery<Auction> query = HibernateBase.entityManager.createQuery("select a from Auction a where a.state = :state", Auction.class);
+        TypedQuery<Auction> query = HibernateBase.entityManager.createQuery("select a from Auction a where a.state = :state and a.deliveryState is null", Auction.class);
         query.setParameter("state", state);
 
         try {
@@ -85,15 +98,14 @@ public class AuctionHelper extends BaseHelper {
                 auction.clearUser();
                 auction.setApplications(null);
             });
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             auctions = null;
         }
 
         return auctions;
     }
 
-    public static List<Auction> getWholersalerAuctions(long userId) {
+    public static List<Auction> getWholesalerAuctions(long userId) {
         String query = "select a from Auction a where a.user.id =:userId";
 
         return getUserAuctions(query, userId);
@@ -104,4 +116,18 @@ public class AuctionHelper extends BaseHelper {
 
         return getUserAuctions(query, userId);
     }
- }
+
+    public static List<Auction> getUnfinishedDeliveries(long userId) {
+        String query = "select a from Auction a where a.deliveryState = 'A' and a.deliver.id = :userId";
+        return getUserAuctions(query, userId);
+    }
+
+    public static void removeAuction(long auctionId) {
+        Auction auction = HibernateBase.entityManager.find(Auction.class, auctionId);
+
+        HibernateBase.entityManager.getTransaction().begin();
+        HibernateBase.entityManager.remove(auction);
+        HibernateBase.entityManager.getTransaction().commit();
+
+    }
+}

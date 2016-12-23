@@ -57,6 +57,17 @@ public class AuctionService {
         return false;
     }
 
+    protected static boolean changeDeliveryStatus(HttpSession session, String _auctionId, String state) {
+        HibernateBase.closeEntityManagers();
+
+        if (UserUtils.checkUserType(session, "dostawca")) {
+            long auctionId = Long.parseLong(_auctionId);
+
+            return AuctionHelper.changeDeliveryStatus(auctionId, state, UserUtils.getSessionUser(session));
+        }
+        return false;
+    }
+
     protected static List<Auction> getActiveAuctions(HttpSession session) {
         HibernateBase.closeEntityManagers();
         List<Auction> auctions = null;
@@ -96,7 +107,7 @@ public class AuctionService {
 
         if (UserUtils.isUserAuthenticated(session)) {
             long userId = UserUtils.getSessionUser(session).getId();
-            return AuctionHelper.getWholersalerAuctions(userId);
+            return AuctionHelper.getWholesalerAuctions(userId);
         }
         return null;
     }
@@ -107,6 +118,16 @@ public class AuctionService {
         if (UserUtils.isUserAuthenticated(session)) {
             long userId = UserUtils.getSessionUser(session).getId();
             return AuctionHelper.getFarmerAuctions(userId);
+        }
+        return null;
+    }
+
+    protected static List<Auction> getUnfinishedDeliveries(HttpSession session) {
+        HibernateBase.closeEntityManagers();
+
+        if (UserUtils.isUserAuthenticated(session)) {
+            long userId = UserUtils.getSessionUser(session).getId();
+            return AuctionHelper.getUnfinishedDeliveries(userId);
         }
         return null;
     }
@@ -122,7 +143,12 @@ public class AuctionService {
                 }
             }
         }
-
         return false;
+    }
+
+    public static void removeAuction(HttpSession session, String auctionId) {
+        if (UserUtils.checkUserType(session, "admin")) {
+            AuctionHelper.removeAuction(Long.parseLong(auctionId));
+        }
     }
 }

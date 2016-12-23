@@ -14,12 +14,22 @@ public class UserService {
 
     public static User updateUser(HttpSession session, User user) {
         HibernateBase.closeEntityManagers();
-        User newUser = UserHelper.updateUser((User) session.getAttribute(Utils.sessionUserName), user);
+        User sessionUser = UserUtils.getSessionUser(session);
+        User newUser = UserHelper.updateUser(sessionUser.getId(), user);
         if (newUser != null) {
             session.setAttribute(Utils.sessionUserName, newUser);
         }
 
         return newUser;
+    }
+
+    public static User updateUserByAdmin(HttpSession session, User userData) {
+        HibernateBase.closeEntityManagers();
+
+        if (UserUtils.checkUserType(session, "admin")) {
+            return UserHelper.updateUser(userData.getId(), userData);
+        }
+        return null;
     }
 
     public static List<User> getUsers(HttpSession session) {
@@ -38,5 +48,19 @@ public class UserService {
         if (UserUtils.checkUserType(session, "admin")) {
             UserHelper.changeUserStatus(Long.parseLong(id), status);
         }
+    }
+
+    public static User getUserById(HttpSession session, String id) {
+        HibernateBase.closeEntityManagers();
+        long userId = Long.parseLong(id);
+
+        if (UserUtils.checkUserType(session, "admin")) {
+            User user = UserHelper.getUserById(userId);
+            user.setPassword("");
+
+            return user;
+        }
+
+        return null;
     }
 }

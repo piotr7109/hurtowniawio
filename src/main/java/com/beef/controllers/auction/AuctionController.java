@@ -31,6 +31,17 @@ public class AuctionController {
         return AuctionService.closeAuction(session, auctionId);
     }
 
+    @PostMapping("/startDelivery")
+    public boolean startDelivery(HttpSession session, @RequestParam("auctionId") String auctionId) {
+        return AuctionService.changeDeliveryStatus(session, auctionId, "A");
+    }
+
+    @PostMapping("/finishDelivery")
+    public boolean finishDelivery(HttpSession session, @RequestParam("auctionId") String auctionId) {
+        return AuctionService.changeDeliveryStatus(session, auctionId, "X");
+    }
+
+
     @GetMapping("/getActiveAuctions")
     public List<Auction> getActiveAuctions(HttpSession session) {
         return AuctionService.getActiveAuctions(session);
@@ -39,6 +50,11 @@ public class AuctionController {
     @GetMapping("/getFinishedAuctions")
     public List<Auction> getFinishedAuctions(HttpSession session) {
         return AuctionService.getFinishedAuctions(session);
+    }
+
+    @GetMapping("/getUnfinishedDeliveries")
+    public List<Auction> getUnfinishedDeliveries(HttpSession session) {
+        return AuctionService.getUnfinishedDeliveries(session);
     }
 
     @PostMapping("/getAuctionById")
@@ -61,4 +77,10 @@ public class AuctionController {
     public boolean hasUserParticipated(HttpSession session, @RequestParam("auctionId") String auctionId) {
         return AuctionService.hasUserParticipated(session, auctionId);
     }
+
+    @PostMapping("/removeAuction")
+    public void removeAuction(HttpSession session, @RequestParam("auctionId") String auctionId) {
+        AuctionService.removeAuction(session, auctionId);
+    }
+
 }

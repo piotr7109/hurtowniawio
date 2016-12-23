@@ -35,4 +35,18 @@ public class UserController {
     public void activateUser(HttpSession session, @RequestParam("userId") String id) throws IOException {
         UserService.changeUserStatus(session, id, "A");
     }
+
+    @PostMapping("/getUserById")
+    public User getUserById(HttpSession session, @RequestParam("userId") String id) {
+        return UserService.getUserById(session, id);
+    }
+
+    @PostMapping("/updateUserByAdmin")
+    public User updateUserByAdmin(HttpSession session,
+                                  @RequestParam("data") String userData,
+                                  @RequestParam("userId") String userId) throws IOException {
+        User user = new ObjectMapper().readValue(userData, User.class);
+        user.setId(Long.parseLong(userId));
+        return UserService.updateUserByAdmin(session, user);
+    }
 }

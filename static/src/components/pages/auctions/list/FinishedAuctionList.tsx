@@ -4,7 +4,10 @@ import AuctionList from "./AuctionList";
 
 export default class FinishedAuctionList extends AuctionList {
 
-    allowedUsers = [UserUtils.userTypes.hurtownik];
+    allowedUsers = [
+        UserUtils.userTypes.hurtownik,
+        UserUtils.userTypes.dostawca
+    ];
 
     protected requestPath = '/getFinishedAuctions';
 }

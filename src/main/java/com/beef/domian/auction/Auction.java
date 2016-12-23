@@ -36,6 +36,12 @@ public class Auction {
 
     private String state;
 
+    private String deliveryState;
+
+    @OneToOne
+    @JoinColumn(name = "deliverId")
+    private User deliver;
+
     @OneToMany
     @JoinColumn(name = "auctionId")
     private List<Application> applications;
@@ -114,6 +120,22 @@ public class Auction {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getDeliveryState() {
+        return deliveryState;
+    }
+
+    public void setDeliveryState(String deliveryState) {
+        this.deliveryState = deliveryState;
+    }
+
+    public User getDeliver() {
+        return deliver;
+    }
+
+    public void setDeliver(User deliver) {
+        this.deliver = deliver;
     }
 
     public List<Application> getApplications() {
