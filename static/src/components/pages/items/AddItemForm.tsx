@@ -28,7 +28,7 @@ export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
 
         formData.append('image', imageData);
 
-        return JsonUtils.handlePOST(formData, url);
+        return JsonUtils.handlePOST(url, formData);
     }
 
     handleSubmit(event: any): any {
