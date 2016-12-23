@@ -50,7 +50,7 @@ public class AuctionHelper extends BaseHelper {
         return getAuctions("A", withApplications);
     }
 
-    public static List<Auction> getArchiveAuctions(boolean withApplications) {
+    public static List<Auction> getFinishedAuctions(boolean withApplications) {
         return getAuctions("X", withApplications);
     }
 

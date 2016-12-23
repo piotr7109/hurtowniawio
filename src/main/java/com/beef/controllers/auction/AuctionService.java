@@ -70,11 +70,11 @@ public class AuctionService {
         return auctions;
     }
 
-    protected static List<Auction> getArchiveAuctions(HttpSession session) {
+    protected static List<Auction> getFinishedAuctions(HttpSession session) {
         HibernateBase.closeEntityManagers();
 
         if (UserUtils.checkUserType(session, "hurtownik")) {
-            return AuctionHelper.getArchiveAuctions(true);
+            return AuctionHelper.getFinishedAuctions(true);
         }
 
         return null;

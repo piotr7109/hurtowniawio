@@ -25,8 +25,8 @@
           "path": "/userAuctions"
         },
         {
-          "title": "Archiwalne przetargi",
-          "path": "/archiveAuctions"
+          "title": "Ukończone przetargi",
+          "path": "/finishedAuctions"
         }
       ]
     },
