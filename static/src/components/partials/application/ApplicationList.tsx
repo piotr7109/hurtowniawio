@@ -59,8 +59,8 @@ export default class ApplicationList extends React.Component<ApplicationListProp
         let auctionFinished = this.props.auction.state === 'X';
 
         return (
-            <div className="ApplicationList">
-                <div className="application-header">
+            <div className="ApplicationList generic-list">
+                <div className="list-header">
                     <span>Użytkownik</span>
                     <span>Data</span>
                     <span>Stawka</span>
@@ -70,10 +70,10 @@ export default class ApplicationList extends React.Component<ApplicationListProp
                 </div>
                 {this.props.auction.applications.map((item: any) => {
                     let userInfo = `${item.user.login} (${item.user.status})`,
-                        victoriousOfferCssClass = this.isVictoriousApplication(item) ? 'victorious ' : '';
+                        victoriousOfferCssClass = this.isVictoriousApplication(item) ? 'signed ' : '';
 
                     return (
-                        <div className={victoriousOfferCssClass + "application-row"} key={item.id}>
+                        <div className={victoriousOfferCssClass + "list-row"} key={item.id}>
                             <span>{userInfo}</span>
                             <span>{item.date}</span>
                             <span>{item.preferredAmount}</span>

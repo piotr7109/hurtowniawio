@@ -1,0 +1,65 @@
+.generic-list {
+  display: table;
+  .list-header,
+  .list-row {
+    display: table-row;
+    width: 100%;
+
+    span {
+      display: table-cell;
+    }
+  }
+
+  .list-header {
+    font-size: 16px;
+    color: $white;
+    background: $seagreen-light;
+
+    span {
+      padding: 5px;
+
+      &:first-child {
+        border-radius: 5px 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 5px 0 0;
+      }
+    }
+  }
+
+  .list-row {
+    span {
+      padding: 2px 5px;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    &:nth-child(2n) {
+      background: $lemon-chiffon;
+    }
+
+    &:last-child {
+      span {
+        &:first-child {
+          border-radius: 0 0 0 5px;
+        }
+
+        &:last-child {
+          border-radius: 0 0 5px 0;
+        }
+      }
+    }
+
+    &:hover {
+      background: $light-claret;
+    }
+
+    &.signed {
+      background: $gray;
+      color: $white;
+    }
+  }
+}

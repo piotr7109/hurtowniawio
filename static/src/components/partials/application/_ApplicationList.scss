@@ -1,42 +1,11 @@
 .ApplicationList {
   margin-top: 25px;
+  width: 80%;
 
-  .application-header,
-  .application-row {
-    width: 80%;
-
+  .list-header,
+  .list-row {
     span {
-      display: inline-block;
       width: 20%;
-    }
-  }
-
-  .application-header {
-    padding: 5px;
-    font-size: 16px;
-    color: $white;
-    background: $seagreen-light;
-    border-radius: 5px 5px 0 0;
-  }
-
-  .application-row {
-    padding: 2px;
-
-    &:nth-child(2n) {
-      background: $lemon-chiffon;
-    }
-
-    &:last-child {
-      border-radius: 0 0 5px 5px;
-    }
-
-    &:hover {
-      background: $light-claret;
-    }
-
-    &.victorious {
-      background: $gray;
-      color: $white;
     }
   }
 }

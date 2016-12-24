@@ -87,7 +87,7 @@ public class AuctionHelper extends BaseHelper {
         return auctions;
     }
 
-    private static List<Auction> getUserAuctions(String queryValue, long userId) {
+    private static List<Auction> getUserAuctions(String queryValue, long userId, boolean removeApplications) {
         List<Auction> auctions;
         TypedQuery<Auction> query = HibernateBase.entityManager.createQuery(queryValue, Auction.class);
         query.setParameter("userId", userId);
@@ -96,7 +96,9 @@ public class AuctionHelper extends BaseHelper {
             auctions = query.getResultList();
             auctions.forEach(auction -> {
                 auction.clearUser();
-                auction.setApplications(null);
+                if (removeApplications) {
+                    auction.setApplications(null);
+                }
             });
         } catch (Exception e) {
             auctions = null;
@@ -107,19 +109,17 @@ public class AuctionHelper extends BaseHelper {
 
     public static List<Auction> getWholesalerAuctions(long userId) {
         String query = "select a from Auction a where a.user.id =:userId";
-
-        return getUserAuctions(query, userId);
+        return getUserAuctions(query, userId, true);
     }
 
     public static List<Auction> getFarmerAuctions(long userId) {
         String query = "select a from Auction a inner join a.applications app where app.user.id =:userId and a.state = 'A'";
-
-        return getUserAuctions(query, userId);
+        return getUserAuctions(query, userId, true);
     }
 
     public static List<Auction> getUnfinishedDeliveries(long userId) {
         String query = "select a from Auction a where a.deliveryState = 'A' and a.deliver.id = :userId";
-        return getUserAuctions(query, userId);
+        return getUserAuctions(query, userId, true);
     }
 
     public static void removeAuction(long auctionId) {
@@ -128,6 +128,10 @@ public class AuctionHelper extends BaseHelper {
         HibernateBase.entityManager.getTransaction().begin();
         HibernateBase.entityManager.remove(auction);
         HibernateBase.entityManager.getTransaction().commit();
+    }
 
+    public static List<Auction> getFarmerWonAuctions(long userId) {
+        String query = "select a from Auction a where a.victoriousApplication.user.id = :userId";
+        return getUserAuctions(query, userId, true);
     }
 }

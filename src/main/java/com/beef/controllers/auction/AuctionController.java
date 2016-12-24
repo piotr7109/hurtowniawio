@@ -83,4 +83,9 @@ public class AuctionController {
         AuctionService.removeAuction(session, auctionId);
     }
 
+    @GetMapping("/getFarmerWonAuctions")
+    public List<Auction> getFarmerWonAuctions(HttpSession session) {
+        return AuctionService.getFarmerWonAuctions(session);
+    }
+
 }

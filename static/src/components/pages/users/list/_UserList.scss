@@ -40,10 +40,20 @@
       width: calc(100% / 10);
 
       &:last-child {
-
+        a {
+          text-decoration: none;
+        }
 
         .action-icon {
           display: inline;
+
+          &.icon-cancel-circled {
+            color: $red;
+          }
+
+          &.icon-arrows-cw {
+            color: $seagreen-light;
+          }
 
           &:first-child {
             margin-right: 10px;

@@ -45,6 +45,14 @@
           "path": "/editUser"
         }
       ]
+    },
+    {
+      "Raporty": [
+        {
+          "title": "Wygrane przetargi",
+          "path": "/farmerReport"
+        }
+      ]
     }
   ],
   "hurtownik": [
