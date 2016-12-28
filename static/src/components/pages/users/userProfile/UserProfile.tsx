@@ -17,7 +17,7 @@ export default class UserProfile extends BasePage<Props, BaseStates> {
     }
 
     loadData() {
-        let userId = this.props.params.id || this.props.userId;
+        let userId = this.props.params ? this.props.params.id : this.props.userId;
 
         if (UserUtils.loggedUser.type === UserUtils.userTypes.rolnik || !userId) {
             this.user = UserUtils.loggedUser;

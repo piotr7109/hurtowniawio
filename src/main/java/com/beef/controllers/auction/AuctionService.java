@@ -73,7 +73,8 @@ public class AuctionService {
     protected static List<Auction> getFinishedAuctions(HttpSession session) {
         HibernateBase.closeEntityManagers();
 
-        if (UserUtils.checkUserType(session, "hurtownik")) {
+        if (UserUtils.checkUserType(session, "hurtownik") ||
+                UserUtils.checkUserType(session, "dostawca")) {
             return AuctionHelper.getFinishedAuctions(true);
         }
 

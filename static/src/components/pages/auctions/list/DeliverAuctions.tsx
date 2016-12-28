@@ -5,17 +5,18 @@ import AuctionList from "./AuctionList";
 import {BaseStates} from "../../BasePage";
 import UserProfile from "../../users/userProfile/UserProfile";
 import ModalWindow from "../../../partials/system/modalWindow/ModalWindow";
+import JsonUtils from "../../../../utils/JsonUtils";
 
 interface States extends BaseStates {
     modalVisible: boolean;
 }
 
-export default class DeliverAuctions extends AuctionList<States> {
+export default class DelivererReport extends AuctionList<States> {
 
     allowedUsers = [UserUtils.userTypes.dostawca];
     protected requestPath = '/getUnfinishedDeliveries';
 
-    fields: Array<string> = ['ID', 'Tytuł', 'Data', 'Artykuł', 'Ilość', 'Użytkownik', 'Szczegóły'];
+    fields: Array<string> = ['ID', 'Tytuł', 'Data', 'Artykuł', 'Ilość', 'Użytkownik', 'Operacje'];
     selectedUserId: any;
 
     componentWillMount(): void {
@@ -24,6 +25,15 @@ export default class DeliverAuctions extends AuctionList<States> {
             modalVisible: false
         } as States);
         this.loadAuctions();
+    }
+
+    deliverPackage(auctionId: number) {
+        let formData: FormData = new FormData();
+
+        this.updateMode(this.modes.loading);
+        formData.append('auctionId', auctionId);
+        JsonUtils.handlePOST('/finishDelivery', formData)
+            .then(() => this.loadAuctions());
     }
 
     showModal(userId: number) {
@@ -59,13 +69,16 @@ export default class DeliverAuctions extends AuctionList<States> {
                                     {victoriousUser.login}
                                 </span>
                             </span>
-                            <span><Link className="icon-zoom-in" to={"/auction/"+item.id}/></span>
+                            <span>
+                                <Link className="icon-zoom-in" to={"/auction/"+item.id}/>
+                                <i className="icon-truck" onClick={() => this.deliverPackage(item.id)} />
+                            </span>
                         </div>
                     );
                 })}
                 {this.state.modalVisible &&
                 <ModalWindow hide={this.switchModal.bind(this)}>
-                    <UserProfile params userId={this.selectedUserId}/>
+                    <UserProfile userId={this.selectedUserId}/>
                 </ModalWindow>}
             </div>
         );

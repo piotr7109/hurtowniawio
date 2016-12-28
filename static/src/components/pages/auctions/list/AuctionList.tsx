@@ -18,14 +18,12 @@ export default class AuctionList<S extends BaseStates> extends BasePage<BaseProp
     protected requestPath = '/getActiveAuctions';
 
     componentWillMount(): void {
-        this.state = ({
-            mode: this.modes.loading
-        } as S);
+        this.state = ({mode: this.modes.loading} as S);
         this.loadAuctions();
     }
 
     loadAuctions() {
-        JsonUtils.handleGET(this.requestPath)
+        return JsonUtils.handleGET(this.requestPath)
             .then((response: any) => {
                 let data: any = response.data,
                     newMode = data ? this.modes.ready : this.modes.fail;
