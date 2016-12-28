@@ -43,6 +43,10 @@
         {
           "title": "Moje dane",
           "path": "/editUser"
+        },
+        {
+          "title": "Mój profil",
+          "path": "/userProfile"
         }
       ]
     },

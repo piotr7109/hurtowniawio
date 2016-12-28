@@ -39,8 +39,8 @@ public class Auction {
     private String deliveryState;
 
     @OneToOne
-    @JoinColumn(name = "deliverId")
-    private User deliver;
+    @JoinColumn(name = "delivererId")
+    private User deliverer;
 
     @OneToMany
     @JoinColumn(name = "auctionId")
@@ -130,12 +130,12 @@ public class Auction {
         this.deliveryState = deliveryState;
     }
 
-    public User getDeliver() {
-        return deliver;
+    public User getDeliverer() {
+        return deliverer;
     }
 
-    public void setDeliver(User deliver) {
-        this.deliver = deliver;
+    public void setDeliverer(User deliver) {
+        this.deliverer = deliver;
     }
 
     public List<Application> getApplications() {

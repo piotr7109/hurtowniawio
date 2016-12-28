@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Link} from "react-router";
 import {BasePage, BaseStates, BaseProps} from "../BasePage";
 import UserUtils from "../../../utils/UserUtils";
 import JsonUtils from "../../../utils/JsonUtils";
@@ -46,16 +47,18 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                 return newMode;
             })
             .then((newMode: number) => {
-                let formData: FormData = new FormData();
+                if (newMode === this.modes.fail) {
+                    return newMode;
+                } else {
+                    let formData: FormData = new FormData();
 
-                formData.append('auctionId', this.auction.id);
-                return JsonUtils.handlePOST('/hasUserParticipated', formData)
-                    .then((response: any) => {
-                        let data = response.data;
-
-                        this.hasUserParticipated = data;
-                        return data && newMode ? this.modes.success : this.modes.fail;
-                    });
+                    formData.append('auctionId', this.auction.id);
+                    return JsonUtils.handlePOST('/hasUserParticipated', formData)
+                        .then((response: any) => {
+                            this.hasUserParticipated = response.data;
+                            return newMode;
+                        });
+                }
             })
             .then((newMode: number) => {
                 this.updateMode(newMode);
@@ -68,48 +71,52 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
     }
 
     renderHTML() {
-        let auctionFinished = this.auction.state === 'X',
-            auctionCssClass = auctionFinished ? 'Auction finished' : 'Auction ',
-            isFarmer = UserUtils.checkUserType(UserUtils.userTypes.rolnik),
-            isWholesaler = UserUtils.checkUserType(UserUtils.userTypes.hurtownik),
-            isDeliver = UserUtils.checkUserType(UserUtils.userTypes.dostawca),
-            isAdmin = UserUtils.checkUserType(UserUtils.userTypes.admin);
+        if(this.state.mode === this.modes.fail) {
+            return <div><Link to="/">Wróc na stroną główną</Link></div>;
+        } else {
+            let auctionFinished = this.auction.state === 'X',
+                auctionCssClass = auctionFinished ? 'Auction finished' : 'Auction ',
+                isFarmer = UserUtils.checkUserType(UserUtils.userTypes.rolnik),
+                isWholesaler = UserUtils.checkUserType(UserUtils.userTypes.hurtownik),
+                isDeliver = UserUtils.checkUserType(UserUtils.userTypes.dostawca),
+                isAdmin = UserUtils.checkUserType(UserUtils.userTypes.admin);
 
-        return (
-            <div className={auctionCssClass}>
-                <div className="header">
-                    {this.auction.title}
-                    <div className="finished-auction">Zakończona</div>
-                </div>
-                <div className="content">
-                    <div className="left-panel">
-                        <div className="image">
-                            <img src={this.auction.item.imagePath}/>
-                        </div>
+            return (
+                <div className={auctionCssClass}>
+                    <div className="header">
+                        {this.auction.title}
+                        <div className="finished-auction">Zakończona</div>
                     </div>
-                    <div className="right-panel">
-                        <div className="attributes">
-                            <p>Szukana ilość: {this.auction.amount} kg</p>
-                            <p>Data realizacji: {this.auction.dueDate}</p>
-                            <p className="details">
-                                <span>Nazwa artykułu: {this.auction.item.name} </span>
-                                <span>Odmiana: {this.auction.item.typeName}</span>
-                                <span>Kraj pochodzenia: {this.auction.item.country}</span>
+                    <div className="content">
+                        <div className="left-panel">
+                            <div className="image">
+                                <img src={this.auction.item.imagePath}/>
+                            </div>
+                        </div>
+                        <div className="right-panel">
+                            <div className="attributes">
+                                <p>Szukana ilość: {this.auction.amount} kg</p>
+                                <p>Data realizacji: {this.auction.dueDate}</p>
+                                <p className="details">
+                                    <span>Nazwa artykułu: {this.auction.item.name} </span>
+                                    <span>Odmiana: {this.auction.item.typeName}</span>
+                                    <span>Kraj pochodzenia: {this.auction.item.country}</span>
+                                </p>
+                            </div>
+                            <p className="description">
+                                <span>Opis:</span>
+                                <span>{this.auction.description}</span>
                             </p>
+                            {isWholesaler && !auctionFinished && AuctionHelper.getWholesalerControls()}
+                            {isFarmer && !auctionFinished && AuctionHelper.getFarmerControls()}
+                            {isDeliver && auctionFinished && AuctionHelper.getDeliverControls(this.auction.deliveryState)}
+                            {isAdmin && AuctionHelper.getAdminControls()}
                         </div>
-                        <p className="description">
-                            <span>Opis:</span>
-                            <span>{this.auction.description}</span>
-                        </p>
-                        {isWholesaler && !auctionFinished && AuctionHelper.getWholesalerControls()}
-                        {isFarmer && !auctionFinished && AuctionHelper.getFarmerControls()}
-                        {isDeliver && auctionFinished && AuctionHelper.getDeliverControls(this.auction.deliveryState)}
-                        {isAdmin && AuctionHelper.getAdminControls()}
                     </div>
+                    {(isWholesaler || isDeliver) && AuctionHelper.getApplicationList()}
+                    {AuctionHelper.getModalWindow()}
                 </div>
-                {isWholesaler && AuctionHelper.getApplicationList()}
-                {AuctionHelper.getModalWindow()}
-            </div>
-        );
+            );
+        }
     }
 }

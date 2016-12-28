@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Link} from 'react-router';
 import JsonUtils from "../../../utils/JsonUtils";
 import ModalWindow from "../system/modalWindow/ModalWindow";
 
@@ -74,7 +75,7 @@ export default class ApplicationList extends React.Component<ApplicationListProp
 
                     return (
                         <div className={victoriousOfferCssClass + "list-row"} key={item.id}>
-                            <span>{userInfo}</span>
+                            <span><Link to={"/userProfile/" + item.user.id}>{userInfo}</Link></span>
                             <span>{item.date}</span>
                             <span>{item.preferredAmount}</span>
                             <span>{item.price}</span>

@@ -54,7 +54,9 @@ public class UserService {
         HibernateBase.closeEntityManagers();
         long userId = Long.parseLong(id);
 
-        if (UserUtils.checkUserType(session, "admin")) {
+        if (UserUtils.checkUserType(session, "admin") ||
+                UserUtils.checkUserType(session, "hurtownik") ||
+                UserUtils.checkUserType(session, "dostawca")) {
             User user = UserHelper.getUserById(userId);
             user.setPassword("");
 

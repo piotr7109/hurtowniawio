@@ -5,7 +5,7 @@ import UserUtils from "../../../../utils/UserUtils";
 import JsonUtils from "../../../../utils/JsonUtils";
 import Utils from "../../../../utils/Utils";
 
-export default class AuctionList extends BasePage<BaseProps, BaseStates> {
+export default class AuctionList<S extends BaseStates> extends BasePage<BaseProps, S> {
 
     allowedUsers = [
         UserUtils.userTypes.dostawca,
@@ -20,7 +20,7 @@ export default class AuctionList extends BasePage<BaseProps, BaseStates> {
     componentWillMount(): void {
         this.state = ({
             mode: this.modes.loading
-        } as BaseStates);
+        } as S);
         this.loadAuctions();
     }
 
