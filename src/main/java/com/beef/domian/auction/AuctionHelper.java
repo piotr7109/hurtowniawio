@@ -132,6 +132,14 @@ public class AuctionHelper extends BaseHelper {
 
     public static List<Auction> getFarmerWonAuctions(long userId) {
         String query = "select a from Auction a where a.victoriousApplication.user.id = :userId";
-        return getUserAuctions(query, userId, true);
+        List<Auction> auctions = getUserAuctions(query, userId, false);
+        auctions.forEach(auction -> {
+            auction.getApplications().forEach(app -> {
+                if (app.getUser().getId() != userId) {
+                    auction.getApplications().remove(app);
+                }
+            });
+        });
+        return auctions;
     }
 }

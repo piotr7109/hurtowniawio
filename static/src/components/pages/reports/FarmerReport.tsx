@@ -5,7 +5,7 @@ import JsonUtils from "../../../utils/JsonUtils";
 
 export default class FarmerReport extends BasePage<BaseProps, BaseStates> {
 
-    fields: Array<string> = ['ID', 'Tytuł', 'Data', 'Przedmiot', 'Ilość', 'Szczegóły'];
+    fields: Array<string> = ['ID', 'Tytuł', 'Data', 'Przedmiot', 'Ilość', 'Cena', 'Sprzedana ilość', 'Szczegóły'];
     allowedUsers: any = [this.userTypes.rolnik];
     auctions: Array<any>;
 
@@ -17,11 +17,9 @@ export default class FarmerReport extends BasePage<BaseProps, BaseStates> {
     loadAuctions() {
         JsonUtils.handleGET('/getFarmerWonAuctions')
             .then((response: any) => {
-                let data: any = response.data;
+                this.auctions = response.data;
 
-                this.auctions = data;
-
-                return data ? this.modes.ready : this.modes.fail;
+                return this.auctions ? this.modes.ready : this.modes.fail;
             })
             .then((newMode: number) => this.updateMode(newMode));
     }
@@ -38,6 +36,8 @@ export default class FarmerReport extends BasePage<BaseProps, BaseStates> {
                 </div>
                 {
                     this.auctions.map(item => {
+                        let application = item.applications[0];
+
                         return (
                             <div className="list-row">
                                 <span>{item.id}</span>
@@ -45,7 +45,9 @@ export default class FarmerReport extends BasePage<BaseProps, BaseStates> {
                                 <span>{item.dueDate}</span>
                                 <span>{item.item.name}</span>
                                 <span>{item.amount}</span>
-                                <span><Link className="icon-zoom-in" to={"/auction/"+item.id}/></span>
+                                <span>{application.price}</span>
+                                <span>{application.preferredAmount}</span>
+                                <span><Link className="icon-zoom-in" to={"/auction/"+item.id} /></span>
                             </div>
                         )
                     })
