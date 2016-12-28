@@ -26,11 +26,6 @@ public class AuctionController {
         return AuctionService.finishAuction(session, auctionId, applicationId);
     }
 
-    @PostMapping("/closeAuction")
-    public boolean closeAuction(HttpSession session, @RequestParam("auctionId") String auctionId) {
-        return AuctionService.closeAuction(session, auctionId);
-    }
-
     @PostMapping("/startDelivery")
     public boolean startDelivery(HttpSession session, @RequestParam("auctionId") String auctionId) {
         return AuctionService.changeDeliveryStatus(session, auctionId, "A");
@@ -40,7 +35,6 @@ public class AuctionController {
     public boolean finishDelivery(HttpSession session, @RequestParam("auctionId") String auctionId) {
         return AuctionService.changeDeliveryStatus(session, auctionId, "X");
     }
-
 
     @GetMapping("/getActiveAuctions")
     public List<Auction> getActiveAuctions(HttpSession session) {
@@ -66,7 +60,6 @@ public class AuctionController {
     public List<Auction> getWholesalerAuctions(HttpSession session) {
         return AuctionService.getWholesalerAuctions(session);
     }
-
 
     @GetMapping("/getFarmerAuctions")
     public List<Auction> getFarmerAuctions(HttpSession session) {

@@ -56,11 +56,8 @@ export default class UserUtils {
     }
 
     public static checkUserType(type: string) {
-        if (UserUtils.loggedUser.type === UserUtils.userTypes.admin || UserUtils.loggedUser.type === type) {
-            return true
-        }
+        return UserUtils.loggedUser.type === UserUtils.userTypes.admin || UserUtils.loggedUser.type === type;
 
-        return false
     }
 
     public static loggedUser: any = {type: UserUtils.userTypes.unlogged};

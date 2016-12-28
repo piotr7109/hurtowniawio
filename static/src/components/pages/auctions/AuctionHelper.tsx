@@ -50,8 +50,8 @@ export default class AuctionHelper {
 
     public static getWholesalerControls() {
         return (
-            <button className="buttonSubmit" onClick={() => {this.closeAuction()}}>
-                Zamknij przetarg
+            <button className="buttonSubmit" onClick={() => {this.removeAuction()}}>
+                Anuluj przetarg
             </button>
         );
     }
@@ -63,7 +63,7 @@ export default class AuctionHelper {
                     Rozpocznij przewóz
                 </button>
             );
-        } else if(deliveryState === 'A') {
+        } else if (deliveryState === 'A') {
             return (
                 <button className="buttonSubmit" onClick={() => {this.changeDeliveryStatus('/finishDelivery')}}>
                     Zakończ przewóz
@@ -88,10 +88,6 @@ export default class AuctionHelper {
         this.sendData('/removeAuction');
     }
 
-    private static closeAuction() {
-        this.sendData('/closeAuction');
-    }
-
     private static cancelOffer() {
         this.sendData('/removeApplication');
     }
@@ -100,7 +96,7 @@ export default class AuctionHelper {
         let formData: FormData = new FormData();
 
         formData.append('auctionId', this.auction.auction.id);
-        JsonUtils.handlePOST(url, formData)
+        return JsonUtils.handlePOST(url, formData)
             .then(() => this.auction.refreshHandler())
     }
 

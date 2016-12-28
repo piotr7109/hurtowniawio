@@ -14,7 +14,7 @@ interface AddApplicationFormProps extends BaseProps {
 export default class AddApplicationForm extends BaseForm<AddApplicationFormProps, BaseStates> {
 
     allowedUsers = [
-        this.userTypes.hurtownik
+        this.userTypes.rolnik
     ];
 
     formControls = [

@@ -36,11 +36,11 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
 
     formControls = [
         {name: 'title', text: 'Tytuł', type: 'text'},
-        {name: 'amount', text: 'Ilość (kg)', type: 'text'},
+        {name: 'amount', text: 'Ilość (kg)', type: 'number'},
         {name: 'dueDate', text: 'Data zakończenia', type: 'date'},
     ];
 
-    descriptionField = {name: 'Description', text: 'Opis'};
+    descriptionField = {name: 'description', text: 'Opis'};
 
     public handleFormEvents(event: any, url: any): any {
         event.preventDefault();
@@ -82,6 +82,11 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
                             key={item.name}
                             value=""/>);
                     })}
+                    <div className="form-row">
+                        <label htmlFor={this.descriptionField.name} className="form-label">{this.descriptionField.text}</label>
+                        <textarea name={this.descriptionField.name}
+                                  id={this.descriptionField.name}/>
+                    </div>
                     <CustomSelect labelText="Artykuł" name="item" items={this.items}/>
                     <BasicSubmitControl text='Dodaj przetarg'/>
                 </div>

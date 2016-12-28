@@ -7,6 +7,10 @@
       display: block;
       width: 100%;
 
+      textarea {
+        width: 100%;
+      }
+
       @include respond-to(large) {
         display: table;
       }

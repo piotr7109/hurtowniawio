@@ -19,7 +19,9 @@ public class AuctionHelper extends BaseHelper {
 
     public static Auction getAuctionById(long id) {
         Auction auction = HibernateBase.entityManager.find(Auction.class, id);
-        auction.getApplications().forEach((app) -> app.getUser().setPassword(""));
+        if (auction != null) {
+            auction.getApplications().forEach((app) -> app.getUser().setPassword(""));
+        }
         return auction;
     }
 
@@ -36,22 +38,11 @@ public class AuctionHelper extends BaseHelper {
         return auction != null;
     }
 
-    public static boolean closeAuction(long auctionId) {
-        Auction auction = HibernateBase.entityManager.find(Auction.class, auctionId);
-
-        if (auction != null) {
-            auction.setState("X");
-            persist(auction);
-        }
-
-        return auction != null;
-    }
-
     public static boolean changeDeliveryStatus(long auctionId, String state, User user) {
         Auction auction = HibernateBase.entityManager.find(Auction.class, auctionId);
 
         if (auction != null) {
-            auction.setDeliver(user);
+            auction.setDeliverer(user);
             auction.setDeliveryState(state);
             persist(auction);
         }
@@ -118,8 +109,8 @@ public class AuctionHelper extends BaseHelper {
     }
 
     public static List<Auction> getUnfinishedDeliveries(long userId) {
-        String query = "select a from Auction a where a.deliveryState = 'A' and a.deliver.id = :userId";
-        return getUserAuctions(query, userId, true);
+        String query = "select a from Auction a where a.deliveryState = 'A' and a.deliverer.id = :userId";
+        return getUserAuctions(query, userId, false);
     }
 
     public static void removeAuction(long auctionId) {

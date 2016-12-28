@@ -7,7 +7,6 @@ import com.beef.domian.auction.Auction;
 import com.beef.domian.auction.AuctionHelper;
 import com.beef.domian.item.ItemHelper;
 import com.beef.domian.user.User;
-import com.beef.domian.user.UserHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.http.HttpSession;
@@ -47,17 +46,6 @@ public class AuctionService {
         return false;
     }
 
-    protected static boolean closeAuction(HttpSession session, String _auctionId) {
-        HibernateBase.closeEntityManagers();
-
-        if (UserUtils.checkUserType(session, "hurtownik")) {
-            long auctionId = Long.parseLong(_auctionId);
-
-            return AuctionHelper.closeAuction(auctionId);
-        }
-        return false;
-    }
-
     protected static boolean changeDeliveryStatus(HttpSession session, String _auctionId, String state) {
         HibernateBase.closeEntityManagers();
 
@@ -85,7 +73,8 @@ public class AuctionService {
     protected static List<Auction> getFinishedAuctions(HttpSession session) {
         HibernateBase.closeEntityManagers();
 
-        if (UserUtils.checkUserType(session, "hurtownik")) {
+        if (UserUtils.checkUserType(session, "hurtownik") ||
+                UserUtils.checkUserType(session, "dostawca")) {
             return AuctionHelper.getFinishedAuctions(true);
         }
 
@@ -148,7 +137,7 @@ public class AuctionService {
     }
 
     public static void removeAuction(HttpSession session, String auctionId) {
-        if (UserUtils.checkUserType(session, "admin")) {
+        if (UserUtils.checkUserType(session, "hurtownik")) {
             AuctionHelper.removeAuction(Long.parseLong(auctionId));
         }
     }

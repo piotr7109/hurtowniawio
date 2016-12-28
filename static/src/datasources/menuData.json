@@ -1,6 +1,69 @@
 {
   "unlogged": [],
-  "rolnik": [],
+  "rolnik": [
+    {
+      "Przetargi": [
+        {
+          "title": "Lista",
+          "path": "/auctionList"
+        },
+        {
+          "title": "Moje",
+          "path": "/farmerAuctions"
+        }
+      ]
+    },
+    {
+      "Raporty": [
+        {
+          "title": "Wygrane przetargi",
+          "path": "/farmerReport"
+        }
+      ]
+    },
+    {
+      "Mój profil": [
+        {
+          "title": "Wyświetl",
+          "path": "/userProfile"
+        },
+        {
+          "title": "Edytuj",
+          "path": "/editUser"
+        }
+      ]
+    }
+  ],
+  "dostawca": [
+    {
+      "Przetargi": [
+        {
+          "title": "Zakończone",
+          "path": "/finishedAuctions"
+        }
+      ]
+    },
+    {
+      "Raporty": [
+        {
+          "title": "Stan dostaw",
+          "path": "/deliverReport"
+        }
+      ]
+    },
+    {
+      "Mój profil": [
+        {
+          "title": "Wyświetl",
+          "path": "/userProfile"
+        },
+        {
+          "title": "Edytuj",
+          "path": "/editUser"
+        }
+      ]
+    }
+  ],
   "admin": [
     {
       "Przetargi": [
@@ -21,16 +84,8 @@
           "path": "/addItem"
         },
         {
-          "title": "Moje przetargi",
-          "path": "/userAuctions"
-        },
-        {
           "title": "Ukończone przetargi",
           "path": "/finishedAuctions"
-        },
-        {
-          "title": "W dostawie",
-          "path": "/deliverAuctions"
         },
         {
           "title": "Lista artykułów",
@@ -47,22 +102,66 @@
         {
           "title": "Moje dane",
           "path": "/editUser"
+        },
+        {
+          "title": "Mój profil",
+          "path": "/userProfile"
+        }
+      ]
+    }
+  ],
+  "hurtownik": [
+    {
+      "Przetargi": [
+        {
+          "title": "Nowy",
+          "path": "/addAuction"
+        },
+        {
+          "title": "Moje",
+          "path": "/userAuctions"
+        },
+        {
+          "title": "Wszystkie",
+          "path": "/auctionList"
+        },
+        {
+          "title": "Zakończone",
+          "path": "/finishedAuctions"
+        }
+      ]
+    },
+    {
+      "Artykuły": [
+        {
+          "title": "Nowy",
+          "path": "/addItem"
+        },
+        {
+          "title": "Lista artykułów",
+          "path": "/itemsList"
         }
       ]
     },
     {
       "Raporty": [
         {
-          "title": "Wygrane przetargi",
-          "path": "/farmerReport"
-        },
-        {
           "title": "Zakończone przetargi",
           "path": "/wholesalerReport"
         }
       ]
+    },
+    {
+      "Mój profil": [
+        {
+          "title": "Wyświetl",
+          "path": "/userProfile"
+        },
+        {
+          "title": "Edytuj",
+          "path": "/editUser"
+        }
+      ]
     }
-  ],
-  "hurtownik": [
   ]
 }

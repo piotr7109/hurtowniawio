@@ -20,7 +20,7 @@ export default class EditUserDataAdminForm extends EditUserDataForm {
             userId: number = this.props.params.id;
 
         formData.append('userId', userId);
-        JsonUtils.handlePOST('/getUserById',formData)
+        JsonUtils.handlePOST('/getUserById', formData)
             .then((response: any) => {
                 let data: any = response.data,
                     newMode = data ? this.modes.ready : this.modes.fail;

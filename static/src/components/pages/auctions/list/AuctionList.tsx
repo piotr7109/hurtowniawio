@@ -5,7 +5,7 @@ import UserUtils from "../../../../utils/UserUtils";
 import JsonUtils from "../../../../utils/JsonUtils";
 import Utils from "../../../../utils/Utils";
 
-export default class AuctionList extends BasePage<BaseProps, BaseStates> {
+export default class AuctionList<S extends BaseStates> extends BasePage<BaseProps, S> {
 
     allowedUsers = [
         UserUtils.userTypes.dostawca,
@@ -18,14 +18,12 @@ export default class AuctionList extends BasePage<BaseProps, BaseStates> {
     protected requestPath = '/getActiveAuctions';
 
     componentWillMount(): void {
-        this.state = ({
-            mode: this.modes.loading
-        } as BaseStates);
+        this.state = ({mode: this.modes.loading} as S);
         this.loadAuctions();
     }
 
     loadAuctions() {
-        JsonUtils.handleGET(this.requestPath)
+        return JsonUtils.handleGET(this.requestPath)
             .then((response: any) => {
                 let data: any = response.data,
                     newMode = data ? this.modes.ready : this.modes.fail;

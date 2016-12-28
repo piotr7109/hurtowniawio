@@ -48,21 +48,22 @@ export default class ItemsList extends BasePage<BaseProps, ItemsListState> {
             });
     }
 
-    protected _deleteItemRequest(itemId: number): void {
+    protected _deleteItemRequest(itemId: number): any {
         let formData: FormData = new FormData();
 
         formData.append('itemId', itemId);
 
-        JsonUtils.handlePOST('/removeItem', formData)
+        return JsonUtils.handlePOST('/removeItem', formData)
             .then((response: any) => {
                 this.setState({mode: response.data ? this.modes.success : this.modes.fail} as ItemsListState);
             });
     }
 
     protected _deleteItem(itemId: number): void {
-        this._deleteItemRequest(itemId).then(() => {
-            this.showModalWindow()
-        });
+        this._deleteItemRequest(itemId)
+            .then(() => {
+                this.showModalWindow()
+            });
     }
 
     renderHTML() {
