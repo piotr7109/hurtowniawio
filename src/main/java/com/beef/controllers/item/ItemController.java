@@ -36,4 +36,9 @@ public class ItemController {
     public List<Item> getUsedItems(HttpSession session) {
         return ItemService.getUsedItems(session);
     }
+
+    @PostMapping("/removeItem")
+    public boolean removeItem(HttpSession session, @RequestParam("itemId") String itemId) {
+        return ItemService.removeItem(session, itemId);
+    }
 }

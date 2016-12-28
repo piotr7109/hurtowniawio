@@ -5,6 +5,7 @@ import com.beef.core.utils.UserUtils;
 import com.beef.domian.item.Item;
 import com.beef.domian.item.ItemHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hibernate.Hibernate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -75,4 +76,15 @@ public class ItemService {
         return result;
     }
 
+    protected static boolean removeItem(HttpSession session, String _itemId) {
+        HibernateBase.closeEntityManagers();
+
+        if(UserUtils.checkUserType(session, "administrator")) {
+            Long itemId = Long.parseLong(_itemId);
+
+            return ItemHelper.removeItem(itemId);
+        }
+
+        return false;
+    }
 }

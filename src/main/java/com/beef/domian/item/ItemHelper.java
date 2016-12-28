@@ -47,4 +47,19 @@ public class ItemHelper extends BaseHelper {
 
         return getItems(query);
     }
+
+    public static boolean removeItem(long itemId) {
+        Item item = HibernateBase.entityManager.find(Item.class, itemId);
+
+        List<Item> unusedItems = ItemHelper.getUnusedItems();
+
+        if(unusedItems.contains(item)) {
+            HibernateBase.entityManager.getTransaction().begin();
+            HibernateBase.entityManager.remove(item);
+            HibernateBase.entityManager.getTransaction().commit();
+            return HibernateBase.entityManager.find(Item.class, itemId) == null;
+        }
+
+        return false;
+    }
 }
