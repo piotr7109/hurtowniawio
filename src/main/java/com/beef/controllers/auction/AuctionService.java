@@ -7,6 +7,7 @@ import com.beef.domian.auction.Auction;
 import com.beef.domian.auction.AuctionHelper;
 import com.beef.domian.item.ItemHelper;
 import com.beef.domian.user.User;
+import com.beef.domian.user.UserHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.http.HttpSession;
@@ -150,5 +151,14 @@ public class AuctionService {
         if (UserUtils.checkUserType(session, "admin")) {
             AuctionHelper.removeAuction(Long.parseLong(auctionId));
         }
+    }
+
+    public static List<Auction> getFarmerWonAuctions(HttpSession session) {
+        if (UserUtils.checkUserType(session, "rolnik")) {
+            long userId = UserUtils.getSessionUser(session).getId();
+            return AuctionHelper.getFarmerWonAuctions(userId);
+        }
+
+        return null;
     }
 }

@@ -51,9 +51,9 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
                 <td>{user.email}</td>
                 <td>{user.status}</td>
                 <td>
-                    <div className="action-icon icon-cancel-circled" onClick={() => this.changeUserStatus(user, "X")} />
-                    <div className="action-icon icon-arrows-cw" onClick={() => this.changeUserStatus(user, "A")} />
-                    <Link className="action-icon icon-arrows-cw" to={"/editUserAdmin/" + user.id} />
+                    <div className="action-icon icon-cancel-circled" onClick={() => this.changeUserStatus(user, "X")}/>
+                    <div className="action-icon icon-arrows-cw" onClick={() => this.changeUserStatus(user, "A")}/>
+                    <Link className="action-icon icon-pencil" to={"/editUserAdmin/" + user.id}/>
                 </td>
             </tr>
         );
