@@ -22,8 +22,23 @@ public class ItemController {
         return ItemService.addItem(session, request, itemData, image);
     }
 
-    @GetMapping("/getItems")
-    public List<Item> getItems(HttpSession session) {
-        return ItemService.getItems(session);
+    @GetMapping("/getAllItems")
+    public List<Item> getAllItems(HttpSession session) {
+        return ItemService.getAllItems(session);
+    }
+
+    @GetMapping("/getUnusedItems")
+    public List<Item> getUnusedItems(HttpSession session) {
+        return ItemService.getUnusedItems(session);
+    }
+
+    @GetMapping("/getUsedItems")
+    public List<Item> getUsedItems(HttpSession session) {
+        return ItemService.getUsedItems(session);
+    }
+
+    @PostMapping("/removeItem")
+    public boolean removeItem(HttpSession session, @RequestParam("itemId") String itemId) {
+        return ItemService.removeItem(session, itemId);
     }
 }

@@ -31,6 +31,10 @@
         {
           "title": "W dostawie",
           "path": "/deliverAuctions"
+        },
+        {
+          "title": "Lista artykułów",
+          "path": "/itemsList"
         }
       ]
     },

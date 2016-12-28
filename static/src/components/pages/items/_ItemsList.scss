@@ -1,0 +1,65 @@
+.ItemsList {
+  margin-top: 25px;
+
+  .items-header,
+  .item-row {
+    width: 100%;
+
+    .item {
+      display: inline-block;
+      width: 25%;
+      padding: 5px 30px;
+      position: relative;
+      cursor: pointer;
+    }
+  }
+
+  .items-header {
+    padding: 5px;
+    font-size: 16px;
+    color: $white;
+    background: $seagreen-light;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .item-row {
+    padding: 2px;
+
+    &:nth-child(2n) {
+      background: $lemon-chiffon;
+    }
+
+    &:last-child {
+      border-radius: 0 0 5px 5px;
+    }
+
+    &:hover {
+      background: $light-claret;
+    }
+  }
+
+  .item-row {
+    .icon-share {
+      cursor: default;
+
+      &:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  .ModalWindow .modal-container .modal-window-content {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      padding: 0 25px 15px 25px;
+    }
+
+    .buttonSubmit {
+      align-self: flex-end;
+      margin-right: 0;
+    }
+  }
+}

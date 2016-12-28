@@ -62,7 +62,7 @@ export default class AddItemForm extends BaseForm<BaseProps, BaseStates> {
         return (
             <div>
                 <SuccessMessage>
-                    Przedmiot został dodany do bazy przedmiotów
+                    Artykuł został dodany do bazy
                 </SuccessMessage>
                 <Link to='/'>Powrót na stronę główną</Link>
             </div>
