@@ -5,7 +5,7 @@
   .item-row {
     width: 100%;
 
-    .item{
+    .item {
       display: inline-block;
       width: 25%;
       padding: 5px 30px;
@@ -46,6 +46,20 @@
         visibility: visible;
         opacity: 1;
       }
+    }
+  }
+
+  .ModalWindow .modal-container .modal-window-content {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      padding: 0 25px 15px 25px;
+    }
+
+    .buttonSubmit {
+      align-self: flex-end;
+      margin-right: 0;
     }
   }
 }

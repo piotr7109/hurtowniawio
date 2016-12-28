@@ -54,15 +54,15 @@ export default class ItemsList extends BasePage<BaseProps, ItemsListState> {
         formData.append('itemId', itemId);
 
         JsonUtils.handlePOST('/removeItem', formData)
-            .then ((response: any) => {
+            .then((response: any) => {
                 this.setState({mode: response.data ? this.modes.success : this.modes.fail} as ItemsListState);
             });
-
-        this.showModalWindow();
     }
 
-    protected _deleteItem(itemId:number):void {
-        this._deleteItemRequest(itemId);
+    protected _deleteItem(itemId: number): void {
+        this._deleteItemRequest(itemId).then(() => {
+            this.showModalWindow()
+        });
     }
 
     renderHTML() {
