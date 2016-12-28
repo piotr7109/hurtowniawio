@@ -55,6 +55,10 @@
         {
           "title": "Wygrane przetargi",
           "path": "/farmerReport"
+        },
+        {
+          "title": "Zakończone przetargi",
+          "path": "/wholesalerReport"
         }
       ]
     }

@@ -30,24 +30,24 @@ export default class FarmerReport extends BasePage<BaseProps, BaseStates> {
                 <div className="list-header">
                     {
                         this.fields.map(field => {
-                            return <span>{field}</span>
+                            return <span key={field}>{field}</span>
                         })
                     }
                 </div>
                 {
-                    this.auctions.map(item => {
-                        let application = item.applications[0];
+                    this.auctions.map(auction => {
+                        let application = auction.applications[0];
 
                         return (
-                            <div className="list-row">
-                                <span>{item.id}</span>
-                                <span>{item.title}</span>
-                                <span>{item.dueDate}</span>
-                                <span>{item.item.name}</span>
-                                <span>{item.amount}</span>
+                            <div className="list-row" key={auction.id}>
+                                <span>{auction.id}</span>
+                                <span>{auction.title}</span>
+                                <span>{auction.dueDate}</span>
+                                <span>{auction.item.name}</span>
+                                <span>{auction.amount}</span>
                                 <span>{application.price}</span>
                                 <span>{application.preferredAmount}</span>
-                                <span><Link className="icon-zoom-in" to={"/auction/"+item.id} /></span>
+                                <span><Link className="icon-zoom-in" to={"/auction/"+auction.id} /></span>
                             </div>
                         )
                     })

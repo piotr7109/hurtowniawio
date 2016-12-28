@@ -16,6 +16,7 @@ import DeliverAuctions from "../pages/auctions/list/DeliverAuctions";
 import EditUserDataAdminForm from "../pages/users/EditUserDataAdminForm";
 import FarmerReport from "../pages/reports/FarmerReport";
 import ItemsList from "../pages/items/ItemsList";
+import WholsalerReport from "../pages/reports/WholsalerReport";
 
 export default class IndexComponent extends React.Component<{}, {}> {
 
@@ -37,6 +38,7 @@ export default class IndexComponent extends React.Component<{}, {}> {
                     <Route path="/editUserAdmin/:id" component={EditUserDataAdminForm}/>
                     <Route path="/itemsList" component={ItemsList}/>
                     <Route path="/farmerReport" component={FarmerReport}/>
+                    <Route path="/wholesalerReport" component={WholsalerReport}/>
                     <Route path='/*' component={Error404}/>
                 </Route>
             </Router>

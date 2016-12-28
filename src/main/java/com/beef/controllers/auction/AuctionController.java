@@ -88,4 +88,9 @@ public class AuctionController {
         return AuctionService.getFarmerWonAuctions(session);
     }
 
+    @GetMapping("/getWholesalerFinishedAuctions")
+    public List<Auction> getWholesalerFinishedAuctions(HttpSession session) {
+        return AuctionService.getWholesalerFinishedAuctions(session);
+    }
+
 }

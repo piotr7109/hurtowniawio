@@ -140,6 +140,14 @@ public class AuctionHelper extends BaseHelper {
                 }
             });
         });
+
+        return auctions;
+    }
+
+    public static List<Auction> getWholesalerFinishedAuctions(long userId) {
+        String query = "select a from Auction a where a.user.id = :userId and a.state = 'X'";
+        List<Auction> auctions = getUserAuctions(query, userId, false);
+
         return auctions;
     }
 }

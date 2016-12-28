@@ -161,4 +161,13 @@ public class AuctionService {
 
         return null;
     }
+
+    public static List<Auction> getWholesalerFinishedAuctions(HttpSession session) {
+        if(UserUtils.checkUserType(session, "hurtownik")) {
+            long userId = UserUtils.getSessionUser(session).getId();
+            return AuctionHelper.getWholesalerFinishedAuctions(userId);
+        }
+
+        return null;
+    }
 }
