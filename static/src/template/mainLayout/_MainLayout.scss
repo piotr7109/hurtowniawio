@@ -9,10 +9,6 @@ html {
     flex-direction: column;
     justify-content: space-between;
 
-    * {
-      cursor: $cursorStandard !important;
-    }
-
     .app {
       height: 100%;
 

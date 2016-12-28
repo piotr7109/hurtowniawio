@@ -31,6 +31,7 @@ export default class ItemsList extends BasePage<BaseProps, ItemsListState> {
 
     hideModalWindow() {
         this.setState({modalVisible: false} as ItemsListState);
+        this.loadItems();
     }
 
     loadItems() {
@@ -47,39 +48,50 @@ export default class ItemsList extends BasePage<BaseProps, ItemsListState> {
             });
     }
 
-    protected _deleteItem(): void {
+    protected _deleteItemRequest(itemId: number): void {
+        let formData: FormData = new FormData();
+
+        formData.append('itemId', itemId);
+
+        JsonUtils.handlePOST('/removeItem', formData)
+            .then ((response: any) => {
+                this.setState({mode: response.data ? this.modes.success : this.modes.fail} as ItemsListState);
+            });
+
         this.showModalWindow();
     }
 
+    protected _deleteItem(itemId:number):void {
+        this._deleteItemRequest(itemId);
+    }
+
     renderHTML() {
-        console.log("used", this.usedItems)
-        console.log("unused", this.unusedItems)
 
         return (
             <div className="ItemsList">
                 <div className="items-header">
-                    <span>Przedmioty</span>
-                    <span>Odmiana</span>
-                    <span>Kraj</span>
-                    <span>Usuń</span>
+                    <span className="item">Przedmioty</span>
+                    <span className="item">Odmiana</span>
+                    <span className="item">Kraj</span>
+                    <span className="item">Usuń</span>
                 </div>
                 {this.unusedItems.map((item: any) => {
                     return (
                         <div className="item-row">
-                            <span>{item.name}</span>
-                            <span>{item.typeName}</span>
-                            <span>{item.country}</span>
-                            <span className="icon-cancel-circled" onClick={() => {this._deleteItem()}}/>
+                            <span className="item">{item.name}</span>
+                            <span className="item">{item.typeName}</span>
+                            <span className="item">{item.country}</span>
+                            <span className="item icon-cancel-circled" onClick={() => {this._deleteItem(item.id)}}/>
                         </div>
                     );
                 })}
                 {this.usedItems.map((item: any) => {
                     return (
                         <div className="item-row">
-                            <span>{item.name}</span>
-                            <span>{item.typeName}</span>
-                            <span>{item.country}</span>
-                            <span className="icon-share">
+                            <span className="item">{item.name}</span>
+                            <span className="item">{item.typeName}</span>
+                            <span className="item">{item.country}</span>
+                            <span className="item icon-share">
                                 <span className="tooltiptext">Ten artykuł nie może zostać usunięty, ponieważ jest użyty w przynajmniej jednej aukcji.</span>
                             </span>
                         </div>
@@ -87,7 +99,8 @@ export default class ItemsList extends BasePage<BaseProps, ItemsListState> {
                 })}
                 {this.state.modalVisible &&
                 <ModalWindow hide={this.hideModalWindow.bind(this)}>
-                    <span>Nie można usunąć przedmiotu. Przedmiot jest w użyciu</span>
+                    {this.state.mode === this.modes.success && <span>Usunąłeś przedmiot.</span>}
+                    {this.state.mode === this.modes.fail && <span>Błąd serwera, spróbuj ponownie.</span>}
                     <button className="buttonSubmit" onClick={() =>this.hideModalWindow()}>Ok</button>
                 </ModalWindow>}
             </div>
