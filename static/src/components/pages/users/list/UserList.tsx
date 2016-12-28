@@ -41,7 +41,7 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
 
     getUserRow(user: any) {
         return (
-            <tr className="user-row">
+            <tr className="user-row" key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.login}</td>
                 <td>{user.type}</td>
@@ -65,7 +65,7 @@ export default class UserList extends BasePage<BaseProps, BaseStates> {
                 <thead>
                 <tr>
                     {this.fields.map(field => {
-                        return <th>{field}</th>
+                        return <th key={field}>{field}</th>
                     })}
                 </tr>
                 </thead>

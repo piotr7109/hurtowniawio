@@ -77,7 +77,7 @@ export default class ItemsList extends BasePage<BaseProps, ItemsListState> {
                 </div>
                 {this.unusedItems.map((item: any) => {
                     return (
-                        <div className="item-row">
+                        <div className="item-row" key={item.id}>
                             <span className="item">{item.name}</span>
                             <span className="item">{item.typeName}</span>
                             <span className="item">{item.country}</span>
@@ -87,7 +87,7 @@ export default class ItemsList extends BasePage<BaseProps, ItemsListState> {
                 })}
                 {this.usedItems.map((item: any) => {
                     return (
-                        <div className="item-row">
+                        <div className="item-row" key={item.id}>
                             <span className="item">{item.name}</span>
                             <span className="item">{item.typeName}</span>
                             <span className="item">{item.country}</span>
