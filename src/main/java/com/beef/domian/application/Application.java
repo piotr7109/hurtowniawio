@@ -62,4 +62,8 @@ public class Application {
         this.date = date;
     }
 
+    public void cleanUser() {
+        user.setPassword("");
+    }
+
 }

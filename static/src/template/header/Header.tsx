@@ -70,7 +70,7 @@ export default class Header extends React.Component<{}, HeaderStates> {
                 </ModalWindow>}
                 {this.state.modalRegisterVisible &&
                 <ModalWindow hide={this.hideWindows.bind(this)}>
-                    <RegisterForm switch={this.switchModalWindows.bind(this)}/>
+                    <RegisterForm switchModals={this.switchModalWindows.bind(this)}/>
                 </ModalWindow>}
             </header>
         );

@@ -90,6 +90,9 @@ public class AuctionHelper extends BaseHelper {
                 if (removeApplications) {
                     auction.setApplications(null);
                 }
+                if (auction.getVictoriousApplication() != null) {
+                    auction.getVictoriousApplication().cleanUser();
+                }
             });
         } catch (Exception e) {
             auctions = null;
@@ -123,22 +126,13 @@ public class AuctionHelper extends BaseHelper {
 
     public static List<Auction> getFarmerWonAuctions(long userId) {
         String query = "select a from Auction a where a.victoriousApplication.user.id = :userId";
-        List<Auction> auctions = getUserAuctions(query, userId, false);
-        auctions.forEach(auction -> {
-            auction.getApplications().forEach(app -> {
-                if (app.getUser().getId() != userId) {
-                    auction.getApplications().remove(app);
-                }
-            });
-        });
-
+        List<Auction> auctions = getUserAuctions(query, userId, true);
         return auctions;
     }
 
     public static List<Auction> getWholesalerFinishedAuctions(long userId) {
         String query = "select a from Auction a where a.user.id = :userId and a.state = 'X'";
         List<Auction> auctions = getUserAuctions(query, userId, false);
-
         return auctions;
     }
 }

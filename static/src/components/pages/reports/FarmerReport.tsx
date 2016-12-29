@@ -39,7 +39,7 @@ export default class FarmerReport extends BasePage<BaseProps, BaseStates> {
                 </div>
                 {
                     this.auctions.map(auction => {
-                        let application = auction.applications[0];
+                        let application = auction.victoriousApplication;
 
                         return (
                             <div className="list-row" key={auction.id}>

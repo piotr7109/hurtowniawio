@@ -6,7 +6,7 @@ import {BaseProps, BaseStates} from "../BasePage";
 import {ErrorMessage, SuccessMessage} from "../../partials/forms/messages/Messages";
 
 interface RegisterFormProps extends BaseProps {
-    switch: any;
+    switchModals: any;
 }
 
 export class RegisterForm extends BaseForm<RegisterFormProps, BaseStates> {
@@ -58,7 +58,7 @@ export class RegisterForm extends BaseForm<RegisterFormProps, BaseStates> {
         return (
             <div>
                 <SuccessMessage>Rejestracja przebiegła pomyślnie</SuccessMessage>
-                <span onClick={this.props.switch(true, false)}>Zaloguj się</span>
+                <span onClick={this.props.switchModals(true, false)}>Zaloguj się</span>
             </div>
         );
     }
