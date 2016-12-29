@@ -3,8 +3,7 @@
 let gulp = require('gulp'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
-    autoprefixer = require('gulp-autoprefixer'),
-    classNames = require('classnames');
+    autoprefixer = require('gulp-autoprefixer');
 
 
 gulp.task('watch', () => {
@@ -14,3 +13,7 @@ gulp.task('watch', () => {
     gulp.watch("src/**/*.{ts,tsx}", ['typescript-bundle']);
 });
 
+gulp.task('compile', () => {
+    gulp.start('build-css');
+    gulp.start('typescript-bundle');
+});

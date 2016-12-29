@@ -6,6 +6,7 @@ import {BaseStates} from "../../BasePage";
 import UserProfile from "../../users/userProfile/UserProfile";
 import ModalWindow from "../../../partials/system/modalWindow/ModalWindow";
 import JsonUtils from "../../../../utils/JsonUtils";
+import {EmptyPage} from "../../../partials/system/System";
 
 interface States extends BaseStates {
     modalVisible: boolean;
@@ -46,11 +47,13 @@ export default class DelivererReport extends AuctionList<States> {
     }
 
     renderHTML() {
+        let auctionsEmpty: boolean = this.auctions.length === 0;
+
         return (
             <div className="AuctionList generic-list">
                 <div className="list-header">
                     {
-                        this.fields.map(field => {
+                        !auctionsEmpty && this.fields.map(field => {
                             return <span>{field}</span>
                         })
                     }
@@ -71,11 +74,12 @@ export default class DelivererReport extends AuctionList<States> {
                             </span>
                             <span>
                                 <Link className="icon-zoom-in" to={"/auction/"+item.id}/>
-                                <i className="icon-truck" onClick={() => this.deliverPackage(item.id)} />
+                                <i className="icon-truck" onClick={() => this.deliverPackage(item.id)}/>
                             </span>
                         </div>
                     );
                 })}
+                {auctionsEmpty && <EmptyPage />}
                 {this.state.modalVisible &&
                 <ModalWindow hide={this.switchModal.bind(this)}>
                     <UserProfile userId={this.selectedUserId}/>

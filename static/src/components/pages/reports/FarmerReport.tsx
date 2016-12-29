@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Link} from 'react-router';
 import {BasePage, BaseStates, BaseProps} from "../BasePage";
 import JsonUtils from "../../../utils/JsonUtils";
+import {EmptyPage} from "../../partials/system/System";
 
 export default class FarmerReport extends BasePage<BaseProps, BaseStates> {
 
@@ -25,11 +26,13 @@ export default class FarmerReport extends BasePage<BaseProps, BaseStates> {
     }
 
     renderHTML() {
+        let auctionsEmpty: boolean = this.auctions.length === 0;
+
         return (
             <div className="generic-list FarmerReport">
                 <div className="list-header">
                     {
-                        this.fields.map(field => {
+                        !auctionsEmpty && this.fields.map(field => {
                             return <span key={field}>{field}</span>
                         })
                     }
@@ -52,6 +55,7 @@ export default class FarmerReport extends BasePage<BaseProps, BaseStates> {
                         )
                     })
                 }
+                {auctionsEmpty && <EmptyPage />}
             </div>
         );
     }

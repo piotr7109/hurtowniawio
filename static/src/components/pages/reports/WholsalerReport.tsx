@@ -3,6 +3,7 @@ import {BasePage, BaseProps, BaseStates} from "../BasePage";
 import {Link} from 'react-router';
 import JsonUtils from "../../../utils/JsonUtils";
 import * as _ from 'underscore';
+import {EmptyPage} from "../../partials/system/System";
 
 export default class WholsalerReport extends BasePage<BaseProps, BaseStates> {
 
@@ -48,16 +49,17 @@ export default class WholsalerReport extends BasePage<BaseProps, BaseStates> {
     }
 
     renderHTML() {
+        let itemsEmpty: boolean = this.items.length === 0;
         return (
             <div className="generic-list FarmerReport">
                 <div className="list-header">
                     {
-                        this.fields.map(field => {
+                        !itemsEmpty && this.fields.map(field => {
                             return <span key={field}>{field}</span>
                         })
                     }
                 </div>
-                {this.items && this.items.map(item => {
+                {!itemsEmpty && this.items.map(item => {
                     return (
                         <div className="list-row" key={item.id}>
                             <span>{item.name}</span>
@@ -67,6 +69,7 @@ export default class WholsalerReport extends BasePage<BaseProps, BaseStates> {
                     )
                 })
                 }
+                {itemsEmpty && <EmptyPage />}
             </div>
         );
     }

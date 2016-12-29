@@ -3,6 +3,7 @@ import {BaseProps, BaseStates, BasePage} from "../BasePage";
 import JsonUtils from "../../../utils/JsonUtils";
 import UserUtils from "../../../utils/UserUtils";
 import ModalWindow from "../../partials/system/modalWindow/ModalWindow";
+import {EmptyPage} from "../../partials/system/System";
 
 interface ItemsListState extends BaseStates {
     modalVisible: boolean;
@@ -66,16 +67,23 @@ export default class ItemsList extends BasePage<BaseProps, ItemsListState> {
             });
     }
 
+    getHeader(): any {
+        return (
+            <div className="items-header">
+                <span className="item">Przedmioty</span>
+                <span className="item">Odmiana</span>
+                <span className="item">Kraj</span>
+                <span className="item">Usuń</span>
+            </div>
+        );
+    }
+
     renderHTML() {
+        let emptyItems: boolean = this.usedItems.length === 0 && this.unusedItems.length === 0;
 
         return (
             <div className="ItemsList">
-                <div className="items-header">
-                    <span className="item">Przedmioty</span>
-                    <span className="item">Odmiana</span>
-                    <span className="item">Kraj</span>
-                    <span className="item">Usuń</span>
-                </div>
+                {!emptyItems && this.getHeader()}
                 {this.unusedItems.map((item: any) => {
                     return (
                         <div className="item-row" key={item.id}>
@@ -98,6 +106,7 @@ export default class ItemsList extends BasePage<BaseProps, ItemsListState> {
                         </div>
                     );
                 })}
+                {emptyItems && <EmptyPage />}
                 {this.state.modalVisible &&
                 <ModalWindow hide={this.hideModalWindow.bind(this)}>
                     {this.state.mode === this.modes.success && <span>Usunąłeś przedmiot.</span>}

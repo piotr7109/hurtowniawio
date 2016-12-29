@@ -4,11 +4,11 @@
     {
       "Przetargi": [
         {
-          "title": "Lista",
+          "title": "Lista przetargów",
           "path": "/auctionList"
         },
         {
-          "title": "Moje",
+          "title": "Moje przetargi",
           "path": "/farmerAuctions"
         }
       ]

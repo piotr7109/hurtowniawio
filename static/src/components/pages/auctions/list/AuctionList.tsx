@@ -4,6 +4,7 @@ import AuctionListItem from "../../../partials/auction/AuctionListItem";
 import UserUtils from "../../../../utils/UserUtils";
 import JsonUtils from "../../../../utils/JsonUtils";
 import Utils from "../../../../utils/Utils";
+import {EmptyPage} from "../../../partials/system/System";
 
 export default class AuctionList<S extends BaseStates> extends BasePage<BaseProps, S> {
 
@@ -44,6 +45,7 @@ export default class AuctionList<S extends BaseStates> extends BasePage<BaseProp
                         <AuctionListItem auction={auction} key={Utils.getTimeStamp()}/>
                     );
                 })}
+                {this.auctions.length === 0 && <EmptyPage />}
             </div>
         );
     }

@@ -12,10 +12,6 @@ interface HeaderStates {
 
 export default class Header extends React.Component<{}, HeaderStates> {
 
-    constructor() {
-        super();
-    }
-
     componentWillMount() {
         this.setState({
             modalLoginVisible: false,
@@ -24,7 +20,7 @@ export default class Header extends React.Component<{}, HeaderStates> {
     }
 
     switchModalWindows(modalLoginVisible: boolean,
-                     modalRegisterVisible: boolean) {
+                       modalRegisterVisible: boolean) {
         this.setState({
             modalLoginVisible: modalLoginVisible,
             modalRegisterVisible: modalRegisterVisible
@@ -34,7 +30,6 @@ export default class Header extends React.Component<{}, HeaderStates> {
     hideWindows() {
         this.switchModalWindows(false, false);
     }
-
 
     getAuthButtons() {
         if (UserUtils.isUserLogged()) {
