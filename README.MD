@@ -1,10 +1,10 @@
 #####################################################################
 
-Requirements:
-Node.js 6.9.2+ (possibility to run on 5.2, tested on 6.9.2)
-npm  3.10+
-Maven 3.3.9+
-Java 1.8+
+Requirements:\n
+Node.js 6.9.2+ (possibility to run on 5.2, tested on 6.9.2)\n
+npm  3.10+\n
+Maven 3.3.9+\n
+Java 1.8+\n
 MySQL 5.5+
 
 To configure project:
