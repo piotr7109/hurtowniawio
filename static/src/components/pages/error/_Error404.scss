@@ -1,0 +1,15 @@
+.Error404 {
+  display: table;
+
+  .error-code {
+    display: table-cell;
+    font-size: 60px;
+    color: $red;
+    padding: 0 20px;
+  }
+
+  .error-message {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}

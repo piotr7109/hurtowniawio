@@ -23,8 +23,12 @@
 
     .image {
       img {
-        width: 100%;
+        width: auto;
         max-height: 210px;
+
+        @include respond-to(x-large) {
+          width: 100%;
+        }
       }
     }
 
