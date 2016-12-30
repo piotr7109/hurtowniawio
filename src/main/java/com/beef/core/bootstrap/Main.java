@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.beef")
 public class Main {
     public static void main(String[] args) {
-
         HibernateBase.createEntityManagers();
         SpringApplication.run(Main.class, args);
     }
