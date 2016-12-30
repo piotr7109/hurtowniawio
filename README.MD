@@ -1,19 +1,13 @@
 #####################################################################
 
 Requirements:
-
-Node.js 6.9.2+ (possibility to run on 5.2, tested on 6.9.2)
-
-npm  3.10+
-
-Maven 3.3.9+
-
-Java 1.8+
-
-MySQL 5.5+
+1) Node.js 6.9.2+ (possibility to run on 5.2, tested on 6.9.2)
+2) npm  3.10+
+3) Maven 3.3.9+
+4) Java 1.8+
+5) MySQL 5.5+
 
 To configure project:
-
 
 1. Edit \src\main\resources\META-INF\persistence.xml file
 2. Set user, password and url for all persitence units
