@@ -1,6 +1,7 @@
 #####################################################################
 
 Requirements:
+
 1. Node.js 6.9.2+ (possibility to run on 5.2, tested on 6.9.2)
 2. npm  3.10+
 3. Maven 3.3.9+
