@@ -15,6 +15,7 @@ export default class ItemsList extends BasePage<BaseProps, ItemsListState> {
     unusedItems: any = [];
 
     allowedUsers = [
+        UserUtils.userTypes.hurtownik,
         UserUtils.userTypes.admin
     ];
 
