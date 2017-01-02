@@ -32,14 +32,14 @@ export default class MainPage extends React.Component<{}, {}> {
                 </div>
                 <div className="row">
                     <div className="content-left col-lg-6 col-xs-12">
-                        <img alt="hurtownia" src="/public/uploads/images/hurtownia.jpg"/>
+                        <img alt="beef" src="/public/uploads/images/beef.png" style={{maxWidth:"100%"}}/>
                     </div>
                     <div className="content-right col-lg-6 col-xs-12">
                         <h2>BEEF Industry</h2>
-                        <p>Jesteśmy firmą działającą na rynku od 2014 roku. Założona podczas pewnego projektu akademickiego
-                    funcjonuje do dziś. W jej skład wchodzą:</p>
-                        Michał Bardzki
-                        Piotr Fic
+                        <p>Jesteśmy firmą działającą na rynku od października 2015 roku. Założona podczas pewnego projektu akademickiego
+                            funcjonuje do dziś. W jej skład wchodzą:</p>
+                        <p>Michał Bardzki &amp;
+                        Piotr Fic</p>
                     </div>
                 </div>
             </div>

@@ -60,7 +60,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin address','admin@admin.pl','admin','admin','admin','admin','A','admin'),(18,'ul. Miodowa 4/7 Kraków','adam.czeladnik@hurtowniawio.pl','Adam','Czeladnik','hurtownik','hurtownik','A','hurtownik'),(19,'Stara Wieś 20','michal.bakiewicz@hurtowniawio.pl','Michał','Bąkiewicz','rolnik','rolnik','A','rolnik'),(20,'ul. Hutnicza 66/6','dostawca.maciej@hurtowniawio.pl','Dostawca','Maciej','dostawca','dostawca','A','dostawca');
+INSERT INTO `user` VALUES (18,'ul. Miodowa 4/7 Kraków','adam.czeladnik@hurtowniawio.pl','Adam','Czeladnik','hurtownik','hurtownik','A','hurtownik'),(19,'Stara Wieś 20','michal.bakiewicz@hurtowniawio.pl','Michał','Bąkiewicz','rolnik','rolnik','A','rolnik'),(20,'ul. Hutnicza 66/6','dostawca.maciej@hurtowniawio.pl','Dostawca','Maciej','dostawca','dostawca','A','dostawca');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

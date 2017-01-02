@@ -17,11 +17,11 @@
     }
 
     .logo-image {
-      display: inline-block;
+      display: none;
       width: 70px;
 
-      @include respond-to(small) {
-        display: none;
+      @include respond-to(medium) {
+        display: inline-block;
       }
     }
   }

@@ -19,23 +19,28 @@
     z-index: 1;
     border-radius: 0 0 10px 10px;
     display: flex;
+    flex-direction: column;
     box-shadow: 2px 2px 2px 2px $light-white;
 
-    .image {
-      img {
-        width: auto;
-        max-height: 210px;
+    @include respond-to(medium) {
+      flex-direction: row;
+    }
 
-        @include respond-to(x-large) {
-          width: 100%;
-        }
-      }
+    .image img {
+        max-height: 180px;
+        width: auto;
+
     }
 
     .description {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      margin-top: 15px;
+
+      @include respond-to(medium) {
+        margin-top: 0;
+      }
 
       .details {
         display: flex;
