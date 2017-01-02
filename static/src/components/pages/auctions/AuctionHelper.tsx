@@ -24,7 +24,7 @@ export default class AuctionHelper {
         } else {
             return (
                 <button className="buttonSubmit" onClick={() => {AuctionHelper.cancelOffer()}}>
-                    ZrezyGNÓJ
+                    Zrezygnuj
                 </button>
             );
         }
