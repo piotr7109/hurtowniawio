@@ -16,21 +16,21 @@ To configure project:
 
 To install npm dependencies:
 
-1. Move to static in root directory
-2. Type npm install
+1. Move to `static` in root directory
+2. Type `npm install`
 
 To build project:
 
 1. Move to root directory
-2. Type mvn clean install
-3. mvn exec:java -Dexec.mainClass="com.beef.core.bootstrap.DatabaseCreation"
-4. Move to /static directory
-5. Type gulp compile
+2. Type `mvn clean install`
+3. `mvn exec:java -Dexec.mainClass="com.beef.core.bootstrap.DatabaseCreation"`
+4. Move to `static` directory
+5. Type `gulp compile`
 
 To run project:
 
 1. Move to root directory
-2. Type mvn spring-boot:run
+2. Type `mvn spring-boot:run`
 3. Go to http://localhost:8080/
 4. Enjoy!
 
