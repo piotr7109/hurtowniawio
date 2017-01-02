@@ -1,0 +1,32 @@
+.MainPage {
+
+  .row {
+    display: flex;
+    margin: 30px;
+    flex-direction: column;
+
+    &:nth-child(2n) {
+      flex-direction: column-reverse;
+    }
+
+    @include respond-to(large) {
+      flex-direction: row;
+
+      &:nth-child(2n) {
+        flex-direction: row;
+      }
+    }
+
+    .content-left {
+      img {
+        max-width: 60%;
+        margin: auto;
+      }
+    }
+    .content-right {
+      padding-bottom: 20px;
+    }
+
+
+  }
+}
