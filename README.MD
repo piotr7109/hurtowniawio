@@ -9,6 +9,10 @@
 * Java 1.8+
 * MySQL 5.5+
 
+## For Windows users:
+
+Just run `buildAndRun.bat` from project root directory. Page wil be available under `localhost:8080`
+
 ## To configure project:
 
 1. Edit \src\main\resources\META-INF\persistence.xml file
