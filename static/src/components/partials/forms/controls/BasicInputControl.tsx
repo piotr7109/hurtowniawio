@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 interface BasicInputControlProps {
-    name:string;
-    text:string;
-    type:string;
-    value:string;
+    name: string;
+    text: string;
+    type: string;
+    value: string;
 }
 
 export class BasicInputControl extends React.Component<BasicInputControlProps, {}> {
@@ -14,6 +14,7 @@ export class BasicInputControl extends React.Component<BasicInputControlProps, {
             text = this.props.text,
             type = this.props.type,
             value = this.props.value;
+
         return (
             <div className="form-row">
                 <label htmlFor={name} className="form-label">{text}</label>
@@ -25,10 +26,10 @@ export class BasicInputControl extends React.Component<BasicInputControlProps, {
 }
 
 interface BasicSubmitControlProps {
-    text:string;
+    text: string;
 }
 
-export class BasicSubmitControl extends React.Component<BasicSubmitControlProps, {}>{
+export class BasicSubmitControl extends React.Component<BasicSubmitControlProps, {}> {
     render() {
         return <input type="submit" className="buttonSubmit" value={this.props.text}/>;
     }
