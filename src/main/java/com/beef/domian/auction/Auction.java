@@ -24,6 +24,7 @@ public class Auction {
 
     private String title;
 
+    @Column(columnDefinition="text")
     private String description;
 
     private int amount;

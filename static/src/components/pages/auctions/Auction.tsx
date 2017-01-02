@@ -71,7 +71,7 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
     }
 
     renderHTML() {
-        if(this.state.mode === this.modes.fail) {
+        if (this.state.mode === this.modes.fail) {
             return <div><Link to="/">Wróc na stroną główną</Link></div>;
         } else {
             let auctionFinished = this.auction.state === 'X',

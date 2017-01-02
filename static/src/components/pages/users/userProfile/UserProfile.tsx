@@ -11,13 +11,21 @@ export default class UserProfile extends BasePage<Props, BaseStates> {
 
     user: any;
 
+    allowedUsers = [
+        UserUtils.userTypes.admin,
+        UserUtils.userTypes.hurtownik,
+        UserUtils.userTypes.rolnik,
+        UserUtils.userTypes.dostawca
+    ];
+
     componentWillMount() {
         this.state = {mode: this.modes.loading} as BaseStates;
         this.loadData();
     }
 
     loadData() {
-        let userId = this.props.params ? this.props.params.id : this.props.userId;
+        let params = this.props.params,
+            userId = params ? params.id : this.props.userId;
 
         if (UserUtils.loggedUser.type === UserUtils.userTypes.rolnik || !userId) {
             this.user = UserUtils.loggedUser;
