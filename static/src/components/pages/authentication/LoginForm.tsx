@@ -17,8 +17,9 @@ export class LoginForm extends BaseForm<LoginFormProps, BaseStates> {
             .then((response: any) => {
                 let data = response.data,
                     newMode = data ? this.modes.success : this.modes.fail;
-
-                UserUtils.loggedUser = data;
+                if (data) {
+                    UserUtils.loggedUser = data;
+                }
                 this.updateMode(newMode);
             });
     }
