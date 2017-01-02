@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as Serialize from 'form-serialize';
+import {Link} from 'react-router';
 import {BaseForm} from "../../BaseForm";
 import {BasicInputControl, BasicSubmitControl} from "../../../partials/forms/controls/BasicInputControl";
 import CustomSelect from "../../../partials/forms/controls/CustomSelect";
@@ -71,6 +72,10 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
     }
 
     getForm(): any {
+        if (this.items.length === 0) {
+            return this.getNoItemsError();
+        }
+
         return (
             <form className="Form navbar-form" onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
@@ -83,7 +88,8 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
                             value=""/>);
                     })}
                     <div className="form-row">
-                        <label htmlFor={this.descriptionField.name} className="form-label">{this.descriptionField.text}</label>
+                        <label htmlFor={this.descriptionField.name}
+                               className="form-label">{this.descriptionField.text}</label>
                         <textarea name={this.descriptionField.name}
                                   id={this.descriptionField.name}/>
                     </div>
@@ -91,6 +97,17 @@ export default class AddAuctionForm extends BaseForm<BaseProps, BaseStates> {
                     <BasicSubmitControl text='Dodaj przetarg'/>
                 </div>
             </form>
+        );
+    }
+
+    getNoItemsError(): any {
+        return (
+            <div>
+                <ErrorMessage>
+                    W systemie nie zostały wprowadzone żadne artykuły.
+                </ErrorMessage>
+                <Link to="/addItem">Wprowadź co najmniej jeden artykuł.</Link>
+            </div>
         );
     }
 
