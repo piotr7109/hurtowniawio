@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export default class MainPage extends React.Component {
+export default class MainPage extends React.Component<{}, {}> {
 
     render() {
         return (
@@ -8,7 +8,7 @@ export default class MainPage extends React.Component {
                 <h1 className="col-12">Hurtownia warzyw i owoców</h1>
                 <div className="row">
                     <div className="content-left col-lg-6 col-xs-12">
-                        <img alt="hurtownia" src="../../../../public/uploads/images/hurtownia.jpg"/>
+                        <img alt="hurtownia" src="/public/uploads/images/hurtownia.jpg"/>
                     </div>
                     <div className="content-right col-lg-6 col-xs-12">
                         <h2>Witamy w naszej hurtowni</h2>
@@ -27,12 +27,12 @@ export default class MainPage extends React.Component {
                     aby towar uległ zniczeniu, zawsze szybko i bezpiecznie trafia do klienta.</p>
                     </div>
                     <div className="content-left col-lg-6 col-xs-12">
-                        <img alt="hurtownia" src="../../../../public/uploads/images/truck.jpg"/>
+                        <img alt="hurtownia" src="/public/uploads/images/truck.jpg"/>
                     </div>
                 </div>
                 <div className="row">
                     <div className="content-left col-lg-6 col-xs-12">
-                        <img alt="hurtownia" src="../../../../public/uploads/images/hurtownia.jpg"/>
+                        <img alt="hurtownia" src="/public/uploads/images/hurtownia.jpg"/>
                     </div>
                     <div className="content-right col-lg-6 col-xs-12">
                         <h2>BEEF Industry</h2>

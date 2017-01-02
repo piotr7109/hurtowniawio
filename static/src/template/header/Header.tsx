@@ -59,7 +59,7 @@ export default class Header extends React.Component<{}, HeaderStates> {
             <header className="header">
                 <h1 className="logo">
                     <a href="#" className="logo-link">SELLEGRO</a>
-                    <img className="logo-image" src="public/uploads/images/logo-image.png"/>
+                    <img className="logo-image" src="/public/uploads/images/logo-image.png"/>
                 </h1>
                 <div className="header-button-wrapper">
                     {this.getAuthButtons()}
