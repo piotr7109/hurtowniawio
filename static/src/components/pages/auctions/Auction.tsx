@@ -103,14 +103,18 @@ export default class Auction extends BasePage<BaseProps, AuctionStates> {
                                     <span>Kraj pochodzenia: {this.auction.item.country}</span>
                                 </p>
                             </div>
-                            <p className="description">
-                                <span>Opis:</span>
-                                <span>{this.auction.description}</span>
-                            </p>
-                            {isWholesaler && !auctionFinished && AuctionHelper.getWholesalerControls()}
-                            {isFarmer && !auctionFinished && AuctionHelper.getFarmerControls()}
-                            {isDeliver && auctionFinished && AuctionHelper.getDeliverControls(this.auction.deliveryState)}
-                            {isAdmin && AuctionHelper.getAdminControls()}
+                            <div className="description-wrapper">
+                                <p className="description">
+                                    <span>Opis:</span>
+                                    <span>{this.auction.description}</span>
+                                </p>
+                                <div className="buttons-wrapper">
+                                    {isWholesaler && !auctionFinished && AuctionHelper.getWholesalerControls()}
+                                    {isFarmer && !auctionFinished && AuctionHelper.getFarmerControls()}
+                                    {isDeliver && auctionFinished && AuctionHelper.getDeliverControls(this.auction.deliveryState)}
+                                    {isAdmin && AuctionHelper.getAdminControls()}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {(isWholesaler || isDeliver) && AuctionHelper.getApplicationList()}

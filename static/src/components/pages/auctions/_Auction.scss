@@ -40,7 +40,11 @@
   .content {
     flex: 1 0 auto;
     display: flex;
+    flex-direction: column;
 
+    @include respond-to(medium) {
+      flex-direction: row;
+    }
     .left-panel {
       flex: 2 0 0;
 
@@ -53,10 +57,18 @@
 
     .right-panel {
       display: flex;
-      justify-content: flex-start;
-      flex: 3 0 0;
-      align-items: flex-start;
+      flex: 3 0 auto;
+      align-items: center;
       position: relative;
+      flex-direction: column;
+      justify-content: center;
+
+      @include respond-to(medium) {
+        flex: 3 0 0;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
 
       .attributes {
         flex: 1 0 auto;
@@ -91,16 +103,27 @@
           padding: 15px;
         }
       }
-
-      .description {
+      .description-wrapper {
         padding: 10px;
         display: flex;
         flex-direction: column;
-      }
 
-      .buttonSubmit {
-        position: relative;
-        top: calc(100% - 40px);
+        .description {
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .buttons-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+
+          .buttonSubmit {
+            //position: relative;
+            //top: calc(100% - 40px);
+            margin: 10px;
+          }
+        }
       }
 
       a {
