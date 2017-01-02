@@ -11,7 +11,9 @@
 
 ## For Windows users:
 
-Just run `buildAndRun.bat` from project root directory. Page wil be available under `localhost:8080`
+For first run launch `buildAndRun.bat` from project root directory. Page wil be available under `localhost:8080`
+
+For another launches see section `To build project`
 
 ## To configure project:
 
