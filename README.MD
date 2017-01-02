@@ -13,7 +13,7 @@
 
 For first run launch `buildAndRun.bat` from project root directory. Page wil be available under `localhost:8080`
 
-For another launches see section `To build project`
+For another launches see section `To run project`
 
 ## To configure project:
 
