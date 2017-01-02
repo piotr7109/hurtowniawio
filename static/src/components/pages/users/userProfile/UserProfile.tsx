@@ -11,6 +11,13 @@ export default class UserProfile extends BasePage<Props, BaseStates> {
 
     user: any;
 
+    allowedUsers = [
+        UserUtils.userTypes.admin,
+        UserUtils.userTypes.hurtownik,
+        UserUtils.userTypes.rolnik,
+        UserUtils.userTypes.dostawca
+    ];
+
     componentWillMount() {
         this.state = {mode: this.modes.loading} as BaseStates;
         this.loadData();
