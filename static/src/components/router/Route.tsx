@@ -18,6 +18,7 @@ import ItemsList from "../pages/items/ItemsList";
 import UserProfile from "../pages/users/userProfile/UserProfile";
 import DelivererReport from "../pages/auctions/list/DeliverAuctions";
 import WholsalerReport from "../pages/reports/WholsalerReport";
+import MainPage from "../pages/main/MainPage";
 
 export default class IndexComponent extends React.Component<{}, {}> {
 
@@ -42,6 +43,7 @@ export default class IndexComponent extends React.Component<{}, {}> {
                     <Route path="/userProfile/:id" component={UserProfile}/>
                     <Route path="/userProfile" component={UserProfile}/>
                     <Route path="/wholesalerReport" component={WholsalerReport}/>
+                    <Route path="/" component={MainPage}/>
                     <Route path='/*' component={Error404}/>
                 </Route>
             </Router>
