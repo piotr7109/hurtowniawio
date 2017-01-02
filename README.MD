@@ -11,7 +11,7 @@
 
 ## For Windows users:
 
-For first run launch `buildAndRun.bat` from project root directory. Page wil be available under `localhost:8080`
+For first run launch `buildAndRun.bat` from project root directory. Page wil be available under `localhost:8080`. Default user is `admin` with password `admin`.
 
 For another launches see section `To run project`
 
@@ -38,7 +38,8 @@ For another launches see section `To run project`
 1. Move to root directory
 2. Type `mvn spring-boot:run`
 3. Go to http://localhost:8080/
-4. Enjoy!
+4. Default user is `admin` with password `admin`
+5. Enjoy!
 
 #########################################################################
 
