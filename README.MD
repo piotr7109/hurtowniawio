@@ -9,17 +9,21 @@
 * Java 1.8+
 * MySQL 5.5+
 
+## To configure project:
+
+1. Edit \src\main\resources\META-INF\persistence.xml file
+2. Set user, password and url for all persitence units
+3. Create schema named `wholesale` and user `vegetable` with password given in persistence file; grant all privilages to him in created schema
+
 ## For Windows users:
 
 For first run launch `buildAndRun.bat` from project root directory. Page wil be available under `localhost:8080`. Default user is `admin` with password `admin`.
 
 For another launches see section `To run project`
 
-## To configure project:
+## DEMO CONTENT
 
-1. Edit \src\main\resources\META-INF\persistence.xml file
-2. Set user, password and url for all persitence units
-3. Create schema named `wholesale` and user `vegetable` with password given in persistence file; grant all privilages to him in created schema
+Additionally you can import sql file to database (`sqlDemoContent/hurtowniawio.sql`) for demo content. 
 
 ## To install and build npm dependencies:
 
