@@ -17,7 +17,13 @@
 
 ## For Windows users:
 
-For first run launch `buildAndRun.bat` from project root directory. Page wil be available under `localhost:8080`. Default user is `admin` with password `admin`.
+For first run launch `buildAndRun.bat` from project root directory. 
+
+For demo content please see section `DEMO CONTENT`
+
+Page wil be available under `localhost:8080`. Default user is `admin` with password `admin`.
+
+No further steps are needed.
 
 For another launches see section `To run project`
 
